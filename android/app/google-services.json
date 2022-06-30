@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "799560817059",
+    "project_id": "getfit-89b61",
+    "storage_bucket": "getfit-89b61.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799560817059:android:4e84a900b95a1e153aa216",
+        "android_client_info": {
+          "package_name": "com.example.getfit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "799560817059-vn4hoqgcc9fo1oq3edf2d4nrisv4ptif.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOZf9B2NkMkQSH8yEO2GZtftQ7f3jiePs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "799560817059-vn4hoqgcc9fo1oq3edf2d4nrisv4ptif.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-# getfit
+# Getfit
 
 A new Flutter project.
 

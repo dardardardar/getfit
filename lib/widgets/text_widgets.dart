@@ -9,4 +9,18 @@ Widget textTitle(String text){
       color: LibColors.primary_color
     ),
   );
+
+}
+Widget textTitleAlt(String text){
+
+  return  Text(
+    text ,style: const TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      color: LibColors.color_white,
+
+  ),
+    textAlign: TextAlign.center,
+  );
+
 }

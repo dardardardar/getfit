@@ -37,28 +37,28 @@ class _ProfileViewState extends State<ProfileView> {
               allergiesCard(),
             ],
           ))),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (index) => setState(() => currentIndex = index),
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.history_edu),
-              label: 'Home',
-              backgroundColor: LibColors.primary_color),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.tips_and_updates),
-              label: 'Tips & Trick',
-              backgroundColor: LibColors.primary_color),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.chat),
-              label: 'Consultation',
-              backgroundColor: LibColors.primary_color),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-              backgroundColor: LibColors.primary_color)
-        ],
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   currentIndex: currentIndex,
+      //   onTap: (index) => setState(() => currentIndex = index),
+      //   items: [
+      //     BottomNavigationBarItem(
+      //         icon: Icon(Icons.history_edu),
+      //         label: 'Home',
+      //         backgroundColor: LibColors.primary_color),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(Icons.tips_and_updates),
+      //         label: 'Tips & Trick',
+      //         backgroundColor: LibColors.primary_color),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(Icons.chat),
+      //         label: 'Consultation',
+      //         backgroundColor: LibColors.primary_color),
+      //     BottomNavigationBarItem(
+      //         icon: Icon(Icons.person),
+      //         label: 'Profile',
+      //         backgroundColor: LibColors.primary_color)
+      //   ],
+      // ),
     );
   }
 }

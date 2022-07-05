@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:getfit/views/bottomnavbar.dart';
+import 'package:getfit/views/breakfastview.dart';
+import 'package:getfit/views/chating.dart';
 import 'package:getfit/views/consultation.dart';
 import 'package:getfit/views/home_view.dart';
 import 'package:getfit/views/profile.dart';
@@ -21,7 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ConsultationView(),
+      home: BottomnavbarView(),
     );
   }
 }

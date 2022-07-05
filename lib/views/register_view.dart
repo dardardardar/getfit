@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
+import 'package:getfit/views/profile.dart';
 import 'package:getfit/widgets/colors.dart';
 import 'package:intl/intl.dart';
 import '../widgets/text_widgets.dart';
@@ -17,6 +19,23 @@ class _RegisterViewState extends State<RegisterView> {
   PageController p = PageController();
   List<String> _genders = ['Male','Female'];
   String? _selectedGender;
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose(){
+    emailController.dispose();
+    passwordController.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +98,9 @@ class _RegisterViewState extends State<RegisterView> {
                               textAlign: TextAlign.center,
                             )
                         ),
-                        MaterialButton(onPressed: (){},
+                        MaterialButton(onPressed: (){
+                          Navigator.pop(context);
+                        },
                             child: Text(
                               "Back" ,style: const TextStyle(
                               fontSize: 16,
@@ -414,8 +435,6 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
   Widget _pageFive(){
-
-
     return Container(
       padding: EdgeInsets.all(12),
       color: LibColors.primary_color,
@@ -453,6 +472,7 @@ class _RegisterViewState extends State<RegisterView> {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 32),
                   child: TextFormField(
+                    controller: emailController,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(vertical: 12),
@@ -502,6 +522,7 @@ class _RegisterViewState extends State<RegisterView> {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 32),
                   child: TextFormField(
+                    controller: passwordController,
                     textAlign: TextAlign.center,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -522,6 +543,7 @@ class _RegisterViewState extends State<RegisterView> {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 32),
                   child: TextFormField(
+                    controller: passwordController,
                     textAlign: TextAlign.center,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -551,15 +573,15 @@ class _RegisterViewState extends State<RegisterView> {
                     child: Column(
                       children: [
                         MaterialButton(onPressed: (){
-                          p.nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeIn
-                          );
+                          signUp();
+                          if(FirebaseAuth.instance.currentUser != null){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileView()));
+                          }
                         },
                             minWidth: 360,
                             color: LibColors.color_white,
                             child: Text(
-                              "Continue" ,style: const TextStyle(
+                              "Register" ,style: const TextStyle(
                               fontSize: 16,
                               color: LibColors.primary_color,
                             ),
@@ -590,5 +612,16 @@ class _RegisterViewState extends State<RegisterView> {
 
       ),
     );
+
+  }
+  Future signUp() async{
+    try{
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text.trim(), password: passwordController.text.trim());
+    }
+    on FirebaseAuthException catch (e){
+      print(e);
+    }
+    Map<String, dynamic>
   }
 }

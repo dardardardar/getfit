@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:getfit/views/consultation.dart';
 import 'package:getfit/views/home_view.dart';
+import 'package:getfit/views/loading_view.dart';
 import 'package:getfit/views/profile.dart';
 import 'package:getfit/views/register_view.dart';
 import 'package:getfit/views/setting.dart';
@@ -14,14 +15,16 @@ Future main() async {
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
-
+final navigatorKey = GlobalKey<NavigatorState>();
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
-      home: ConsultationView(),
+      navigatorKey: navigatorKey,
+      home: SplashScreenView(),
     );
   }
 }
@@ -35,8 +38,18 @@ class Mainpage extends StatelessWidget {
       body: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
+          if(snapshot.connectionState == ConnectionState.waiting){
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if(snapshot.hasError){
+            return Center(
+              child: Text("Error!"),
+            );
+          }
           if (snapshot.hasData) {
-            return HomeView();
+            return ProfileView();
           } else {
             return WelcomeView();
           }

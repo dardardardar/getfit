@@ -24,7 +24,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(user.displayName.toString()),
+        title: Text(user.email.toString()),
         actions: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
@@ -39,20 +39,23 @@ class _HomeViewState extends State<HomeView> {
               child: Column(
             children: <Widget>[
               infoCard(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Container(margin: EdgeInsets.all(12), child: fatCard()),
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  Container(margin: EdgeInsets.all(12), child: carbsCard()),
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  Container(margin: EdgeInsets.all(12), child: proteinCard())
-                ],
+              Container(
+                margin: EdgeInsets.all(12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(child:fatCard(),),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    Expanded(child:carbsCard(),),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    Expanded(child:proteinCard(),)
+                  ],
+                ),
               ),
               dateCard(),
               breakfastCard(),
@@ -90,17 +93,17 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget fatCard() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
+    return Container(
+
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
           color: LibColors.color_white,
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.8),
-              spreadRadius: 10,
-              blurRadius: 10,
-              offset: Offset(0, 12), // changes position of shadow
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, 5),  // changes position of shadow
             ),
           ],
         ),
@@ -124,22 +127,21 @@ class _HomeViewState extends State<HomeView> {
             ),
           ],
         ),
-      ),
+
     );
   }
 
   Widget carbsCard() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
+  return  Container(
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
           color: LibColors.color_white,
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.8),
-              spreadRadius: 10,
-              blurRadius: 10,
-              offset: Offset(0, 12), // changes position of shadow
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, 5), // changes position of shadow
             ),
           ],
         ),
@@ -164,22 +166,20 @@ class _HomeViewState extends State<HomeView> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 
   Widget proteinCard() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
+    return Container(
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
           color: LibColors.color_white,
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.8),
-              spreadRadius: 10,
-              blurRadius: 10,
-              offset: Offset(0, 12), // changes position of shadow
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, 5),  // changes position of shadow
             ),
           ],
         ),
@@ -204,16 +204,26 @@ class _HomeViewState extends State<HomeView> {
             ),
           ],
         ),
-      ),
+
     );
   }
 
   Widget infoCard() {
-    return ClipRRect(
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16,vertical: 24),
+      margin: EdgeInsets.all(12),
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: EdgeInsets.all(16),
-          color: LibColors.second_color,
+        color: LibColors.second_color,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 5),  // changes position of shadow
+          ),
+        ],
+      ),
           child: Row(
             children: <Widget>[
               Expanded(
@@ -230,6 +240,7 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
               ),
+
               Expanded(
                 child: Column(
                   children: [
@@ -260,7 +271,7 @@ class _HomeViewState extends State<HomeView> {
               ),
             ],
           ),
-        ));
+        );
   }
 
   Widget dateCard() {
@@ -269,6 +280,7 @@ class _HomeViewState extends State<HomeView> {
         child: Container(
           padding: EdgeInsets.all(16),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Expanded(
                 child: Column(
@@ -279,7 +291,7 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
               ),
-              Expanded(
+              Container(
                 child: Column(
                   children: [
                     Text(
@@ -302,10 +314,21 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget breakfastCard() {
-    return ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
+    return Container(
           padding: EdgeInsets.all(16),
+      margin: EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: LibColors.color_white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 5),  // changes position of shadow
+          ),
+        ],
+      ),
           child: Row(
             children: <Widget>[
               Expanded(
@@ -342,7 +365,7 @@ class _HomeViewState extends State<HomeView> {
               ),
             ],
           ),
-        ));
+        );
   }
 
   Widget brunchCard() {

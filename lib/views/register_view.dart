@@ -23,6 +23,7 @@ class _RegisterViewState extends State<RegisterView> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+
   @override
   void initState() {
     super.initState();
@@ -430,7 +431,6 @@ class _RegisterViewState extends State<RegisterView> {
             ),
           )
         ],
-
       ),
     );
   }
@@ -442,7 +442,6 @@ class _RegisterViewState extends State<RegisterView> {
         children: [
           SizedBox( height: 120,),
           Align(
-
               child:textTitleAlt("Please fill this form below to complete the registration")
           ),
           SizedBox( height: 120,),
@@ -622,6 +621,6 @@ class _RegisterViewState extends State<RegisterView> {
     on FirebaseAuthException catch (e){
       print(e);
     }
-    
+
   }
 }

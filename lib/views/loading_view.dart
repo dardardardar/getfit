@@ -29,7 +29,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
       body:  Container(
       color: Color(0xff134842),
       child: const Center(
-        child: Image(image: AssetImage("assets/images/getfit-03.png"), fit: BoxFit.cover, width: 320,)
+        child: Image(image: AssetImage("assets/images/getfit-03.png"), fit: BoxFit.fill, width: 320,)
         ),
       ),
     );

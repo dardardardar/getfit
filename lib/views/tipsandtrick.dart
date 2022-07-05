@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:getfit/widgets/colors.dart';
 
@@ -11,18 +12,18 @@ class TipsandtrickView extends StatefulWidget {
 
 class _TipsandtrickViewState extends State<TipsandtrickView> {
   int currentIndex = 0;
-
+  final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hello Atkinson'),
-        // actions: [
-        //   Padding(
-        //     padding: EdgeInsets.symmetric(horizontal: 16),
-        //     child: Icon(Icons.menu),
-        //   ),
-        // ],
+        title: Text(user.email.toString()),
+        actions: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Icon(Icons.menu),
+          ),
+        ],
         backgroundColor: LibColors.primary_color,
       ),
       body: Container(

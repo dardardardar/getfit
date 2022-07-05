@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:getfit/views/tipsandtrick.dart';
 import 'package:getfit/widgets/colors.dart';
@@ -18,18 +19,18 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
-
+  final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hello Atkinson'),
-        // actions: [
-        //   Padding(
-        //     padding: EdgeInsets.symmetric(horizontal: 16),
-        //     child: Icon(Icons.menu),
-        //   ),
-        // ],
+        title: Text(user.email.toString()),
+        actions: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Icon(Icons.menu),
+          ),
+        ],
         backgroundColor: LibColors.primary_color,
       ),
       body: Container(
@@ -38,20 +39,29 @@ class _HomeViewState extends State<HomeView> {
               child: Column(
             children: <Widget>[
               infoCard(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Container(margin: EdgeInsets.all(12), child: fatCard()),
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  Container(margin: EdgeInsets.all(12), child: carbsCard()),
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  Container(margin: EdgeInsets.all(12), child: proteinCard())
-                ],
+              Container(
+                margin: EdgeInsets.all(12),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                      child: fatCard(),
+                    ),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    Expanded(
+                      child: carbsCard(),
+                    ),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    Expanded(
+                      child: proteinCard(),
+                    )
+                  ],
+                ),
               ),
               dateCard(),
               breakfastCard(),
@@ -89,177 +99,180 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget fatCard() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        decoration: BoxDecoration(
-          color: LibColors.color_white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.8),
-              spreadRadius: 10,
-              blurRadius: 10,
-              offset: Offset(0, 12), // changes position of shadow
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: LibColors.color_white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 5), // changes position of shadow
+          ),
+        ],
+      ),
+      padding: EdgeInsets.all(12),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image(image: AssetImage("assets/images/fat.png"), fit: BoxFit.cover),
+          Text(
+            'Fat'.toUpperCase(),
+            style: TextStyle(
+              color: LibColors.primary_color,
+              fontWeight: FontWeight.bold,
             ),
-          ],
-        ),
-        padding: EdgeInsets.all(12),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image(
-                image: AssetImage("assets/images/fat.png"), fit: BoxFit.cover),
-            Text(
-              'Fat'.toUpperCase(),
-              style: TextStyle(
-                color: LibColors.primary_color,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-              '500 / gr',
-              style: TextStyle(color: LibColors.primary_color),
-            ),
-          ],
-        ),
+          ),
+          Text(
+            '500 / gr',
+            style: TextStyle(color: LibColors.primary_color),
+          ),
+        ],
       ),
     );
   }
 
   Widget carbsCard() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        decoration: BoxDecoration(
-          color: LibColors.color_white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.8),
-              spreadRadius: 10,
-              blurRadius: 10,
-              offset: Offset(0, 12), // changes position of shadow
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: LibColors.color_white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 5), // changes position of shadow
+          ),
+        ],
+      ),
+      padding: EdgeInsets.all(12),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image(
+              image: AssetImage("assets/images/carbohidrat.png"),
+              fit: BoxFit.cover),
+          Text(
+            'Carbs'.toUpperCase(),
+            style: TextStyle(
+              color: LibColors.primary_color,
+              fontWeight: FontWeight.bold,
             ),
-          ],
-        ),
-        padding: EdgeInsets.all(12),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image(
-                image: AssetImage("assets/images/carbohidrat.png"),
-                fit: BoxFit.cover),
-            Text(
-              'Carbs'.toUpperCase(),
-              style: TextStyle(
-                color: LibColors.primary_color,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-              '500 / gr',
-              style: TextStyle(color: LibColors.primary_color),
-            ),
-          ],
-        ),
+          ),
+          Text(
+            '500 / gr',
+            style: TextStyle(color: LibColors.primary_color),
+          ),
+        ],
       ),
     );
   }
 
   Widget proteinCard() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-        decoration: BoxDecoration(
-          color: LibColors.color_white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.8),
-              spreadRadius: 10,
-              blurRadius: 10,
-              offset: Offset(0, 12), // changes position of shadow
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: LibColors.color_white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 5), // changes position of shadow
+          ),
+        ],
+      ),
+      padding: EdgeInsets.all(12),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image(
+              image: AssetImage("assets/images/protein.png"),
+              fit: BoxFit.cover),
+          Text(
+            'Protein'.toUpperCase(),
+            style: TextStyle(
+              color: LibColors.primary_color,
+              fontWeight: FontWeight.bold,
             ),
-          ],
-        ),
-        padding: EdgeInsets.all(12),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image(
-                image: AssetImage("assets/images/protein.png"),
-                fit: BoxFit.cover),
-            Text(
-              'Protein'.toUpperCase(),
-              style: TextStyle(
-                color: LibColors.primary_color,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-              '500 / gr',
-              style: TextStyle(color: LibColors.primary_color),
-            ),
-          ],
-        ),
+          ),
+          Text(
+            '500 / gr',
+            style: TextStyle(color: LibColors.primary_color),
+          ),
+        ],
       ),
     );
   }
 
   Widget infoCard() {
-    return ClipRRect(
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+      margin: EdgeInsets.all(12),
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: EdgeInsets.all(16),
-          color: LibColors.second_color,
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  children: [
-                    Text(
-                      'EATEN',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      '500 / gr',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    Text(
-                      'KCAL LEFT',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      '1500 / gr',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    Text(
-                      'BURNED',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text(
-                      '300 / gr',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+        color: LibColors.second_color,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 5), // changes position of shadow
           ),
-        ));
+        ],
+      ),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Column(
+              children: [
+                Text(
+                  'EATEN',
+                  style: TextStyle(color: Colors.white),
+                ),
+                Text(
+                  '500 / gr',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                Text(
+                  'KCAL LEFT',
+                  style: TextStyle(color: Colors.white),
+                ),
+                Text(
+                  '1500 / gr',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                Text(
+                  'BURNED',
+                  style: TextStyle(color: Colors.white),
+                ),
+                Text(
+                  '300 / gr',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget dateCard() {
@@ -302,56 +315,67 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget breakfastCard() {
-    return ClipRRect(
+    return Container(
+      padding: EdgeInsets.all(16),
+      margin: EdgeInsets.all(12),
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: EdgeInsets.all(16),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  children: [
-                    Image(
-                        image: AssetImage("assets/images/breakfast.png"),
-                        fit: BoxFit.cover),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Container(
-                      width: 170,
-                      child: Text(
-                        'Add Breakfast',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 0, 0, 0),
-                        ),
-                      ),
-                    ),
-                    Text(
-                      '(6 am - 10 am) Recommend 100-500 calories',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontSize: 8,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    Image(
-                        image: AssetImage("assets/images/reminder.png"),
-                        fit: BoxFit.cover),
-                  ],
-                ),
-              ),
-            ],
+        color: LibColors.color_white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 5), // changes position of shadow
           ),
-        ));
+        ],
+      ),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Column(
+              children: [
+                Image(
+                    image: AssetImage("assets/images/breakfast.png"),
+                    fit: BoxFit.cover),
+              ],
+            ),
+          ),
+          Container(
+            child: Column(
+              children: [
+                Container(
+                  width: 170,
+                  child: Text(
+                    'Add Breakfast',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                    ),
+                  ),
+                ),
+                Text(
+                  '(6 am - 10 am) Recommend 100-500 calories',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontSize: 8,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                Image(
+                    image: AssetImage("assets/images/reminder.png"),
+                    fit: BoxFit.cover),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget brunchCard() {

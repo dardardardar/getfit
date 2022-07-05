@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import '../main.dart';
 import '../widgets/colors.dart';
 import 'package:getfit/views/welcome_view.dart';
 
@@ -20,7 +21,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
   }
   _navHome() async{
     await Future.delayed(const Duration(milliseconds: 1500),(){});
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>WelcomeView()));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Mainpage()));
   }
   @override
   Widget build(BuildContext context) {
@@ -28,12 +29,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
       body:  Container(
       color: Color(0xff134842),
       child: const Center(
-        child: Text(
-          "Logo" ,style: TextStyle(
-            fontSize: 48,
-            color: Color(0xffffffff)
-            )
-          )
+        child: Image(image: AssetImage("assets/images/getfit-03.png"), fit: BoxFit.fill, width: 320,)
         ),
       ),
     );

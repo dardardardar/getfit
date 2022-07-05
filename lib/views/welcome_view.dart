@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:getfit/views/register_view.dart';
+import '../main.dart';
 import '../widgets/colors.dart';
 
 
@@ -13,7 +15,10 @@ class WelcomeView extends StatefulWidget {
 class _WelcomeViewState extends State<WelcomeView> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
+  @override
+  void initState() {
+    super.initState();
+  }
   @override
   void dispose(){
     emailController.dispose();
@@ -55,7 +60,9 @@ class _WelcomeViewState extends State<WelcomeView> {
                   ),
                 )
               ),
-              MaterialButton(onPressed: (){},               
+              MaterialButton(onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterView()));
+              },               
                 child: const Text(
                       "Register" ,style: TextStyle(
                       fontSize: 20,
@@ -103,6 +110,7 @@ class _WelcomeViewState extends State<WelcomeView> {
             onPressed: () {
             signin();
              print(FirebaseAuth.instance.currentUser?.displayName);
+            Navigator.pop(context);
             },
             style: TextButton.styleFrom(
               fixedSize: Size.fromWidth(300),
@@ -118,9 +126,16 @@ class _WelcomeViewState extends State<WelcomeView> {
   
 }
   Future signin() async{
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(), password: passwordController.text.trim());
-  }
+
+   try{
+     await FirebaseAuth.instance.signInWithEmailAndPassword(
+         email: emailController.text.trim(), password: passwordController.text.trim());
+    }
+    on FirebaseAuthException catch (e){
+     print(e);
+    }
+
+   }
 }
 
 

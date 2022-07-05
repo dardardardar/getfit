@@ -18,12 +18,6 @@ class _ProfileViewState extends State<ProfileView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(user.email.toString()),
-        actions: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Icon(Icons.menu),
-          ),
-        ],
         backgroundColor: LibColors.primary_color,
       ),
       body: Container(

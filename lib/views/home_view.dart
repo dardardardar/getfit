@@ -25,12 +25,6 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(user.email.toString()),
-        actions: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Icon(Icons.menu),
-          ),
-        ],
         backgroundColor: LibColors.primary_color,
       ),
       body: Container(
@@ -379,308 +373,374 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget brunchCard() {
-    return ClipRRect(
+    return Container(
+      padding: EdgeInsets.all(16),
+      margin: EdgeInsets.all(12),
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: EdgeInsets.all(16),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  children: [
-                    Image(
-                        image: AssetImage("assets/images/brunch.png"),
-                        fit: BoxFit.cover),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Container(
-                      width: 170,
-                      child: Text(
-                        'Add Brunch',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                      ),
-                    ),
-                    Text(
-                      '(6 am - 10 am) Recommend 100-500 calories',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontSize: 8,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    Image(
-                        image: AssetImage("assets/images/reminder.png"),
-                        fit: BoxFit.cover),
-                  ],
-                ),
-              ),
-            ],
+        color: LibColors.color_white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 5), // changes position of shadow
           ),
-        ));
+        ],
+      ),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Column(
+              children: [
+                Image(
+                    image: AssetImage("assets/images/brunch.png"),
+                    fit: BoxFit.cover),
+              ],
+            ),
+          ),
+          Container(
+            child: Column(
+              children: [
+                Container(
+                  width: 170,
+                  child: Text(
+                    'Add Brunch',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  ),
+                ),
+                Text(
+                  '(6 am - 10 am) Recommend 100-500 calories',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontSize: 8,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                Image(
+                    image: AssetImage("assets/images/reminder.png"),
+                    fit: BoxFit.cover),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget lunchCard() {
-    return ClipRRect(
+    return Container(
+      padding: EdgeInsets.all(16),
+      margin: EdgeInsets.all(12),
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: EdgeInsets.all(16),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  children: [
-                    Image(
-                        image: AssetImage("assets/images/lunch.png"),
-                        fit: BoxFit.cover),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Container(
-                      width: 170,
-                      child: Text(
-                        'Add Lunch',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                      ),
-                    ),
-                    Text(
-                      '(12 pm - 15 pm) Recommend 100-500 calories',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontSize: 8,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    Image(
-                        image: AssetImage("assets/images/reminder.png"),
-                        fit: BoxFit.cover),
-                  ],
-                ),
-              ),
-            ],
+        color: LibColors.color_white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 5), // changes position of shadow
           ),
-        ));
+        ],
+      ),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Column(
+              children: [
+                Image(
+                    image: AssetImage("assets/images/lunch.png"),
+                    fit: BoxFit.cover),
+              ],
+            ),
+          ),
+          Container(
+            child: Column(
+              children: [
+                Container(
+                  width: 170,
+                  child: Text(
+                    'Add Lunch',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  ),
+                ),
+                Text(
+                  '(12 pm - 15 pm) Recommend 100-500 calories',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontSize: 8,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                Image(
+                    image: AssetImage("assets/images/reminder.png"),
+                    fit: BoxFit.cover),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget snackCard() {
-    return ClipRRect(
+    return Container(
+      padding: EdgeInsets.all(16),
+      margin: EdgeInsets.all(12),
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: EdgeInsets.all(16),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  children: [
-                    Image(
-                        image: AssetImage("assets/images/snack.png"),
-                        fit: BoxFit.cover),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Container(
-                      width: 170,
-                      child: Text(
-                        'Add Snack',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                      ),
-                    ),
-                    Text(
-                      '(15 pm - 17 pm) Recommend 100-500 calories',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontSize: 8,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    Image(
-                        image: AssetImage("assets/images/reminder.png"),
-                        fit: BoxFit.cover),
-                  ],
-                ),
-              ),
-            ],
+        color: LibColors.color_white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 5), // changes position of shadow
           ),
-        ));
+        ],
+      ),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Column(
+              children: [
+                Image(
+                    image: AssetImage("assets/images/snack.png"),
+                    fit: BoxFit.cover),
+              ],
+            ),
+          ),
+          Container(
+            child: Column(
+              children: [
+                Container(
+                  width: 170,
+                  child: Text(
+                    'Add Snack',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  ),
+                ),
+                Text(
+                  '(15 pm - 17 pm) Recommend 100-500 calories',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontSize: 8,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                Image(
+                    image: AssetImage("assets/images/reminder.png"),
+                    fit: BoxFit.cover),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget dinnerCard() {
-    return ClipRRect(
+    return Container(
+      padding: EdgeInsets.all(16),
+      margin: EdgeInsets.all(12),
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: EdgeInsets.all(16),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  children: [
-                    Image(
-                        image: AssetImage("assets/images/dinner.png"),
-                        fit: BoxFit.cover),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Container(
-                      width: 170,
-                      child: Text(
-                        'Add Dinner',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                      ),
-                    ),
-                    Text(
-                      '(18 pm - 20 pm) Recommend 100-500 calories',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontSize: 8,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    Image(
-                        image: AssetImage("assets/images/reminder.png"),
-                        fit: BoxFit.cover),
-                  ],
-                ),
-              ),
-            ],
+        color: LibColors.color_white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 5), // changes position of shadow
           ),
-        ));
+        ],
+      ),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Column(
+              children: [
+                Image(
+                    image: AssetImage("assets/images/dinner.png"),
+                    fit: BoxFit.cover),
+              ],
+            ),
+          ),
+          Container(
+            child: Column(
+              children: [
+                Container(
+                  width: 170,
+                  child: Text(
+                    'Add Dinner',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  ),
+                ),
+                Text(
+                  '(18 pm - 20 pm) Recommend 100-500 calories',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontSize: 8,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                Image(
+                    image: AssetImage("assets/images/reminder.png"),
+                    fit: BoxFit.cover),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget sleepCard() {
-    return ClipRRect(
+    return Container(
+      padding: EdgeInsets.all(16),
+      margin: EdgeInsets.all(12),
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: EdgeInsets.all(16),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  children: [
-                    Image(
-                        image: AssetImage("assets/images/sleep.png"),
-                        fit: BoxFit.cover),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Container(
-                      width: 170,
-                      child: Text(
-                        'Add Sleep',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                      ),
-                    ),
-                    Text(
-                      '(22 pm - 5 am) Recommend to take a sleep',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontSize: 8,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    Image(
-                        image: AssetImage("assets/images/reminder.png"),
-                        fit: BoxFit.cover),
-                  ],
-                ),
-              ),
-            ],
+        color: LibColors.color_white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 5), // changes position of shadow
           ),
-        ));
+        ],
+      ),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Column(
+              children: [
+                Image(
+                    image: AssetImage("assets/images/sleep.png"),
+                    fit: BoxFit.cover),
+              ],
+            ),
+          ),
+          Container(
+            child: Column(
+              children: [
+                Container(
+                  width: 170,
+                  child: Text(
+                    'Add Sleep',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  ),
+                ),
+                Text(
+                  '(22 pm - 5 am) Recommend to take a sleep',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontSize: 8,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                Image(
+                    image: AssetImage("assets/images/reminder.png"),
+                    fit: BoxFit.cover),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget exerciseCard() {
-    return ClipRRect(
+    return Container(
+      padding: EdgeInsets.all(16),
+      margin: EdgeInsets.all(12),
+      decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        child: Container(
-          padding: EdgeInsets.all(16),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  children: [
-                    Image(
-                        image: AssetImage("assets/images/training.png"),
-                        fit: BoxFit.cover),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: [
-                    Container(
-                      width: 170,
-                      child: Text(
-                        'Add Exercise',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                      ),
-                    ),
-                    Text(
-                      'Make sure exercise is not to hard for you ok',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontSize: 8,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    Image(
-                        image: AssetImage("assets/images/reminder.png"),
-                        fit: BoxFit.cover),
-                  ],
-                ),
-              ),
-            ],
+        color: LibColors.color_white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: Offset(0, 5), // changes position of shadow
           ),
-        ));
+        ],
+      ),
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: Column(
+              children: [
+                Image(
+                    image: AssetImage("assets/images/training.png"),
+                    fit: BoxFit.cover),
+              ],
+            ),
+          ),
+          Container(
+            child: Column(
+              children: [
+                Container(
+                  width: 170,
+                  child: Text(
+                    'Add Exercise',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  ),
+                ),
+                Text(
+                  'Make sure exercise is not to hard for you ok',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontSize: 8,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                Image(
+                    image: AssetImage("assets/images/reminder.png"),
+                    fit: BoxFit.cover),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

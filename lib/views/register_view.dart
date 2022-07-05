@@ -622,6 +622,6 @@ class _RegisterViewState extends State<RegisterView> {
     on FirebaseAuthException catch (e){
       print(e);
     }
-    Map<String, dynamic>
+    
   }
 }

@@ -24,12 +24,12 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Hello Atkinson'),
-        actions: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Icon(Icons.menu),
-          ),
-        ],
+        // actions: [
+        //   Padding(
+        //     padding: EdgeInsets.symmetric(horizontal: 16),
+        //     child: Icon(Icons.menu),
+        //   ),
+        // ],
         backgroundColor: LibColors.primary_color,
       ),
       body: Container(
@@ -268,6 +268,7 @@ class _HomeViewState extends State<HomeView> {
         child: Container(
           padding: EdgeInsets.all(16),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Expanded(
                 child: Column(
@@ -278,7 +279,7 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
               ),
-              Expanded(
+              Container(
                 child: Column(
                   children: [
                     Text(
@@ -316,16 +317,25 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
               ),
-              Expanded(
+              Container(
                 child: Column(
                   children: [
-                    Text(
-                      'Add Breakfast',
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                    Container(
+                      width: 170,
+                      child: Text(
+                        'Add Breakfast',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 0),
+                        ),
+                      ),
                     ),
                     Text(
                       '(6 am - 10 am) Recommend 100-500 calories',
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 8,
+                      ),
                     ),
                   ],
                 ),
@@ -360,16 +370,23 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
               ),
-              Expanded(
+              Container(
                 child: Column(
                   children: [
-                    Text(
-                      'Add Brunch',
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                    Container(
+                      width: 170,
+                      child: Text(
+                        'Add Brunch',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      ),
                     ),
                     Text(
                       '(6 am - 10 am) Recommend 100-500 calories',
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 8,
+                      ),
                     ),
                   ],
                 ),
@@ -404,16 +421,23 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
               ),
-              Expanded(
+              Container(
                 child: Column(
                   children: [
-                    Text(
-                      'Add Lunch',
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                    Container(
+                      width: 170,
+                      child: Text(
+                        'Add Lunch',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      ),
                     ),
                     Text(
                       '(12 pm - 15 pm) Recommend 100-500 calories',
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 8,
+                      ),
                     ),
                   ],
                 ),
@@ -448,16 +472,23 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
               ),
-              Expanded(
+              Container(
                 child: Column(
                   children: [
-                    Text(
-                      'Add Snack',
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                    Container(
+                      width: 170,
+                      child: Text(
+                        'Add Snack',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      ),
                     ),
                     Text(
                       '(15 pm - 17 pm) Recommend 100-500 calories',
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 8,
+                      ),
                     ),
                   ],
                 ),
@@ -492,16 +523,23 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
               ),
-              Expanded(
+              Container(
                 child: Column(
                   children: [
-                    Text(
-                      'Add Dinner',
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                    Container(
+                      width: 170,
+                      child: Text(
+                        'Add Dinner',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      ),
                     ),
                     Text(
                       '(18 pm - 20 pm) Recommend 100-500 calories',
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 8,
+                      ),
                     ),
                   ],
                 ),
@@ -536,16 +574,23 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
               ),
-              Expanded(
+              Container(
                 child: Column(
                   children: [
-                    Text(
-                      'Add Sleep',
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                    Container(
+                      width: 170,
+                      child: Text(
+                        'Add Sleep',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      ),
                     ),
                     Text(
-                      '(22 pm - 5 am)',
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      '(22 pm - 5 am) Recommend to take a sleep',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 8,
+                      ),
                     ),
                   ],
                 ),
@@ -580,16 +625,23 @@ class _HomeViewState extends State<HomeView> {
                   ],
                 ),
               ),
-              Expanded(
+              Container(
                 child: Column(
                   children: [
-                    Text(
-                      'Add Exercise',
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                    Container(
+                      width: 170,
+                      child: Text(
+                        'Add Exercise',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      ),
                     ),
                     Text(
-                      'Make sure exercise is not to hard for you',
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      'Make sure exercise is not to hard for you ok',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 8,
+                      ),
                     ),
                   ],
                 ),

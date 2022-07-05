@@ -17,12 +17,12 @@ class _ConsultationViewState extends State<ConsultationView> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Hello Atkinson'),
-        actions: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Icon(Icons.menu),
-          ),
-        ],
+        // actions: [
+        //   Padding(
+        //     padding: EdgeInsets.symmetric(horizontal: 16),
+        //     child: Icon(Icons.menu),
+        //   ),
+        // ],
         backgroundColor: LibColors.primary_color,
       ),
       body: Container(
@@ -124,6 +124,7 @@ Widget profileCard() {
   return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: Container(
+        margin: EdgeInsets.only(bottom: 12),
         padding: EdgeInsets.all(16),
         color: Color.fromARGB(255, 231, 231, 231),
         child: Row(

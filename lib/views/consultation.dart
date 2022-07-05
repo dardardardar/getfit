@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:getfit/widgets/colors.dart';
 
@@ -11,12 +12,12 @@ class ConsultationView extends StatefulWidget {
 
 class _ConsultationViewState extends State<ConsultationView> {
   int currentIndex = 0;
-
+  final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hello Atkinson'),
+        title: Text(user.email.toString()),
         actions: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),

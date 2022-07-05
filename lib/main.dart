@@ -53,7 +53,7 @@ class Mainpage extends StatelessWidget {
             );
           }
           if (snapshot.hasData) {
-            return ProfileView();
+            return BottomnavbarView();
           } else {
             return WelcomeView();
           }

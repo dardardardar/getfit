@@ -7,6 +7,9 @@ import 'package:getfit/views/profile.dart';
 import 'package:getfit/views/tipsandtrick.dart';
 import 'package:getfit/widgets/colors.dart';
 
+import '../controller/user_controller.dart';
+import '../models/user_model.dart';
+
 class BottomnavbarView extends StatefulWidget {
   const BottomnavbarView({Key? key}) : super(key: key);
 
@@ -34,10 +37,27 @@ class _BottomnavbarViewState extends State<BottomnavbarView> {
   void onItemTap(int selectedItem) {
     pageController.jumpToPage(selectedItem);
   }
-
+  final userdata = UserController().readUserDatabyId();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: FutureBuilder<UserModel?>(
+          future: userdata,
+          builder: (context,snapshot){
+            if(snapshot.hasData){
+              final _data = snapshot.data;
+              return _data == null ?
+              Text("null") :
+              Text("Hello " + _data.displayName);
+            }
+            else{
+              return Center(child: CircularProgressIndicator(),);
+            }
+          },
+        ),
+        backgroundColor: LibColors.primary_color,
+      ),
       body: PageView(
         controller: pageController,
         children: pages,

@@ -5,4 +5,5 @@ class LibColors {
   static const second_color = Color(0xff50837E);
   static const color_white = Colors.white;
   static const color_black = Colors.black;
+  static const danger_red = Color(0xffff5454);
 }

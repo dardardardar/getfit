@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:getfit/views/bottomnavbar.dart';
 import 'package:getfit/views/breakfastview.dart';
+import 'package:getfit/views/chatconsultantView.dart';
 import 'package:getfit/views/chating.dart';
 import 'package:getfit/views/consultation.dart';
 import 'package:getfit/views/home_view.dart';
 import 'package:getfit/views/loading_view.dart';
 import 'package:getfit/views/profile.dart';
 import 'package:getfit/views/register_view.dart';
-import 'package:getfit/views/setting.dart';
 import 'package:getfit/views/tipsandtrick.dart';
 import 'package:getfit/views/welcome_view.dart';
 
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: navigatorKey,
-      home: SplashScreenView(),
+      home: ChatconsultantView(),
     );
   }
 }

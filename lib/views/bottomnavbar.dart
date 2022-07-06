@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:getfit/views/chatconsultantView.dart';
 import 'package:getfit/views/consultation.dart';
 import 'package:getfit/views/home_view.dart';
 import 'package:getfit/views/profile.dart';
@@ -20,7 +21,8 @@ class _BottomnavbarViewState extends State<BottomnavbarView> {
     HomeView(),
     TipsandtrickView(),
     ConsultationView(),
-    ProfileView()
+    ProfileView(),
+    ChatconsultantView(),
   ];
 
   int selectIndex = 0;

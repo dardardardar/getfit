@@ -18,12 +18,6 @@ class _ConsultationViewState extends State<ConsultationView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(user.email.toString()),
-        actions: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Icon(Icons.menu),
-          ),
-        ],
         backgroundColor: LibColors.primary_color,
       ),
       body: Container(
@@ -50,11 +44,12 @@ class _ConsultationViewState extends State<ConsultationView> {
                   Container(
                     margin: EdgeInsets.only(left: 60),
                     child: MaterialButton(
-                      color: Color.fromARGB(255, 231, 231, 231),
+                      color: LibColors.primary_color,
                       minWidth: 50,
                       onPressed: () {},
                       child: Text(
                         'More',
+                        style: TextStyle(color: Colors.white),
                       ),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8)),
@@ -87,8 +82,6 @@ class _ConsultationViewState extends State<ConsultationView> {
                   const SizedBox(
                     width: 12,
                   ),
-                  Container(
-                      margin: EdgeInsets.all(12), child: personaltrainerCard())
                 ],
               ),
             ],
@@ -122,81 +115,158 @@ class _ConsultationViewState extends State<ConsultationView> {
 }
 
 Widget profileCard() {
-  return ClipRRect(
+  return Container(
+    padding: EdgeInsets.all(16),
+    margin: EdgeInsets.all(12),
+    decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(12),
-      child: Container(
-        padding: EdgeInsets.all(16),
-        color: Color.fromARGB(255, 231, 231, 231),
-        child: Row(
-          children: <Widget>[
-            Container(
-              child: Image(
-                  image: AssetImage("assets/images/personaltrainer.png"),
-                  fit: BoxFit.cover),
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  Text(
-                    'Dr. Howard Ghifari',
-                    style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+      color: LibColors.color_white,
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 2,
+          blurRadius: 5,
+          offset: Offset(0, 5), // changes position of shadow
+        ),
+      ],
+    ),
+    // color: Color.fromARGB(255, 231, 231, 231),
+    child: Row(
+      children: <Widget>[
+        Container(
+          child: Image(
+              image: AssetImage("assets/images/personaltrainer.png"),
+              fit: BoxFit.cover),
+        ),
+        Container(
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: 12),
+                width: 150,
+                child: Text(
+                  'Dr. Howard Ghifari',
+                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 12),
+                width: 150,
+                child: Text(
+                  'Personal Trainer Fitnes',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 0),
+                    fontSize: 10,
                   ),
-                  Text(
-                    'Personal Trainer Fitnes',
-                    style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                  ),
-                  Container(
-                    child: Row(
-                      children: [Text('rating 4.5/5'), Text('10 Tahun')],
+                ),
+              ),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(8),
+                      margin: EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: LibColors.color_white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: Offset(0, 5), // changes position of shadow
+                          ),
+                        ],
+                      ),
+                      child: Text(
+                        'rating 4.5/5',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(fontSize: 10),
+                      ),
                     ),
-                  ),
-                  Text('Rp 50.000'),
-                  MaterialButton(
-                    color: Colors.grey,
+                    Container(
+                      padding: EdgeInsets.all(8),
+                      margin: EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: LibColors.color_white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: Offset(0, 5), // changes position of shadow
+                          ),
+                        ],
+                      ),
+                      child: Text(
+                        '10 Tahun',
+                        textAlign: TextAlign.start,
+                        style: TextStyle(fontSize: 10),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 12),
+                width: 150,
+                child: Text(
+                  'Rp 50.000',
+                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                ),
+              ),
+              Align(
+                  alignment: Alignment.centerLeft,
+                  child: MaterialButton(
+                    color: LibColors.primary_color,
                     onPressed: () {},
-                    child: Text('Chat'),
+                    child: Text(
+                      'Chat',
+                      style: TextStyle(color: Colors.white),
+                    ),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)),
-                  )
-                ],
-              ),
-            ),
-          ],
+                  ))
+            ],
+          ),
         ),
-      ));
+      ],
+    ),
+  );
 }
 
 Widget personaltrainerCard() {
-  return ClipRRect(
-    borderRadius: BorderRadius.circular(12),
-    child: Container(
-      decoration: BoxDecoration(
-        color: LibColors.color_white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.8),
-            spreadRadius: 10,
-            blurRadius: 10,
-            offset: Offset(0, 12), // changes position of shadow
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+    // margin: EdgeInsets.all(12),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(12),
+      color: Color.fromARGB(255, 255, 255, 255),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 2,
+          blurRadius: 5,
+          offset: Offset(0, 5), // changes position of shadow
+        ),
+      ],
+    ),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Image(image: AssetImage("assets/images/pticon.png"), fit: BoxFit.cover),
+        Text(
+          'Personal Trainer'.toUpperCase(),
+          style: TextStyle(
+            color: LibColors.primary_color,
+            fontWeight: FontWeight.bold,
+            fontSize: 10,
           ),
-        ],
-      ),
-      padding: EdgeInsets.all(8),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image(
-              image: AssetImage("assets/images/pticon.png"), fit: BoxFit.cover),
-          Text(
-            'Fat'.toUpperCase(),
-            style: TextStyle(
-              color: LibColors.primary_color,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     ),
   );
 }

@@ -16,6 +16,11 @@ class _ConsultationViewState extends State<ConsultationView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.chat),
+        backgroundColor: LibColors.primary_color,
+        onPressed: () {},
+      ),
       appBar: AppBar(
         title: Text(user.email.toString()),
         backgroundColor: LibColors.primary_color,

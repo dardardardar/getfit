@@ -109,7 +109,7 @@ class _WelcomeViewState extends State<WelcomeView> {
             
             onPressed: () {
             signin();
-             print(FirebaseAuth.instance.currentUser?.displayName);
+
             Navigator.pop(context);
             },
             style: TextButton.styleFrom(

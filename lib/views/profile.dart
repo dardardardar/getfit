@@ -31,6 +31,7 @@ class _ProfileViewState extends State<ProfileView> {
                   children: <Widget>[
                     profileCard(_data!),
                     editprofileCard(),
+                    mygoalCard(),
                   ],
                 )));
           } else {

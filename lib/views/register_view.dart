@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:getfit/controller/user_controller.dart';
 import 'package:getfit/views/profile.dart';
@@ -30,6 +31,8 @@ class _RegisterViewState extends State<RegisterView> {
   final weightController = TextEditingController();
   final displayNameController = TextEditingController();
 
+
+  final formKey = GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
@@ -256,17 +259,20 @@ class _RegisterViewState extends State<RegisterView> {
     return Container(
       padding: EdgeInsets.all(12),
       color: LibColors.primary_color,
-      child: Column(
-        children: [
-          Align(
-              heightFactor: 10,
-              child:textTitleAlt("Please input your weight and height")
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 96),
-            child: Column(
-              children: [
-                Container(
+      child: Form(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        key: formKey,
+        child: Column(
+          children: [
+            Align(
+                heightFactor: 10,
+                child:textTitleAlt("Please input your weight and height")
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 96),
+              child: Column(
+                children: [
+                  Container(
                     margin: EdgeInsets.symmetric(horizontal: 32),
                     child: TextFormField(
                       controller: weightController,
@@ -278,81 +284,104 @@ class _RegisterViewState extends State<RegisterView> {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(4.0),
                           ),
-
                           hintStyle: TextStyle(color: LibColors.primary_color)
                       ),
-                    ),
-                ),
-                SizedBox(height: 12,),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 32),
-                  child: TextFormField(
-                    textAlign: TextAlign.center,
-                    controller: heightController,
-                    decoration: InputDecoration(
-                        hintText: 'Height (cm)',
-                        fillColor: Colors.white,
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4.0),
-                        ),
-
-                        hintStyle: TextStyle(color: LibColors.primary_color)
+                      validator: (value){
+                        if(value == null){
+                          return 'Please fill your weight';
+                        }
+                        if(num.tryParse(value)== null){
+                          return 'Please input valid weight';
+                        }
+                        else{
+                          return null;
+                        }
+                      },
                     ),
                   ),
-                )
-              ],
+                  SizedBox(height: 12,),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 32),
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      controller: heightController,
+                      decoration: InputDecoration(
+                          hintText: 'Height (cm)',
+                          fillColor: Colors.white,
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(4.0),
+                          ),
+                          hintStyle: TextStyle(color: LibColors.primary_color)
+                      ),
+                      validator: (value){
+                        if(value == null){
+                          return 'Please fill your weight';
+                        }
+                        if(num.tryParse(value)== null){
+                          return 'Please input valid weight';
+                        }
+                        else{
+                          return null;
+                        }
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.all(16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Align(
-                    alignment: Alignment.center,
+            Container(
+              margin: EdgeInsets.all(16),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Align(
+                      alignment: Alignment.center,
 
-                    child: Column(
-                      children: [
-                        MaterialButton(onPressed: (){
-                          p.nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeIn
-                          );
-                        },
-                            minWidth: 360,
-                            color: LibColors.color_white,
-                            child: Text(
-                              "Continue" ,style: const TextStyle(
-                              fontSize: 16,
-                              color: LibColors.primary_color,
-                            ),
-                              textAlign: TextAlign.center,
-                            )
-                        ),
-                        MaterialButton(onPressed: (){
-                          p.previousPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeIn
-                          );
-                        },
-                            child: Text(
-                              "Back" ,style: const TextStyle(
-                              fontSize: 16,
+                      child: Column(
+                        children: [
+                          MaterialButton(onPressed: (){
+                            final isValidated = formKey.currentState!.validate();
+                            if(isValidated){
+                              p.nextPage(
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.easeIn
+                              );
+                            }
+                          },
+                              minWidth: 360,
                               color: LibColors.color_white,
-                            ),
-                              textAlign: TextAlign.center,
-                            )
-                        )
-                      ],
-                    )
-                )
-              ],
-            ),
-          )
-        ],
-
-      ),
+                              child: Text(
+                                "Continue" ,style: const TextStyle(
+                                fontSize: 16,
+                                color: LibColors.primary_color,
+                              ),
+                                textAlign: TextAlign.center,
+                              )
+                          ),
+                          MaterialButton(onPressed: (){
+                            p.previousPage(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.easeIn
+                            );
+                          },
+                              child: Text(
+                                "Back" ,style: const TextStyle(
+                                fontSize: 16,
+                                color: LibColors.color_white,
+                              ),
+                                textAlign: TextAlign.center,
+                              )
+                          )
+                        ],
+                      )
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      )
     );
   }
   Widget _pageFour(){
@@ -371,13 +400,12 @@ class _RegisterViewState extends State<RegisterView> {
               children: [
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 32),
-
                     child: MaterialButton(onPressed: () async{
                          DateTime? newdatetime = await showDatePicker(
                               context: context,
                               initialDate: date,
                               firstDate: DateTime(1900),
-                              lastDate: DateTime(2100)
+                              lastDate: DateTime.now()
                           );
                          if(newdatetime == null) return;
                          setState(() {
@@ -572,7 +600,6 @@ class _RegisterViewState extends State<RegisterView> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4.0),
                         ),
-
                         hintStyle: TextStyle(color: LibColors.primary_color)
                     ),
                   ),

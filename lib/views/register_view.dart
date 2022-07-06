@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
+import 'package:getfit/controller/user_controller.dart';
 import 'package:getfit/views/profile.dart';
 import 'package:getfit/widgets/colors.dart';
 import 'package:intl/intl.dart';
+import '../models/user_model.dart';
 import '../widgets/text_widgets.dart';
 
 class RegisterView extends StatefulWidget {
@@ -19,10 +21,14 @@ class _RegisterViewState extends State<RegisterView> {
   PageController p = PageController();
   List<String> _genders = ['Male','Female'];
   String? _selectedGender;
-
+  int _goalCategory = 0;
+  int _gender = 0;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
+  final confirmPasswordController = TextEditingController();
+  final heightController = TextEditingController();
+  final weightController = TextEditingController();
+  final displayNameController = TextEditingController();
 
   @override
   void initState() {
@@ -144,6 +150,9 @@ class _RegisterViewState extends State<RegisterView> {
                       children: [
                         SizedBox(height: 16,),
                         MaterialButton(onPressed: (){
+                          setState(() {
+                            _goalCategory = 0;
+                          });
                           p.nextPage(
                               duration: Duration(milliseconds: 500),
                               curve: Curves.easeIn
@@ -162,6 +171,9 @@ class _RegisterViewState extends State<RegisterView> {
                         ),
                         SizedBox(height: 16,),
                         MaterialButton(onPressed: (){
+                          setState(() {
+                            _goalCategory = 1;
+                          });
                           p.nextPage(
                               duration: Duration(milliseconds: 500),
                               curve: Curves.easeIn
@@ -180,6 +192,9 @@ class _RegisterViewState extends State<RegisterView> {
                         ),
                         SizedBox(height: 16,),
                         MaterialButton(onPressed: (){
+                          setState(() {
+                            _goalCategory = 2;
+                          });
                           p.nextPage(
                               duration: Duration(milliseconds: 500),
                               curve: Curves.easeIn
@@ -254,6 +269,7 @@ class _RegisterViewState extends State<RegisterView> {
                 Container(
                     margin: EdgeInsets.symmetric(horizontal: 32),
                     child: TextFormField(
+                      controller: weightController,
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
                           hintText: 'Weight (kg)',
@@ -272,6 +288,7 @@ class _RegisterViewState extends State<RegisterView> {
                   margin: EdgeInsets.symmetric(horizontal: 32),
                   child: TextFormField(
                     textAlign: TextAlign.center,
+                    controller: heightController,
                     decoration: InputDecoration(
                         hintText: 'Height (cm)',
                         fillColor: Colors.white,
@@ -453,6 +470,7 @@ class _RegisterViewState extends State<RegisterView> {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 32),
                   child: TextFormField(
+                    controller: displayNameController,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(vertical: 12),
@@ -513,6 +531,7 @@ class _RegisterViewState extends State<RegisterView> {
                       ).toList(),
                       onChanged: (item) => setState(() {
                         _selectedGender = item;
+                      _gender == "Male" ? 0 : 1;
                       }),
                     ),
                   )
@@ -542,7 +561,7 @@ class _RegisterViewState extends State<RegisterView> {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 32),
                   child: TextFormField(
-                    controller: passwordController,
+                    controller: confirmPasswordController,
                     textAlign: TextAlign.center,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -572,10 +591,18 @@ class _RegisterViewState extends State<RegisterView> {
                     child: Column(
                       children: [
                         MaterialButton(onPressed: (){
-                          signUp();
-                          if(FirebaseAuth.instance.currentUser != null){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileView()));
-                          }
+                          final user = UserModel(
+                            email: emailController.text.trim(),
+                            displayName: displayNameController.text.trim(),
+                            goalCategories: _goalCategory,
+                            gender: _gender,
+                            dob: date,
+                            height: int.parse(heightController.text.trim()),
+                            weight: int.parse(weightController.text.trim()),
+                          );
+                          UserController().signUp(emailController.text.trim(), passwordController.text.trim(), user);
+
+                          Navigator.pop(context);
                         },
                             minWidth: 360,
                             color: LibColors.color_white,
@@ -613,14 +640,5 @@ class _RegisterViewState extends State<RegisterView> {
     );
 
   }
-  Future signUp() async{
-    try{
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text.trim(), password: passwordController.text.trim());
-    }
-    on FirebaseAuthException catch (e){
-      print(e);
-    }
 
-  }
 }

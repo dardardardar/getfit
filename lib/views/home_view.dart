@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:getfit/controller/user_controller.dart';
 import 'package:getfit/views/tipsandtrick.dart';
 import 'package:getfit/widgets/colors.dart';
+
+import '../models/user_model.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -19,14 +22,14 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
-  final user = FirebaseAuth.instance.currentUser!;
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(user.email.toString()),
-        backgroundColor: LibColors.primary_color,
-      ),
+
+
       body: Container(
           margin: EdgeInsets.all(12),
           child: SingleChildScrollView(
@@ -743,4 +746,6 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
+
+
 }

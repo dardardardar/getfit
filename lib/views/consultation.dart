@@ -12,14 +12,11 @@ class ConsultationView extends StatefulWidget {
 
 class _ConsultationViewState extends State<ConsultationView> {
   int currentIndex = 0;
-  final user = FirebaseAuth.instance.currentUser!;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(user.email.toString()),
-        backgroundColor: LibColors.primary_color,
-      ),
+
       body: Container(
         margin: EdgeInsets.all(12),
         child: SingleChildScrollView(

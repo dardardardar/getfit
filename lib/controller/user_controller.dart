@@ -20,22 +20,24 @@ class UserController{
       print(e);
     }
   }
-  // Future setUserDoc(UserModel userModel) async{
-  //   await FirebaseAuth.instance
-  //       .authStateChanges()
-  //       .listen((User? user)  {
-  //     if (user == null) {
-  //       print('User is currently signed out!');
-  //     } else {
-  //       print('User is signed in!');
-  //       String? uid = user.uid;
-  //       final userDoc = FirebaseFirestore.instance.collection('users').doc(uid);
-  //       userModel.uid = uid;
-  //       final json = userModel.toJson();
-  //       userDoc.set(json);
-  //     }
-  //   });
-  // }
+
+  Future<UserModel> readUserDatabyId() async{
+   try{
+     var user = FirebaseAuth.instance.currentUser!;
+     String? uid = user.uid;
+     var _doc =  FirebaseFirestore.instance.collection("users").doc(uid);
+     var _res = await _doc.get();
+     if(_res.exists){
+       var _data = UserModel.fromJson(_res.data()!);
+       return _data;
+     }
+     return UserModel(email: "", displayName: "", goalCategories: 0, gender: 0, dob: DateTime.now(), height: 0, weight: 0);
+   }
+   on FirebaseException catch (e){
+     print(e);
+     return UserModel(email: "", displayName: "", goalCategories: 0, gender: 0, dob: DateTime.now(), height: 0, weight: 0);
+   }
+  }
 
 
 }

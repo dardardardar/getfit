@@ -587,7 +587,6 @@ class _RegisterViewState extends State<RegisterView> {
               children: [
                 Align(
                     alignment: Alignment.center,
-
                     child: Column(
                       children: [
                         MaterialButton(onPressed: (){
@@ -601,7 +600,6 @@ class _RegisterViewState extends State<RegisterView> {
                             weight: int.parse(weightController.text.trim()),
                           );
                           UserController().signUp(emailController.text.trim(), passwordController.text.trim(), user);
-
                           Navigator.pop(context);
                         },
                             minWidth: 360,

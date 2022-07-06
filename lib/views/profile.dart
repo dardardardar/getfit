@@ -3,6 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:getfit/widgets/colors.dart';
 
+import '../controller/user_controller.dart';
+import '../models/user_model.dart';
+
 class ProfileView extends StatefulWidget {
   const ProfileView({Key? key}) : super(key: key);
 
@@ -12,26 +15,49 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> {
   int currentIndex = 0;
-  final user = FirebaseAuth.instance.currentUser!;
+  final userdata = UserController().readUserDatabyId();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(user.email.toString()),
-        backgroundColor: LibColors.primary_color,
+      body:  FutureBuilder<UserModel?>(
+        future: userdata,
+        builder: (context,snapshot){
+          if(snapshot.hasData){
+            final _data = snapshot.data;
+            return Container(
+                margin: EdgeInsets.all(12),
+                child: SingleChildScrollView(
+                    child: Column(
+                  children: <Widget>[
+                    profileCard(_data!),
+                    editprofileCard(),
+                    personaldetailsCard(),
+                    nutritionCard(),
+                    allergiesCard(),
+                  ],
+                )
+                )
+            );
+          }
+          else{
+            return Center(child: CircularProgressIndicator(),);
+          }
+        },
       ),
-      body: Container(
-          margin: EdgeInsets.all(12),
-          child: SingleChildScrollView(
-              child: Column(
-            children: <Widget>[
-              profileCard(),
-              editprofileCard(),
-              personaldetailsCard(),
-              nutritionCard(),
-              allergiesCard(),
-            ],
-          ))),
+      // body: Container(
+      //     margin: EdgeInsets.all(12),
+      //     child: SingleChildScrollView(
+      //         child: Column(
+      //       children: <Widget>[
+      //         profileCard(),
+      //         editprofileCard(),
+      //         personaldetailsCard(),
+      //         nutritionCard(),
+      //         allergiesCard(),
+      //       ],
+      //     )
+      //     )
+      // ),
       // bottomNavigationBar: BottomNavigationBar(
       //   currentIndex: currentIndex,
       //   onTap: (index) => setState(() => currentIndex = index),
@@ -58,7 +84,7 @@ class _ProfileViewState extends State<ProfileView> {
   }
 }
 
-Widget profileCard() {
+Widget profileCard(UserModel _data) {
   return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: Container(
@@ -75,11 +101,12 @@ Widget profileCard() {
               child: Column(
                 children: [
                   Text(
-                    'Bambang Atkinson',
+                    _data.displayName,
                     style: TextStyle(color: Colors.white),
                   ),
                   Text(
-                    'Maintain Weight',
+                      (_data.goalCategories == 0) ? "Diets" : (_data.goalCategories == 1) ? "Maintain Weight" : "Lose Weight",
+
                     style: TextStyle(color: Colors.white),
                   ),
                   MaterialButton(

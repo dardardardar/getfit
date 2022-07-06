@@ -27,9 +27,7 @@ class _ProfileViewState extends State<ProfileView> {
             children: <Widget>[
               profileCard(),
               editprofileCard(),
-              personaldetailsCard(),
-              nutritionCard(),
-              allergiesCard(),
+              mygoalCard(),
             ],
           ))),
       // bottomNavigationBar: BottomNavigationBar(
@@ -118,7 +116,7 @@ Widget editprofileCard() {
           ));
 }
 
-Widget personaldetailsCard() {
+Widget mygoalCard() {
   return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: Container(
@@ -128,49 +126,7 @@ Widget personaldetailsCard() {
             minWidth: 400,
             onPressed: () {},
             child: Text(
-              'Personal Details',
-              textAlign: TextAlign.left,
-            ),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          )
-          // color: LibColors.second_color,
-
-          ));
-}
-
-Widget nutritionCard() {
-  return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-          padding: EdgeInsets.all(6),
-          child: MaterialButton(
-            color: Color.fromARGB(255, 231, 231, 231),
-            minWidth: 400,
-            onPressed: () {},
-            child: Text(
-              'Nutrition Setting',
-              textAlign: TextAlign.left,
-            ),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          )
-          // color: LibColors.second_color,
-
-          ));
-}
-
-Widget allergiesCard() {
-  return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-          padding: EdgeInsets.all(6),
-          child: MaterialButton(
-            color: Color.fromARGB(255, 231, 231, 231),
-            minWidth: 400,
-            onPressed: () {},
-            child: Text(
-              'Allergies',
+              'My Goal',
               textAlign: TextAlign.left,
             ),
             shape:

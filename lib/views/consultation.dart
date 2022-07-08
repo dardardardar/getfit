@@ -18,11 +18,13 @@ class _ConsultationViewState extends State<ConsultationView> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.chat),
         backgroundColor: LibColors.primary_color,
+
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) => ChatuserView()));
         },
       ),
+
       body: Container(
         margin: EdgeInsets.all(12),
         child: SingleChildScrollView(

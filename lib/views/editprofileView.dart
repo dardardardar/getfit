@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getfit/widgets/colors.dart';
 
@@ -21,8 +22,10 @@ class _editprofileViewState extends State<editprofileView> {
       ),
       body: Container(
           margin: EdgeInsets.all(12),
+          alignment: Alignment.topCenter,
           child: SingleChildScrollView(
               child: Column(
+
             children: <Widget>[
               Container(
                 margin: EdgeInsets.only(top: 16),

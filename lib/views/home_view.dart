@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:getfit/views/breakfastview.dart';
-=======
+
 import 'package:getfit/controller/user_controller.dart';
->>>>>>> 11ee9b205059d1bd1fbe39479506b1a69af0b7ab
+
+import 'package:getfit/controller/user_controller.dart';
+
 import 'package:getfit/views/tipsandtrick.dart';
 import 'package:getfit/widgets/colors.dart';
 
@@ -27,13 +28,9 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
       body: Container(
           margin: EdgeInsets.all(12),
           child: SingleChildScrollView(
@@ -756,6 +753,4 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
-
-
 }

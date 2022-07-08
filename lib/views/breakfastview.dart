@@ -1,5 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:getfit/views/bottomnavbar.dart';
+import 'package:getfit/views/home_view.dart';
 import 'package:getfit/widgets/colors.dart';
 
 class BreakfastView extends StatefulWidget {
@@ -18,8 +20,14 @@ class _BreakfastViewState extends State<BreakfastView> {
           margin: EdgeInsets.only(left: 8),
           child: Row(
             children: [
-              Image(
-                image: AssetImage("assets/images/back.png"),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => BottomnavbarView()),
+                      (route) => route.isFirst);
+                },
+                child: Icon(Icons.arrow_back_ios_new_rounded),
               ),
               Column(
                 children: [

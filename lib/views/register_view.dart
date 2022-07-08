@@ -44,7 +44,9 @@ class _RegisterViewState extends State<RegisterView> {
   void dispose(){
     emailController.dispose();
     passwordController.dispose();
-
+    confirmPasswordController.dispose();
+    heightController.dispose();
+    weightController.dispose();
     super.dispose();
   }
 
@@ -685,6 +687,7 @@ class _RegisterViewState extends State<RegisterView> {
                                   dob: date,
                                   height: int.parse(heightController.text.trim()),
                                   weight: int.parse(weightController.text.trim()),
+                                  roles: 0,
                                 );
                                 UserController().signUp(emailController.text.trim(), passwordController.text.trim(), user);
                                 Navigator.pop(context);

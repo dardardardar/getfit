@@ -15,6 +15,7 @@ import 'package:getfit/views/register_view.dart';
 import 'package:getfit/views/request.dart';
 import 'package:getfit/views/tipsandtrick.dart';
 import 'package:getfit/views/welcome_view.dart';
+import 'package:getfit/widgets/snackbar_widgets.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: navigatorKey,
+      scaffoldMessengerKey: SnackBarWidgets.snackKey,
       home: SplashScreenView(),
     );
   }

@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:getfit/views/chatuserView.dart';
 import 'package:getfit/widgets/colors.dart';
 
 class ConsultationView extends StatefulWidget {
@@ -19,7 +20,10 @@ class _ConsultationViewState extends State<ConsultationView> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.chat),
         backgroundColor: LibColors.primary_color,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (BuildContext context) => ChatuserView()));
+        },
       ),
 
       body: Container(

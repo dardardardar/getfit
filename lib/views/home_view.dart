@@ -1,14 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:getfit/views/breakfastview.dart';
-
 import 'package:getfit/controller/user_controller.dart';
-
 import 'package:getfit/controller/user_controller.dart';
-
 import 'package:getfit/views/tipsandtrick.dart';
 import 'package:getfit/widgets/colors.dart';
-
 import '../models/user_model.dart';
 
 void main() {

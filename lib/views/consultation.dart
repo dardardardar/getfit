@@ -19,7 +19,7 @@ class _ConsultationViewState extends State<ConsultationView> {
         child: Icon(Icons.chat),
         backgroundColor: LibColors.primary_color,
         onPressed: () {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
+          Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) => ChatuserView()));
         },
       ),
@@ -33,11 +33,11 @@ class _ConsultationViewState extends State<ConsultationView> {
                 child: TextField(
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
-                      hintText: "Search Your Personal Trainer",
+                      hintText: "Search Your Personal Consultant",
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(
                             color: LibColors.primary_color, width: 1.0),
-                        borderRadius: BorderRadius.circular(4.0),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       hintStyle: TextStyle(color: LibColors.primary_color)),
                 ),
@@ -185,7 +185,7 @@ Widget profileCard() {
                 margin: EdgeInsets.fromLTRB(4, 8, 0, 4),
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'Rp 50.000',
+                  'FREE',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Color.fromARGB(255, 0, 0, 0),

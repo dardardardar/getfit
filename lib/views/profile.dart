@@ -32,6 +32,7 @@ class _ProfileViewState extends State<ProfileView> {
                     profileCard(_data!),
                     editprofileCard(context),
                     mygoalCard(context),
+                    signOutButton(),
                   ],
                 )));
           } else {
@@ -41,66 +42,48 @@ class _ProfileViewState extends State<ProfileView> {
           }
         },
       ),
-      // body: Container(
-      //     margin: EdgeInsets.all(12),
-      //     child: SingleChildScrollView(
-      //         child: Column(
-      //       children: <Widget>[
-      //         profileCard(),
-      //         editprofileCard(),
-      //         personaldetailsCard(),
-      //         nutritionCard(),
-      //         allergiesCard(),
-      //       ],
-      //     )
-      //     )
-      // ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   currentIndex: currentIndex,
-      //   onTap: (index) => setState(() => currentIndex = index),
-      //   items: [
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.history_edu),
-      //         label: 'Home',
-      //         backgroundColor: LibColors.primary_color),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.tips_and_updates),
-      //         label: 'Tips & Trick',
-      //         backgroundColor: LibColors.primary_color),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.chat),
-      //         label: 'Consultation',
-      //         backgroundColor: LibColors.primary_color),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.person),
-      //         label: 'Profile',
-      //         backgroundColor: LibColors.primary_color)
-      //   ],
-      // ),
+
     );
   }
 }
 
 Widget profileCard(UserModel _data) {
-  return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
+  return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: LibColors.second_color,
+        ),
+        margin: EdgeInsets.only(bottom: 12),
         padding: EdgeInsets.all(16),
-        color: LibColors.second_color,
+
         child: Row(
           children: <Widget>[
             Container(
-              child: Image(
-                  image: AssetImage("assets/images/profile.png"),
-                  fit: BoxFit.cover),
+              child:
+                CircleAvatar(
+                  backgroundImage: null,
+                  backgroundColor: LibColors.color_grey,
+                  radius: 40,
+                )
             ),
-            Expanded(
+            SizedBox(width: 24,),
+            Container(
+              alignment: Alignment.topLeft,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     _data.displayName,
-                    style: TextStyle(color: Colors.white),
+
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+
+                    ),
                   ),
+                  SizedBox(height: 8,),
                   Text(
                     (_data.goalCategories == 0)
                         ? "Diets"
@@ -109,84 +92,56 @@ Widget profileCard(UserModel _data) {
                             : "Lose Weight",
                     style: TextStyle(color: Colors.white),
                   ),
-                  MaterialButton(
-                    color: Colors.grey,
-                    onPressed: () => FirebaseAuth.instance.signOut(),
-                    child: Text('Sign Out'),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                  )
+
                 ],
               ),
             ),
           ],
         ),
-      ));
+      );
 }
 
 Widget editprofileCard(context) {
   return MaterialButton(
     onPressed: () {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
+      Navigator.of(context).push(MaterialPageRoute(
           builder: (BuildContext context) => editprofileView()));
     },
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8)),
+    minWidth: double.infinity,
+    color: LibColors.color_grey,
     child: Container(
       child: Text('Edit Profile'),
     ),
   );
-  // return GestureDetector(
-  //   onTap: () {
-  //     Navigator.of(context).pushReplacement(MaterialPageRoute(
-  //         builder: (BuildContext context) => editprofileView()));
-  //   },
-  //   child: ClipRRect(
-  //     borderRadius: BorderRadius.circular(12),
-  //     child: Container(
-  //         padding: EdgeInsets.all(6),
-  //         child: MaterialButton(
-  //           color: Color.fromARGB(255, 231, 231, 231),
-  //           minWidth: 400,
-  //           onPressed: () {},
-  //           child: Text(
-  //             'Edit Profile',
-  //             textAlign: TextAlign.left,
-  //           ),
-  //           shape:
-  //               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-  //         )
-  //         // color: LibColors.second_color,
 
-  //         ),
-  //   ),
-  // );
 }
 
 Widget mygoalCard(context) {
   return MaterialButton(
     onPressed: () {
-      Navigator.of(context).pushReplacement(
+      Navigator.of(context).push(
           MaterialPageRoute(builder: (BuildContext context) => MygoalView()));
     },
+    minWidth: double.infinity,
+    color: LibColors.color_grey,
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8)),
+
     child: Container(
       child: Text('My Goal'),
     ),
   );
-  // return ClipRRect(
-  //     borderRadius: BorderRadius.circular(12),
-  //     child: Container(
-  //         padding: EdgeInsets.all(6),
-  //         child: MaterialButton(
-  //           color: Color.fromARGB(255, 231, 231, 231),
-  //           minWidth: 400,
-  //           onPressed: () {},
-  //           child: Text(
-  //             'My Goal',
-  //             textAlign: TextAlign.left,
-  //           ),
-  //           shape:
-  //               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-  //         )
-  //         // color: LibColors.second_color,
 
-  //         ));
+}
+Widget signOutButton(){
+  return MaterialButton(
+    minWidth: double.infinity,
+    color: LibColors.danger_red,
+    onPressed: () => FirebaseAuth.instance.signOut(),
+    child: Text('Sign Out',style: TextStyle(color: LibColors.color_white),),
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8)),
+  );
 }

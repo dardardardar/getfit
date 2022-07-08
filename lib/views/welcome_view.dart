@@ -55,6 +55,10 @@ class _WelcomeViewState extends State<WelcomeView> {
                 },
                 minWidth: 360,
                 color: LibColors.primary_color,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+
+                    ),
                 child: const Text(
                       "Log In" ,style: TextStyle(
                       fontSize: 20,
@@ -89,7 +93,8 @@ class _WelcomeViewState extends State<WelcomeView> {
     builder: (_) {
 
       return AlertDialog(
-        
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8)),
         title: Text('Login', textAlign: TextAlign.center,),
         content: SingleChildScrollView(
           child: Form(
@@ -129,7 +134,7 @@ class _WelcomeViewState extends State<WelcomeView> {
         ),
         actions: [
           
-          TextButton(
+          MaterialButton(
 
             onPressed: () {
               Navigator.pop(context);
@@ -138,11 +143,12 @@ class _WelcomeViewState extends State<WelcomeView> {
               signin();
               Navigator.pop(context);
             },
-            style: TextButton.styleFrom(
-              fixedSize: Size.fromWidth(300),
-              
-              backgroundColor: LibColors.primary_color
-              ),
+            minWidth: double.infinity,
+            color: LibColors.primary_color,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+
+            ),
             child: Text('LOG IN',style: TextStyle(color: LibColors.color_white),),
           ),
         ],

@@ -11,7 +11,7 @@ class TipsandtrickView extends StatefulWidget {
 }
 
 class _TipsandtrickViewState extends State<TipsandtrickView> {
-  int currentIndex = 0;
+
 
   @override
   Widget build(BuildContext context) {

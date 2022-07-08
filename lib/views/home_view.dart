@@ -6,12 +6,7 @@ import 'package:getfit/widgets/colors.dart';
 
 import '../models/user_model.dart';
 
-void main() {
-  runApp(const MaterialApp(
-    title: 'Navigation Basics',
-    home: HomeView(),
-  ));
-}
+
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -21,15 +16,11 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  int currentIndex = 0;
-
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
       body: Container(
           margin: EdgeInsets.all(12),
           child: SingleChildScrollView(
@@ -70,28 +61,7 @@ class _HomeViewState extends State<HomeView> {
               exerciseCard(),
             ],
           ))),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   currentIndex: currentIndex,
-      //   onTap: (index) => setState(() => currentIndex = index),
-      //   items: [
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.history_edu),
-      //         label: 'Home',
-      //         backgroundColor: LibColors.primary_color),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.tips_and_updates),
-      //         label: 'Tips & Tricks',
-      //         backgroundColor: LibColors.primary_color),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.chat),
-      //         label: 'Consultation',
-      //         backgroundColor: LibColors.primary_color),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.person),
-      //         label: 'Profile',
-      //         backgroundColor: LibColors.primary_color)
-      //   ],
-      // ),
+
     );
   }
 

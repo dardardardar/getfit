@@ -14,7 +14,7 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-  int currentIndex = 0;
+
   final userdata = UserController().readUserDatabyId();
   @override
   Widget build(BuildContext context) {

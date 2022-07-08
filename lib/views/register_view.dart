@@ -44,7 +44,9 @@ class _RegisterViewState extends State<RegisterView> {
   void dispose(){
     emailController.dispose();
     passwordController.dispose();
-
+    confirmPasswordController.dispose();
+    heightController.dispose();
+    weightController.dispose();
     super.dispose();
   }
 

@@ -25,18 +25,23 @@ class _BottomnavbarViewState extends State<BottomnavbarView> {
     TipsandtrickView(),
     ConsultationView(),
     ProfileView(),
-    ChatconsultantView(),
+
   ];
 
-  int selectIndex = 0;
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+  }
 
   void onPageChanged(int index) {
-    selectIndex = index;
+    setState(() {
+      print(index);
+      currentIndex = index;
+    });
   }
 
-  void onItemTap(int selectedItem) {
-    pageController.jumpToPage(selectedItem);
-  }
   final userdata = UserController().readUserDatabyId();
   @override
   Widget build(BuildContext context) {
@@ -58,48 +63,46 @@ class _BottomnavbarViewState extends State<BottomnavbarView> {
         ),
         backgroundColor: LibColors.primary_color,
       ),
-      body: PageView(
-        controller: pageController,
-        children: pages,
-        onPageChanged: onPageChanged,
+      body: Stack(
+        children: [
+          PageView(
+            controller: pageController,
+            children: pages,
+            onPageChanged: onPageChanged,
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
-        onTap: onItemTap,
-        items: [
+        onTap: (currentIndex){
+          pageController.jumpToPage(currentIndex);
+        },
+        items: const [
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.history_edu,
-                color: selectIndex == 0
-                    ? Color.fromARGB(255, 255, 255, 255)
-                    : Color.fromARGB(255, 255, 255, 255),
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
               label: 'Home',
               backgroundColor: LibColors.primary_color),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.tips_and_updates,
-                color: selectIndex == 1
-                    ? Color.fromARGB(255, 255, 255, 255)
-                    : Color.fromARGB(255, 255, 255, 255),
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
               label: 'Tips & Tricks',
               backgroundColor: LibColors.primary_color),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.chat,
-                color: selectIndex == 2
-                    ? Color.fromARGB(255, 255, 255, 255)
-                    : Color.fromARGB(255, 255, 255, 255),
+                color:  Color.fromARGB(255, 255, 255, 255),
               ),
               label: 'Consultation',
               backgroundColor: LibColors.primary_color),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.person,
-                color: selectIndex == 3
-                    ? Color.fromARGB(255, 255, 255, 255)
-                    : Color.fromARGB(255, 255, 255, 255),
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
               label: 'Profile',
               backgroundColor: LibColors.primary_color)

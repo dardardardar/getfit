@@ -12,14 +12,10 @@ class TipsandtrickView extends StatefulWidget {
 
 class _TipsandtrickViewState extends State<TipsandtrickView> {
   int currentIndex = 0;
-  final user = FirebaseAuth.instance.currentUser!;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(user.email.toString()),
-        backgroundColor: LibColors.primary_color,
-      ),
       body: Container(
         margin: EdgeInsets.all(12),
         child: SingleChildScrollView(
@@ -44,7 +40,7 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
                   const SizedBox(
                     width: 5,
                   ),
-                  Expanded(child: vegetablesCard()),
+                  Expanded(child: workoutCard()),
                   const SizedBox(
                     width: 5,
                   ),
@@ -58,27 +54,27 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
                   const SizedBox(
                     width: 5,
                   ),
-                  Expanded(child: workoutCard()),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
                   Expanded(child: sleepCard()),
                   const SizedBox(
                     width: 5,
                   ),
-                  Expanded(child: mentalhealthCard()),
-                  const SizedBox(
-                    width: 5,
-                  ),
                 ],
               ),
-              iklanCard(),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: <Widget>[
+              //     Expanded(child: sleepCard()),
+              //     const SizedBox(
+              //       width: 5,
+              //     ),
+              //     Expanded(child: mentalhealthCard()),
+              //     const SizedBox(
+              //       width: 5,
+              //     ),
+              //   ],
+              // ),
+              // iklanCard(),
             ],
           ),
         ),

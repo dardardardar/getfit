@@ -1,7 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
+import 'package:getfit/views/breakfastview.dart';
+=======
+import 'package:getfit/controller/user_controller.dart';
+>>>>>>> 11ee9b205059d1bd1fbe39479506b1a69af0b7ab
 import 'package:getfit/views/tipsandtrick.dart';
 import 'package:getfit/widgets/colors.dart';
+
+import '../models/user_model.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -19,14 +26,14 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
-  final user = FirebaseAuth.instance.currentUser!;
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(user.email.toString()),
-        backgroundColor: LibColors.primary_color,
-      ),
+
+
       body: Container(
           margin: EdgeInsets.all(12),
           child: SingleChildScrollView(
@@ -309,65 +316,71 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget breakfastCard() {
-    return Container(
-      padding: EdgeInsets.all(16),
-      margin: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: LibColors.color_white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: Offset(0, 5), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: Column(
-              children: [
-                Image(
-                    image: AssetImage("assets/images/breakfast.png"),
-                    fit: BoxFit.cover),
-              ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (BuildContext context) => BreakfastView()));
+      },
+      child: Container(
+        padding: EdgeInsets.all(16),
+        margin: EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: LibColors.color_white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, 5), // changes position of shadow
             ),
-          ),
-          Container(
-            child: Column(
-              children: [
-                Container(
-                  width: 170,
-                  child: Text(
-                    'Add Breakfast',
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 0, 0, 0),
+          ],
+        ),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                children: [
+                  Image(
+                      image: AssetImage("assets/images/breakfast.png"),
+                      fit: BoxFit.cover),
+                ],
+              ),
+            ),
+            Container(
+              child: Column(
+                children: [
+                  Container(
+                    width: 170,
+                    child: Text(
+                      'Add Breakfast',
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                      ),
                     ),
                   ),
-                ),
-                Text(
-                  '(6 am - 10 am) Recommend 100-500 calories',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0),
-                    fontSize: 8,
+                  Text(
+                    '(6 am - 10 am) Recommend 100-500 calories',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontSize: 10,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: Column(
-              children: [
-                Image(
-                    image: AssetImage("assets/images/reminder.png"),
-                    fit: BoxFit.cover),
-              ],
+            Expanded(
+              child: Column(
+                children: [
+                  Image(
+                      image: AssetImage("assets/images/reminder.png"),
+                      fit: BoxFit.cover),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -414,7 +427,7 @@ class _HomeViewState extends State<HomeView> {
                   '(6 am - 10 am) Recommend 100-500 calories',
                   style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
-                    fontSize: 8,
+                    fontSize: 10,
                   ),
                 ),
               ],
@@ -476,7 +489,7 @@ class _HomeViewState extends State<HomeView> {
                   '(12 pm - 15 pm) Recommend 100-500 calories',
                   style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
-                    fontSize: 8,
+                    fontSize: 10,
                   ),
                 ),
               ],
@@ -538,7 +551,7 @@ class _HomeViewState extends State<HomeView> {
                   '(15 pm - 17 pm) Recommend 100-500 calories',
                   style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
-                    fontSize: 8,
+                    fontSize: 10,
                   ),
                 ),
               ],
@@ -600,7 +613,7 @@ class _HomeViewState extends State<HomeView> {
                   '(18 pm - 20 pm) Recommend 100-500 calories',
                   style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
-                    fontSize: 8,
+                    fontSize: 10,
                   ),
                 ),
               ],
@@ -662,7 +675,7 @@ class _HomeViewState extends State<HomeView> {
                   '(22 pm - 5 am) Recommend to take a sleep',
                   style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
-                    fontSize: 8,
+                    fontSize: 10,
                   ),
                 ),
               ],
@@ -724,7 +737,7 @@ class _HomeViewState extends State<HomeView> {
                   'Make sure exercise is not to hard for you ok',
                   style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
-                    fontSize: 8,
+                    fontSize: 10,
                   ),
                 ),
               ],
@@ -743,4 +756,6 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
+
+
 }

@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:getfit/views/dietpage.dart';
 import 'package:getfit/widgets/colors.dart';
 
 class TipsandtrickView extends StatefulWidget {
@@ -40,7 +41,7 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
                   const SizedBox(
                     width: 5,
                   ),
-                  Expanded(child: vegetablesCard()),
+                  Expanded(child: workoutCard()),
                   const SizedBox(
                     width: 5,
                   ),
@@ -54,27 +55,27 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
                   const SizedBox(
                     width: 5,
                   ),
-                  Expanded(child: workoutCard()),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
                   Expanded(child: sleepCard()),
                   const SizedBox(
                     width: 5,
                   ),
-                  Expanded(child: mentalhealthCard()),
-                  const SizedBox(
-                    width: 5,
-                  ),
                 ],
               ),
-              iklanCard(),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   crossAxisAlignment: CrossAxisAlignment.center,
+              //   children: <Widget>[
+              //     Expanded(child: sleepCard()),
+              //     const SizedBox(
+              //       width: 5,
+              //     ),
+              //     Expanded(child: mentalhealthCard()),
+              //     const SizedBox(
+              //       width: 5,
+              //     ),
+              //   ],
+              // ),
+              // iklanCard(),
             ],
           ),
         ),
@@ -105,42 +106,48 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
   }
 
   Widget dietCard() {
-    return Container(
-      margin: EdgeInsets.all(12),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Color(0xff48BDFF),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.8),
-                spreadRadius: 10,
-                blurRadius: 10,
-                offset: Offset(0, 12), // changes position of shadow
-              ),
-            ],
-          ),
-          padding: EdgeInsets.all(22),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                child: Image(
-                    image: AssetImage("assets/images/diet.png"),
-                    width: 50,
-                    height: 50,
-                    fit: BoxFit.cover),
-              ),
-              Text(
-                'Food'.toUpperCase(),
-                style: TextStyle(
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: () {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (BuildContext context) => dietView()));
+      },
+      child: Container(
+        margin: EdgeInsets.all(12),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Color(0xff48BDFF),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.8),
+                  spreadRadius: 10,
+                  blurRadius: 10,
+                  offset: Offset(0, 12), // changes position of shadow
                 ),
-              ),
-            ],
+              ],
+            ),
+            padding: EdgeInsets.all(22),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  child: Image(
+                      image: AssetImage("assets/images/diet.png"),
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover),
+                ),
+                Text(
+                  'Food'.toUpperCase(),
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

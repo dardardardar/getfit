@@ -1,8 +1,9 @@
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:getfit/views/editprofileView.dart';
+import 'package:getfit/views/mygoalView.dart';
 import 'package:getfit/widgets/colors.dart';
-
 import '../controller/user_controller.dart';
 import '../models/user_model.dart';
 
@@ -14,7 +15,6 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-
   final userdata = UserController().readUserDatabyId();
   @override
   Widget build(BuildContext context) {
@@ -30,8 +30,8 @@ class _ProfileViewState extends State<ProfileView> {
                     child: Column(
                   children: <Widget>[
                     profileCard(_data!),
-                    editprofileCard(),
-                    mygoalCard(),
+                    editprofileCard(context),
+                    mygoalCard(context),
                   ],
                 )));
           } else {
@@ -124,44 +124,69 @@ Widget profileCard(UserModel _data) {
       ));
 }
 
-Widget editprofileCard() {
-  return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-          padding: EdgeInsets.all(6),
-          child: MaterialButton(
-            color: Color.fromARGB(255, 231, 231, 231),
-            minWidth: 400,
-            onPressed: () {},
-            child: Text(
-              'Edit Profile',
-              textAlign: TextAlign.left,
-            ),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          )
-          // color: LibColors.second_color,
+Widget editprofileCard(context) {
+  return MaterialButton(
+    onPressed: () {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (BuildContext context) => editprofileView()));
+    },
+    child: Container(
+      child: Text('Edit Profile'),
+    ),
+  );
+  // return GestureDetector(
+  //   onTap: () {
+  //     Navigator.of(context).pushReplacement(MaterialPageRoute(
+  //         builder: (BuildContext context) => editprofileView()));
+  //   },
+  //   child: ClipRRect(
+  //     borderRadius: BorderRadius.circular(12),
+  //     child: Container(
+  //         padding: EdgeInsets.all(6),
+  //         child: MaterialButton(
+  //           color: Color.fromARGB(255, 231, 231, 231),
+  //           minWidth: 400,
+  //           onPressed: () {},
+  //           child: Text(
+  //             'Edit Profile',
+  //             textAlign: TextAlign.left,
+  //           ),
+  //           shape:
+  //               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+  //         )
+  //         // color: LibColors.second_color,
 
-          ));
+  //         ),
+  //   ),
+  // );
 }
 
-Widget mygoalCard() {
-  return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
-      child: Container(
-          padding: EdgeInsets.all(6),
-          child: MaterialButton(
-            color: Color.fromARGB(255, 231, 231, 231),
-            minWidth: 400,
-            onPressed: () {},
-            child: Text(
-              'My Goal',
-              textAlign: TextAlign.left,
-            ),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          )
-          // color: LibColors.second_color,
+Widget mygoalCard(context) {
+  return MaterialButton(
+    onPressed: () {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (BuildContext context) => MygoalView()));
+    },
+    child: Container(
+      child: Text('My Goal'),
+    ),
+  );
+  // return ClipRRect(
+  //     borderRadius: BorderRadius.circular(12),
+  //     child: Container(
+  //         padding: EdgeInsets.all(6),
+  //         child: MaterialButton(
+  //           color: Color.fromARGB(255, 231, 231, 231),
+  //           minWidth: 400,
+  //           onPressed: () {},
+  //           child: Text(
+  //             'My Goal',
+  //             textAlign: TextAlign.left,
+  //           ),
+  //           shape:
+  //               RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+  //         )
+  //         // color: LibColors.second_color,
 
-          ));
+  //         ));
 }

@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:getfit/views/chatuserView.dart';
 import 'package:getfit/widgets/colors.dart';
 
 class ConsultationView extends StatefulWidget {
@@ -11,47 +12,49 @@ class ConsultationView extends StatefulWidget {
 }
 
 class _ConsultationViewState extends State<ConsultationView> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.chat),
+        backgroundColor: LibColors.primary_color,
+        onPressed: () {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (BuildContext context) => ChatuserView()));
+        },
+      ),
       body: Container(
         margin: EdgeInsets.all(12),
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               Container(
-              margin: EdgeInsets.all(12),
-               
+                margin: EdgeInsets.all(12),
                 child: TextField(
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
-                    hintText: "Search Your Personal Trainer",
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: LibColors.primary_color, width: 1.0),
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                    hintStyle: TextStyle(color: LibColors.primary_color)
-                  ),
+                      hintText: "Search Your Personal Trainer",
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: LibColors.primary_color, width: 1.0),
+                        borderRadius: BorderRadius.circular(4.0),
+                      ),
+                      hintStyle: TextStyle(color: LibColors.primary_color)),
                 ),
               ),
               Container(
                 alignment: Alignment.topLeft,
                 margin: EdgeInsets.all(12),
-                child: Text('Recommended Personal trainer or Doctor'),
+                child: Text('Recommended Personal Trainer or Doctor'),
               ),
               profileCard(),
               profileCard(),
               profileCard(),
-
               Container(
                 alignment: Alignment.topLeft,
                 margin: EdgeInsets.all(12),
                 child: Text('Specialist Personal trainer or Doctor'),
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -72,7 +75,6 @@ class _ConsultationViewState extends State<ConsultationView> {
           ),
         ),
       ),
-
     );
   }
 }
@@ -103,10 +105,11 @@ Widget profileCard() {
               image: AssetImage("assets/images/personaltrainer.png"),
               fit: BoxFit.fill),
         ),
-        SizedBox(width: 12,),
+        SizedBox(
+          width: 12,
+        ),
         Expanded(
           child: Column(
-
             children: [
               Container(
                 alignment: Alignment.topLeft,
@@ -132,7 +135,6 @@ Widget profileCard() {
                   children: [
                     Container(
                       padding: EdgeInsets.all(8),
-
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: LibColors.second_color,
@@ -148,13 +150,15 @@ Widget profileCard() {
                       child: Text(
                         'Rating 4.5/5',
                         textAlign: TextAlign.start,
-                        style: TextStyle(fontSize: 11, color: LibColors.color_white),
+                        style: TextStyle(
+                            fontSize: 11, color: LibColors.color_white),
                       ),
                     ),
-                    SizedBox(width: 8,),
+                    SizedBox(
+                      width: 8,
+                    ),
                     Container(
                       padding: EdgeInsets.all(8),
-
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: LibColors.second_color,
@@ -170,7 +174,8 @@ Widget profileCard() {
                       child: Text(
                         '10 Tahun',
                         textAlign: TextAlign.start,
-                        style: TextStyle(fontSize: 11, color: LibColors.color_white),
+                        style: TextStyle(
+                            fontSize: 11, color: LibColors.color_white),
                       ),
                     )
                   ],
@@ -181,7 +186,10 @@ Widget profileCard() {
                 alignment: Alignment.topLeft,
                 child: Text(
                   'Rp 50.000',
-                  style: TextStyle(fontWeight: FontWeight.bold,color: Color.fromARGB(255, 0, 0, 0),fontSize: 16),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontSize: 16),
                 ),
               ),
               Align(
@@ -227,7 +235,9 @@ Widget personaltrainerCard() {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Image(image: AssetImage("assets/images/pticon.png"), fit: BoxFit.cover),
-        SizedBox(height: 18,),
+        SizedBox(
+          height: 18,
+        ),
         Text(
           'Personal Trainer'.toUpperCase(),
           style: TextStyle(

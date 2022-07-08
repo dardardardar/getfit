@@ -3,25 +3,44 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:getfit/widgets/colors.dart';
 
-class ChatconsultantView extends StatefulWidget {
-  const ChatconsultantView({Key? key}) : super(key: key);
+import 'bottomnavbar.dart';
+
+class ChatuserView extends StatefulWidget {
+  const ChatuserView({Key? key}) : super(key: key);
 
   @override
-  State<ChatconsultantView> createState() => _ChatconsultantViewState();
+  State<ChatuserView> createState() => _ChatuserViewState();
 }
 
-class _ChatconsultantViewState extends State<ChatconsultantView> {
-  final user = FirebaseAuth.instance.currentUser!;
+class _ChatuserViewState extends State<ChatuserView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.circle_notifications_outlined),
-        backgroundColor: LibColors.primary_color,
-        onPressed: () {},
-      ),
       appBar: AppBar(
-        title: Text(user.email.toString()),
+        title: Container(
+          margin: EdgeInsets.only(left: 8),
+          child: Row(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => BottomnavbarView()),
+                      (route) => route.isFirst);
+                },
+                child: Icon(Icons.arrow_back_ios_new_rounded),
+              ),
+              // Image(
+              //   image: AssetImage("assets/images/back.png"),
+              // ),
+              Column(
+                children: [
+                  Text('Chat'),
+                ],
+              ),
+            ],
+          ),
+        ),
         backgroundColor: LibColors.primary_color,
       ),
       body: Container(

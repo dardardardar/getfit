@@ -2,6 +2,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:getfit/widgets/colors.dart';
 
+import 'bottomnavbar.dart';
+
 class editprofileView extends StatefulWidget {
   const editprofileView({Key? key}) : super(key: key);
 
@@ -14,21 +16,7 @@ class _editprofileViewState extends State<editprofileView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Container(
-          margin: EdgeInsets.only(left: 8),
-          child: Row(
-            children: [
-              Image(
-                image: AssetImage("assets/images/back.png"),
-              ),
-              Column(
-                children: [
-                  Text('Edit Profile'),
-                ],
-              ),
-            ],
-          ),
-        ),
+        title: Text('Edit Profile'),
         backgroundColor: LibColors.primary_color,
       ),
       body: Container(

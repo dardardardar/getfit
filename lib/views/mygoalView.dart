@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:getfit/widgets/colors.dart';
 import '../widgets/text_widgets.dart';
+import 'bottomnavbar.dart';
 
 class MygoalView extends StatefulWidget {
   const MygoalView({Key? key}) : super(key: key);
@@ -17,21 +18,7 @@ class _MygoalViewState extends State<MygoalView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Container(
-          margin: EdgeInsets.only(left: 8),
-          child: Row(
-            children: [
-              Image(
-                image: AssetImage("assets/images/back.png"),
-              ),
-              Column(
-                children: [
-                  Text('My Goal'),
-                ],
-              ),
-            ],
-          ),
-        ),
+        title:  Text('My Goal'),
         backgroundColor: LibColors.primary_color,
       ),
       body: Container(

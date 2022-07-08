@@ -102,6 +102,10 @@ class _RegisterViewState extends State<RegisterView> {
                         },
                             minWidth: 360,
                             color: LibColors.color_white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+
+                            ),
                             child: Text(
                               "Continue" ,style: const TextStyle(
                               fontSize: 16,
@@ -166,6 +170,10 @@ class _RegisterViewState extends State<RegisterView> {
                             minWidth: 360,
                             height: 80,
                             color: LibColors.color_white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+
+                            ),
                             child: Text(
                               "DIET" ,style: const TextStyle(
                               fontSize: 16,
@@ -187,10 +195,15 @@ class _RegisterViewState extends State<RegisterView> {
                             minWidth: 360,
                             height: 80,
                             color: LibColors.color_white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+
+                            ),
                             child: Text(
                               "MAINTAIN WEIGHT" ,style: const TextStyle(
                               fontSize: 16,
                               color: LibColors.primary_color,
+
                             ),
                               textAlign: TextAlign.center,
                             )
@@ -208,6 +221,10 @@ class _RegisterViewState extends State<RegisterView> {
                             minWidth: 360,
                             height: 80,
                             color: LibColors.color_white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+
+                            ),
                             child: Text(
                               "LOSE WEIGHT" ,style: const TextStyle(
                               fontSize: 16,
@@ -285,7 +302,7 @@ class _RegisterViewState extends State<RegisterView> {
                           filled: true,
                           errorStyle: TextStyle(color: LibColors.danger_red),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4.0),
+                            borderRadius: BorderRadius.circular(8),
                           ),
                           hintStyle: TextStyle(color: LibColors.primary_color)
                       ),
@@ -316,7 +333,7 @@ class _RegisterViewState extends State<RegisterView> {
                           filled: true,
                           errorStyle: TextStyle(color: LibColors.danger_red),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4.0),
+                            borderRadius: BorderRadius.circular(8),
                           ),
                           hintStyle: TextStyle(color: LibColors.primary_color)
                       ),
@@ -359,6 +376,10 @@ class _RegisterViewState extends State<RegisterView> {
                           },
                               minWidth: 360,
                               color: LibColors.color_white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+
+                              ),
                               child: Text(
                                 "Continue" ,style: const TextStyle(
                                 fontSize: 16,
@@ -424,6 +445,10 @@ class _RegisterViewState extends State<RegisterView> {
                         minWidth: 360,
                         height: 80,
                         color: LibColors.color_white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+
+                        ),
                         child: Text(
                           dob == ""? "Select date" : dob ,style: const TextStyle(
                           fontSize: 16,
@@ -456,6 +481,10 @@ class _RegisterViewState extends State<RegisterView> {
                         },
                             minWidth: 360,
                             color: LibColors.color_white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+
+                            ),
                             child: Text(
                               "Continue" ,style: const TextStyle(
                               fontSize: 16,
@@ -521,7 +550,7 @@ class _RegisterViewState extends State<RegisterView> {
                             filled: true,
                             errorStyle: TextStyle(color: LibColors.danger_red),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(4.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
 
                             hintStyle: TextStyle(color: LibColors.primary_color)
@@ -550,7 +579,7 @@ class _RegisterViewState extends State<RegisterView> {
                             errorStyle: TextStyle(color: LibColors.danger_red),
                             filled: true,
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(4.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             hintStyle: TextStyle(color: LibColors.primary_color)
                         ),
@@ -572,7 +601,7 @@ class _RegisterViewState extends State<RegisterView> {
                         width: 320,
                         decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.circular(4.0)
+                            borderRadius: BorderRadius.circular(8.0)
                         ),
 
                         child:  Align(
@@ -622,7 +651,7 @@ class _RegisterViewState extends State<RegisterView> {
                             fillColor: Colors.white,
                             filled: true,
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(4.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
 
                             hintStyle: TextStyle(color: LibColors.primary_color)
@@ -652,7 +681,7 @@ class _RegisterViewState extends State<RegisterView> {
                             fillColor: Colors.white,
                             filled: true,
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(4.0),
+                              borderRadius: BorderRadius.circular(8.0),
                             ),
                             hintStyle: TextStyle(color: LibColors.primary_color)
                         ),
@@ -696,6 +725,10 @@ class _RegisterViewState extends State<RegisterView> {
                             },
                                 minWidth: 360,
                                 color: LibColors.color_white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+
+                                ),
                                 child: Text(
                                   "Register" ,style: const TextStyle(
                                   fontSize: 16,
@@ -714,6 +747,7 @@ class _RegisterViewState extends State<RegisterView> {
                                   "Back" ,style: const TextStyle(
                                   fontSize: 16,
                                   color: LibColors.color_white,
+
                                 ),
                                   textAlign: TextAlign.center,
                                 )

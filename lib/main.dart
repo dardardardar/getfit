@@ -6,6 +6,7 @@ import 'package:getfit/views/breakfastview.dart';
 import 'package:getfit/views/chatconsultantView.dart';
 import 'package:getfit/views/chating.dart';
 import 'package:getfit/views/consultation.dart';
+import 'package:getfit/views/dietpage.dart';
 import 'package:getfit/views/editprofileView.dart';
 import 'package:getfit/views/home_view.dart';
 import 'package:getfit/views/loading_view.dart';

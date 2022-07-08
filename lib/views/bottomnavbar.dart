@@ -25,7 +25,6 @@ class _BottomnavbarViewState extends State<BottomnavbarView> {
     TipsandtrickView(),
     ConsultationView(),
     ProfileView(),
-
   ];
 
   @override
@@ -49,15 +48,16 @@ class _BottomnavbarViewState extends State<BottomnavbarView> {
       appBar: AppBar(
         title: FutureBuilder<UserModel?>(
           future: userdata,
-          builder: (context,snapshot){
-            if(snapshot.hasData){
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
               final _data = snapshot.data;
-              return _data == null ?
-              Text("null") :
-              Text("Hello " + _data.displayName);
-            }
-            else{
-              return Center(child: CircularProgressIndicator(),);
+              return _data == null
+                  ? Text("null")
+                  : Text("Hello " + _data.displayName);
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
             }
           },
         ),
@@ -74,7 +74,7 @@ class _BottomnavbarViewState extends State<BottomnavbarView> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
-        onTap: (currentIndex){
+        onTap: (currentIndex) {
           pageController.jumpToPage(currentIndex);
         },
         items: const [
@@ -95,7 +95,7 @@ class _BottomnavbarViewState extends State<BottomnavbarView> {
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.chat,
-                color:  Color.fromARGB(255, 255, 255, 255),
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
               label: 'Consultation',
               backgroundColor: LibColors.primary_color),

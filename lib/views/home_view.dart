@@ -280,7 +280,7 @@ class _HomeViewState extends State<HomeView> {
   Widget breakfastCard() {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
+        Navigator.of(context).push(MaterialPageRoute(
             builder: (BuildContext context) => BreakfastView()));
       },
       child: Container(

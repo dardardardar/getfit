@@ -60,7 +60,7 @@ class _ConsultationViewState extends State<ConsultationView> {
                   if (snapshot.hasData) {
                     final _data = snapshot.data!;
                     return ListView(
-                      scrollDirection: Axis.vertical,
+                      physics : NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       children: _data.map(profileCard).toList(),
                     );
@@ -136,8 +136,8 @@ Widget profileCard(ConsultantModel model) {
                 alignment: Alignment.topLeft,
                 margin: EdgeInsets.only(bottom: 8),
                 child: Text(
-                  'Dr. Howard Ghifari',
-                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  model.displayName,
+                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontSize: 16),
                 ),
               ),
 

@@ -25,18 +25,22 @@ class _BottomnavbarViewState extends State<BottomnavbarView> {
     TipsandtrickView(),
     ConsultationView(),
     ProfileView(),
-    ChatconsultantView(),
   ];
 
-  int selectIndex = 0;
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+  }
 
   void onPageChanged(int index) {
-    selectIndex = index;
+    setState(() {
+      print(index);
+      currentIndex = index;
+    });
   }
 
-  void onItemTap(int selectedItem) {
-    pageController.jumpToPage(selectedItem);
-  }
   final userdata = UserController().readUserDatabyId();
   @override
   Widget build(BuildContext context) {
@@ -44,57 +48,64 @@ class _BottomnavbarViewState extends State<BottomnavbarView> {
       appBar: AppBar(
         title: FutureBuilder<UserModel?>(
           future: userdata,
-          builder: (context,snapshot){
-            if(snapshot.hasData){
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
               final _data = snapshot.data;
-              return _data == null ?
-              Text("null") :
-              Text("Hello " + _data.displayName);
-            }
-            else{
-              return Center(child: CircularProgressIndicator(),);
+              return _data == null
+                  ? Text("null")
+                  : Text("Hello " + _data.displayName);
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
             }
           },
         ),
         backgroundColor: LibColors.primary_color,
       ),
-      body: PageView(
-        controller: pageController,
-        children: pages,
-        onPageChanged: onPageChanged,
+      body: Stack(
+        children: [
+          PageView(
+            controller: pageController,
+            children: pages,
+            onPageChanged: onPageChanged,
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: LibColors.primary_color,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Color.fromARGB(255, 185, 185, 185),
-        type: BottomNavigationBarType.fixed,
         currentIndex: currentIndex,
-        onTap: onItemTap,
-        items: [
+        onTap: (currentIndex) {
+          pageController.jumpToPage(currentIndex);
+        },
+        items: const [
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.history_edu,
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
-              label: '',
-              backgroundColor: Color.fromARGB(255, 185, 185, 185)),
+              label: 'Home',
+              backgroundColor: LibColors.primary_color),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.tips_and_updates,
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
-              label: '',
-              backgroundColor: Color.fromARGB(255, 185, 185, 185)),
+              label: 'Tips & Tricks',
+              backgroundColor: LibColors.primary_color),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.chat,
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
-              label: '',
-              backgroundColor: Color.fromARGB(255, 185, 185, 185)),
+              label: 'Consultation',
+              backgroundColor: LibColors.primary_color),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.person,
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
-              label: '',
-              backgroundColor: Color.fromARGB(255, 185, 185, 185))
+              label: 'Profile',
+              backgroundColor: LibColors.primary_color)
         ],
       ),
     );

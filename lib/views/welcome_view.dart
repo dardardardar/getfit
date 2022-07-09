@@ -1,6 +1,8 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:getfit/views/register_view.dart';
+import 'package:getfit/widgets/snackbar_widgets.dart';
 import '../main.dart';
 import '../widgets/colors.dart';
 
@@ -53,6 +55,10 @@ class _WelcomeViewState extends State<WelcomeView> {
                 },
                 minWidth: 360,
                 color: LibColors.primary_color,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+
+                    ),
                 child: const Text(
                       "Log In" ,style: TextStyle(
                       fontSize: 20,
@@ -76,47 +82,73 @@ class _WelcomeViewState extends State<WelcomeView> {
       )
     );
   }
-  
+  void _loading(context){
+    showDialog(context: context,
+        builder: (_) => Center(child: CircularProgressIndicator(),)
+    );
+  }
   void showDialogWithFields(context) {
   showDialog(
     context: context,
     builder: (_) {
 
       return AlertDialog(
-        
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8)),
         title: Text('Login', textAlign: TextAlign.center,),
         content: SingleChildScrollView(
-          child: Column(
-           
-          children: [
-            TextFormField(
-              controller: emailController,
-              textAlign: TextAlign.center,
-              decoration: InputDecoration(hintText: 'Email'),
+          child: Form(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            child:Column(
+              children: [
+                TextFormField(
+                controller: emailController,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(hintText: 'Email'),
+                  validator: (value){
+                    if(value == null){
+                      return 'Please fill your email';
+                    }
+                    if(!EmailValidator.validate(value)){
+                      return "Email must be valid";
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  obscureText: true,
+                  textAlign: TextAlign.center,
+                  controller: passwordController,
+                  decoration: InputDecoration(hintText: 'Password'),
+                  validator: (value){
+                    if(value == null){
+                      return 'Please fill your new password';
+                    }
+
+                    return null;
+                  },
+                ),
+              ],
             ),
-            TextFormField(
-              obscureText: true,
-              textAlign: TextAlign.center,
-              controller: passwordController,
-              decoration: InputDecoration(hintText: 'Password'),
-            ),
-          ],
-        ),  
+          ),
         ),
         actions: [
           
-          TextButton(
-            
+          MaterialButton(
+
             onPressed: () {
-            signin();
-             print(FirebaseAuth.instance.currentUser?.displayName);
-            Navigator.pop(context);
+              Navigator.pop(context);
+              _loading(context);
+
+              signin();
+              Navigator.pop(context);
             },
-            style: TextButton.styleFrom(
-              fixedSize: Size.fromWidth(300),
-              
-              backgroundColor: LibColors.primary_color
-              ),
+            minWidth: double.infinity,
+            color: LibColors.primary_color,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+
+            ),
             child: Text('LOG IN',style: TextStyle(color: LibColors.color_white),),
           ),
         ],
@@ -126,13 +158,13 @@ class _WelcomeViewState extends State<WelcomeView> {
   
 }
   Future signin() async{
-
    try{
      await FirebaseAuth.instance.signInWithEmailAndPassword(
          email: emailController.text.trim(), password: passwordController.text.trim());
     }
     on FirebaseAuthException catch (e){
      print(e);
+     SnackBarWidgets.fire(e.message);
     }
 
    }

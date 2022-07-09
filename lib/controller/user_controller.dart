@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/user_model.dart';
+import '../widgets/snackbar_widgets.dart';
 
 class UserController{
   Future signUp(String email, String password, UserModel userModel) async{
@@ -18,6 +19,7 @@ class UserController{
     }
     on FirebaseAuthException catch (e){
       print(e);
+      SnackBarWidgets.fire(e.message);
     }
   }
 
@@ -31,11 +33,11 @@ class UserController{
        var _data = UserModel.fromJson(_res.data()!);
        return _data;
      }
-     return UserModel(email: "", displayName: "", goalCategories: 0, gender: 0, dob: DateTime.now(), height: 0, weight: 0);
+     return UserModel(email: "", displayName: "", goalCategories: 0, gender: 0, dob: DateTime.now(), height: 0, weight: 0,roles: 0);
    }
    on FirebaseException catch (e){
      print(e);
-     return UserModel(email: "", displayName: "", goalCategories: 0, gender: 0, dob: DateTime.now(), height: 0, weight: 0);
+     return UserModel(email: "", displayName: "", goalCategories: 0, gender: 0, dob: DateTime.now(), height: 0, weight: 0,roles: 0);
    }
   }
 

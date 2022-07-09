@@ -10,7 +10,7 @@ class UserModel {
   final DateTime dob;
   final int height;
   final int weight;
-
+  final int roles;
   UserModel({
     this.uid = '',
     required this.email,
@@ -20,6 +20,7 @@ class UserModel {
     required this.dob,
     required this.height,
     required this.weight,
+    required this.roles,
 });
 
   Map<String , dynamic> toJson() =>{
@@ -31,6 +32,7 @@ class UserModel {
     'dob': dob,
     'height': height,
     'weight': weight,
+    'roles': roles,
   };
 
   static UserModel fromJson(Map<String, dynamic> json) => UserModel(
@@ -42,6 +44,7 @@ class UserModel {
     dob: (json['dob'] as Timestamp).toDate(),
     height: json['height'],
     weight: json['weight'],
+    roles: json['roles'],
   );
 
 }

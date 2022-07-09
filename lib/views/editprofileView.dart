@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getfit/widgets/colors.dart';
 
@@ -16,36 +17,15 @@ class _editprofileViewState extends State<editprofileView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Container(
-          margin: EdgeInsets.only(left: 8),
-          child: Row(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                          builder: (context) => BottomnavbarView()),
-                      (route) => route.isFirst);
-                },
-                child: Icon(Icons.arrow_back_ios_new_rounded),
-              ),
-              // Image(
-              //   image: AssetImage("assets/images/back.png"),
-              // ),
-              Column(
-                children: [
-                  Text('Edit Profile'),
-                ],
-              ),
-            ],
-          ),
-        ),
+        title: Text('Edit Profile'),
         backgroundColor: LibColors.primary_color,
       ),
       body: Container(
           margin: EdgeInsets.all(12),
+          alignment: Alignment.topCenter,
           child: SingleChildScrollView(
               child: Column(
+
             children: <Widget>[
               Container(
                 margin: EdgeInsets.only(top: 16),

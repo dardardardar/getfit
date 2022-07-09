@@ -12,16 +12,15 @@ class ConsultationView extends StatefulWidget {
 }
 
 class _ConsultationViewState extends State<ConsultationView> {
-  int currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.chat),
         backgroundColor: LibColors.primary_color,
+
         onPressed: () {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
+          Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) => ChatuserView()));
         },
       ),
@@ -32,47 +31,31 @@ class _ConsultationViewState extends State<ConsultationView> {
           child: Column(
             children: <Widget>[
               Container(
-                width: 350,
-                height: 50,
+                margin: EdgeInsets.all(12),
                 child: TextField(
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
-                    hintText: "Search Your Personal Trainer",
-                    border: OutlineInputBorder(),
-                  ),
+                      hintText: "Search Your Personal Consultant",
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: LibColors.primary_color, width: 1.0),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      hintStyle: TextStyle(color: LibColors.primary_color)),
                 ),
               ),
-              Row(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Text('Recommended Consultant'),
-                  Container(
-                    margin: EdgeInsets.only(left: 80),
-                    child: MaterialButton(
-                      color: LibColors.primary_color,
-                      minWidth: 50,
-                      onPressed: () {},
-                      child: Text(
-                        'More',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                    ),
-                  )
-                ],
+              Container(
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.all(12),
+                child: Text('Recommended Personal Trainer or Doctor'),
               ),
               profileCard(),
               profileCard(),
               profileCard(),
-              profileCard(),
-              Row(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Text('Specialist Personal trainer or Doctor'),
-                ],
+              Container(
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.all(12),
+                child: Text('Specialist Personal trainer or Doctor'),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -94,28 +77,6 @@ class _ConsultationViewState extends State<ConsultationView> {
           ),
         ),
       ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   currentIndex: currentIndex,
-      //   onTap: (index) => setState(() => currentIndex = index),
-      //   items: [
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.history_edu),
-      //         label: 'Home',
-      //         backgroundColor: LibColors.primary_color),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.tips_and_updates),
-      //         label: 'Tips & Trick',
-      //         backgroundColor: LibColors.primary_color),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.chat),
-      //         label: 'Consultation',
-      //         backgroundColor: LibColors.primary_color),
-      //     BottomNavigationBarItem(
-      //         icon: Icon(Icons.person),
-      //         label: 'Profile',
-      //         backgroundColor: LibColors.primary_color)
-      //   ],
-      // ),
     );
   }
 }
@@ -123,7 +84,7 @@ class _ConsultationViewState extends State<ConsultationView> {
 Widget profileCard() {
   return Container(
     padding: EdgeInsets.all(16),
-    margin: EdgeInsets.all(12),
+    margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(12),
       color: LibColors.color_white,
@@ -140,29 +101,33 @@ Widget profileCard() {
     child: Row(
       children: <Widget>[
         Container(
+          width: 130,
+          height: 140,
           child: Image(
               image: AssetImage("assets/images/personaltrainer.png"),
-              fit: BoxFit.cover),
+              fit: BoxFit.fill),
         ),
-        Container(
+        SizedBox(
+          width: 12,
+        ),
+        Expanded(
           child: Column(
             children: [
               Container(
-                margin: EdgeInsets.only(left: 12),
-                width: 150,
+                alignment: Alignment.topLeft,
                 child: Text(
                   'Dr. Howard Ghifari',
                   style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(left: 12),
-                width: 150,
+                margin: EdgeInsets.symmetric(vertical: 4),
+                alignment: Alignment.topLeft,
                 child: Text(
                   'Personal Trainer Fitnes',
                   style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
-                    fontSize: 10,
+                    fontSize: 11,
                   ),
                 ),
               ),
@@ -172,55 +137,61 @@ Widget profileCard() {
                   children: [
                     Container(
                       padding: EdgeInsets.all(8),
-                      margin: EdgeInsets.all(4),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: LibColors.color_white,
+                        borderRadius: BorderRadius.circular(8),
+                        color: LibColors.second_color,
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 2,
+                            spreadRadius: 1,
                             blurRadius: 5,
-                            offset: Offset(0, 5), // changes position of shadow
+                            offset: Offset(0, 4), // changes position of shadow
                           ),
                         ],
                       ),
                       child: Text(
-                        'rating 4.5/5',
+                        'Rating 4.5/5',
                         textAlign: TextAlign.start,
-                        style: TextStyle(fontSize: 10),
+                        style: TextStyle(
+                            fontSize: 11, color: LibColors.color_white),
                       ),
+                    ),
+                    SizedBox(
+                      width: 8,
                     ),
                     Container(
                       padding: EdgeInsets.all(8),
-                      margin: EdgeInsets.all(4),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: LibColors.color_white,
+                        borderRadius: BorderRadius.circular(8),
+                        color: LibColors.second_color,
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 2,
+                            spreadRadius: 1,
                             blurRadius: 5,
-                            offset: Offset(0, 5), // changes position of shadow
+                            offset: Offset(0, 4), // changes position of shadow
                           ),
                         ],
                       ),
                       child: Text(
                         '10 Tahun',
                         textAlign: TextAlign.start,
-                        style: TextStyle(fontSize: 10),
+                        style: TextStyle(
+                            fontSize: 11, color: LibColors.color_white),
                       ),
                     )
                   ],
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(left: 12),
-                width: 150,
+                margin: EdgeInsets.fromLTRB(4, 8, 0, 4),
+                alignment: Alignment.topLeft,
                 child: Text(
-                  'Rp 50.000',
-                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  'FREE',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontSize: 16),
                 ),
               ),
               Align(
@@ -229,7 +200,7 @@ Widget profileCard() {
                     color: LibColors.primary_color,
                     onPressed: () {},
                     child: Text(
-                      'Chat',
+                      'Request',
                       style: TextStyle(color: Colors.white),
                     ),
                     shape: RoundedRectangleBorder(
@@ -245,7 +216,9 @@ Widget profileCard() {
 
 Widget personaltrainerCard() {
   return Container(
-    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+    width: 144,
+    height: 144,
+    alignment: Alignment.center,
     // margin: EdgeInsets.all(12),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(12),
@@ -264,12 +237,15 @@ Widget personaltrainerCard() {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Image(image: AssetImage("assets/images/pticon.png"), fit: BoxFit.cover),
+        SizedBox(
+          height: 18,
+        ),
         Text(
           'Personal Trainer'.toUpperCase(),
           style: TextStyle(
             color: LibColors.primary_color,
             fontWeight: FontWeight.bold,
-            fontSize: 10,
+            fontSize: 12,
           ),
         ),
       ],

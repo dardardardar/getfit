@@ -1,6 +1,8 @@
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:getfit/controller/user_controller.dart';
+import 'package:getfit/models/consultant_model.dart';
 import 'package:getfit/views/chatuserView.dart';
 import 'package:getfit/widgets/colors.dart';
 
@@ -12,6 +14,9 @@ class ConsultationView extends StatefulWidget {
 }
 
 class _ConsultationViewState extends State<ConsultationView> {
+
+  final _counsltantsData = UserController().getConsultants();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,9 +54,23 @@ class _ConsultationViewState extends State<ConsultationView> {
                 margin: EdgeInsets.all(12),
                 child: Text('Recommended Personal Trainer or Doctor'),
               ),
-              profileCard(),
-              profileCard(),
-              profileCard(),
+              FutureBuilder<List<ConsultantModel>>(
+                future: _counsltantsData,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    final _data = snapshot.data!;
+                    return ListView(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      children: _data.map(profileCard).toList(),
+                    );
+                  } else {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
+              ),
               Container(
                 alignment: Alignment.topLeft,
                 margin: EdgeInsets.all(12),
@@ -81,7 +100,7 @@ class _ConsultationViewState extends State<ConsultationView> {
   }
 }
 
-Widget profileCard() {
+Widget profileCard(ConsultantModel model) {
   return Container(
     padding: EdgeInsets.all(16),
     margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
@@ -115,22 +134,13 @@ Widget profileCard() {
             children: [
               Container(
                 alignment: Alignment.topLeft,
+                margin: EdgeInsets.only(bottom: 8),
                 child: Text(
                   'Dr. Howard Ghifari',
                   style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 4),
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'Personal Trainer Fitnes',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0),
-                    fontSize: 11,
-                  ),
-                ),
-              ),
+
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -150,7 +160,7 @@ Widget profileCard() {
                         ],
                       ),
                       child: Text(
-                        'Rating 4.5/5',
+                        'Rating '+ model.rating.toString()+'/5',
                         textAlign: TextAlign.start,
                         style: TextStyle(
                             fontSize: 11, color: LibColors.color_white),
@@ -174,7 +184,7 @@ Widget profileCard() {
                         ],
                       ),
                       child: Text(
-                        '10 Tahun',
+                        model.experience.toString() + ' Tahun',
                         textAlign: TextAlign.start,
                         style: TextStyle(
                             fontSize: 11, color: LibColors.color_white),
@@ -187,7 +197,7 @@ Widget profileCard() {
                 margin: EdgeInsets.fromLTRB(4, 8, 0, 4),
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'FREE',
+                  model.price <= 0 ? "Free" : model.price.toString(),
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Color.fromARGB(255, 0, 0, 0),

@@ -717,6 +717,7 @@ class _RegisterViewState extends State<RegisterView> {
                                   height: int.parse(heightController.text.trim()),
                                   weight: int.parse(weightController.text.trim()),
                                   roles: 0,
+                                  avatarUrl: ""
                                 );
                                 UserController().signUp(emailController.text.trim(), passwordController.text.trim(), user);
                                 Navigator.pop(context);

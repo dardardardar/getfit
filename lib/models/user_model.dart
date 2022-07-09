@@ -11,6 +11,7 @@ class UserModel {
   final int height;
   final int weight;
   final int roles;
+  final String avatarUrl;
   UserModel({
     this.uid = '',
     required this.email,
@@ -21,6 +22,7 @@ class UserModel {
     required this.height,
     required this.weight,
     required this.roles,
+    required this.avatarUrl,
 });
 
   Map<String , dynamic> toJson() =>{
@@ -33,6 +35,7 @@ class UserModel {
     'height': height,
     'weight': weight,
     'roles': roles,
+    'avatarUrl': avatarUrl,
   };
 
   static UserModel fromJson(Map<String, dynamic> json) => UserModel(
@@ -45,6 +48,7 @@ class UserModel {
     height: json['height'],
     weight: json['weight'],
     roles: json['roles'],
+    avatarUrl: json['avatarUrl'],
   );
 
 }

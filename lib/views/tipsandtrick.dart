@@ -63,9 +63,9 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
                 ],
               ),
               ListView(
-                  physics : NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  children: [
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                children: [
                   iklan4Card(),
                   iklan4Card(),
                   iklan4Card(),
@@ -424,27 +424,33 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
       margin: EdgeInsets.all(12),
       child: Column(
         children: [
-         Container(
-           width: double.infinity,
-           child: ClipRRect(
-             borderRadius: BorderRadius.vertical(top:Radius.circular(8)),
-             child:  Image.network("https://firebasestorage.googleapis.com/v0/b/getfit-89b61.appspot.com/o/Article%2Fimage%205%20(1).png?alt=media&token=edf09915-285c-464a-aaf6-7eab323ae292", fit: BoxFit.fitWidth,),
-           ),
-         ),
+          Container(
+            width: double.infinity,
+            child: ClipRRect(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
+              child: Image.network(
+                "https://firebasestorage.googleapis.com/v0/b/getfit-89b61.appspot.com/o/Article%2Fimage%205%20(1).png?alt=media&token=edf09915-285c-464a-aaf6-7eab323ae292",
+                fit: BoxFit.fitWidth,
+              ),
+            ),
+          ),
           Container(
             alignment: Alignment.centerLeft,
             margin: EdgeInsets.all(12),
-            child: Text('Mengatur waktu tidur yang baik'.toUpperCase() , style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 16
-            ),),
+            child: Text(
+              'Mengatur waktu tidur yang baik'.toUpperCase(),
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+            ),
           ),
           Container(
             alignment: Alignment.centerLeft,
             margin: EdgeInsets.fromLTRB(12, 0, 12, 12),
-            child: Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit enim, scelerisque non lectus a, dapibus luctus dolor. Sed tempor ex semper odio posuere pulvinar. Fusce vehicula nibh a nisl posuere mollis. Cras eu justo at leo aliquam aliquet. Ut malesuada quis erat eget tempus. Vestibulum volutpat, nisl vitae faucibus sagittis, est tellus pellentesque odio, ut suscipit lectus lorem a lorem. Aenean lobortis vulputate tortor, ac ultricies odio condimentum vitae. Nulla viverra urna blandit, consectetur magna sed, dapibus arcu. Maecenas aliquam erat at vehicula viverra.'.substring(0,100) + "...", style: TextStyle(
-                fontSize: 14
-            ),),
+            child: Text(
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit enim, scelerisque non lectus a, dapibus luctus dolor. Sed tempor ex semper odio posuere pulvinar. Fusce vehicula nibh a nisl posuere mollis. Cras eu justo at leo aliquam aliquet. Ut malesuada quis erat eget tempus. Vestibulum volutpat, nisl vitae faucibus sagittis, est tellus pellentesque odio, ut suscipit lectus lorem a lorem. Aenean lobortis vulputate tortor, ac ultricies odio condimentum vitae. Nulla viverra urna blandit, consectetur magna sed, dapibus arcu. Maecenas aliquam erat at vehicula viverra.'
+                      .substring(0, 100) +
+                  "...",
+              style: TextStyle(fontSize: 14),
+            ),
           )
         ],
       ),

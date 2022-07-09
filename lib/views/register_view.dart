@@ -439,7 +439,7 @@ class _RegisterViewState extends State<RegisterView> {
                          if(newdatetime == null) return;
                          setState(() {
                            date = newdatetime;
-                           dob = DateFormat("yyyy-MM-dd").format(date);
+                           dob = DateFormat.yMMMMd().format(date);
                          });
                     },
                         minWidth: 360,

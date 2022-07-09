@@ -12,7 +12,7 @@ class MygoalView extends StatefulWidget {
 }
 
 class _MygoalViewState extends State<MygoalView> {
-  PageController p = PageController();
+
   int _goalCategory = 0;
   @override
   Widget build(BuildContext context) {
@@ -47,12 +47,7 @@ class _MygoalViewState extends State<MygoalView> {
                           ),
                           MaterialButton(
                               onPressed: () {
-                                setState(() {
-                                  _goalCategory = 0;
-                                });
-                                p.nextPage(
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.easeIn);
+
                               },
                               minWidth: 360,
                               height: 80,
@@ -70,12 +65,7 @@ class _MygoalViewState extends State<MygoalView> {
                           ),
                           MaterialButton(
                               onPressed: () {
-                                setState(() {
-                                  _goalCategory = 1;
-                                });
-                                p.nextPage(
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.easeIn);
+
                               },
                               minWidth: 360,
                               height: 80,
@@ -93,12 +83,7 @@ class _MygoalViewState extends State<MygoalView> {
                           ),
                           MaterialButton(
                               onPressed: () {
-                                setState(() {
-                                  _goalCategory = 2;
-                                });
-                                p.nextPage(
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.easeIn);
+
                               },
                               minWidth: 360,
                               height: 80,

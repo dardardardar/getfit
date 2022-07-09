@@ -16,33 +16,7 @@ class _BreakfastViewState extends State<BreakfastView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Container(
-          margin: EdgeInsets.only(left: 8),
-          child: Row(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                          builder: (context) => BottomnavbarView()),
-                      (route) => route.isFirst);
-                },
-                child: Icon(Icons.arrow_back_ios_new_rounded),
-              ),
-              Column(
-                children: [
-                  Text('Breakfast'),
-                ],
-              ),
-            ],
-          ),
-        ),
-        // actions: [
-        //   Padding(
-        //     padding: EdgeInsets.symmetric(horizontal: 16),
-        //     child: Icon(Icons.menu),
-        //   ),
-        // ],
+        title: Text('Breakfast'),
         backgroundColor: LibColors.primary_color,
       ),
       body: Container(
@@ -50,20 +24,22 @@ class _BreakfastViewState extends State<BreakfastView> {
           child: SingleChildScrollView(
             child: Column(children: <Widget>[
               Container(
-                width: 300,
-                height: 50,
+                margin: EdgeInsets.all(12),
                 child: TextField(
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
-                    hintText: "Search Your Food Here",
-                    border: OutlineInputBorder(),
-                  ),
+                      hintText: "Search ",
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: LibColors.primary_color, width: 1.0),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      hintStyle: TextStyle(color: LibColors.primary_color)),
                 ),
               ),
               infoCard(),
               Row(
-                // mainAxisAlignment: MainAxisAlignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.center,
+
                 children: <Widget>[
                   Text('Recently Food'),
                 ],
@@ -77,59 +53,68 @@ class _BreakfastViewState extends State<BreakfastView> {
 }
 
 Widget infoCard() {
-  return ClipRRect(
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+    margin: EdgeInsets.all(12),
+    decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(12),
-      child: Container(
-        margin: EdgeInsets.only(top: 16, bottom: 16),
-        padding: EdgeInsets.all(16),
-        color: LibColors.second_color,
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Column(
-                children: [
-                  Text(
-                    'EATEN',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    '500 / gr',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  Text(
-                    'KCAL LEFT',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    '1500 / gr',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Column(
-                children: [
-                  Text(
-                    'BURNED',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    '300 / gr',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
-            ),
-          ],
+      color: LibColors.second_color,
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 2,
+          blurRadius: 5,
+          offset: Offset(0, 5), // changes position of shadow
         ),
-      ));
+      ],
+    ),
+    child: Row(
+      children: <Widget>[
+        Expanded(
+          child: Column(
+            children: [
+              Text(
+                'EATEN',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                '500 / gr',
+                style: TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: Column(
+            children: [
+              Text(
+                'KCAL LEFT',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                '1500 / gr',
+                style: TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: Column(
+            children: [
+              Text(
+                'BURNED',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                '300 / gr',
+                style: TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
 }
 
 Widget foodCard() {

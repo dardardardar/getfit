@@ -81,7 +81,7 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
   Widget dietCard() {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushReplacement(
+        Navigator.of(context).push(
             MaterialPageRoute(builder: (BuildContext context) => dietView()));
       },
       child: Container(

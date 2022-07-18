@@ -28,27 +28,27 @@ class UserModel {
   Map<String , dynamic> toJson() =>{
     'uid': uid,
     'email': email,
-    'displayName': displayName,
-    'goalCategories': goalCategories,
+    'display_name': displayName,
+    'goal_categories': goalCategories,
     'gender': gender,
     'dob': dob,
     'height': height,
     'weight': weight,
     'roles': roles,
-    'avatarUrl': avatarUrl,
+    'avatar_url': avatarUrl,
   };
 
   static UserModel fromJson(Map<String, dynamic> json) => UserModel(
     uid: json['uid'],
     email: json['email'],
-    displayName: json['displayName'],
-    goalCategories: json['goalCategories'],
+    displayName: json['display_name'],
+    goalCategories: json['goal_categories'],
     gender: json['gender'],
     dob: (json['dob'] as Timestamp).toDate(),
     height: json['height'],
     weight: json['weight'],
     roles: json['roles'],
-    avatarUrl: json['avatarUrl'],
+    avatarUrl: json['avatar_url'],
   );
 
 }

@@ -16,7 +16,7 @@ class _dietViewState extends State<dietView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Diet'),
+        title: Text(""),
         backgroundColor: LibColors.primary_color,
       ),
       body: Container(
@@ -24,13 +24,27 @@ class _dietViewState extends State<dietView> {
           child: Column(
             children: <Widget>[
               iklanCard(),
+              iklan2Card(),
               Container(
                 width: 320,
                 child: Text(
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at fermentum tellus. Mauris feugiat fermentum posuere. Aenean posuere ac tortor id volutpat. Curabitur tincidunt ipsum sapien, nec sodales lorem sodales eu. Donec non tortor non lectus ultrices condimentum. Etiam rhoncus nisi nec sodales accumsan. Maecenas id gravida ante. Etiam vulputate metus id mauris egestas ullamcorper. Cras aliquet urna ac hendrerit bibendum. Morbi eros quam, commodo in pretium ut, feugiat condimentum mauris. Donec at tincidunt orci.',
                 ),
               ),
-              iklan2Card(),
+              SizedBox(height: 12),
+              Container(
+                width: 320,
+                child: Text(
+                  '     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at fermentum tellus. Mauris feugiat fermentum posuere. Aenean posuere ac tortor id volutpat. Curabitur tincidunt ipsum sapien, nec sodales lorem sodales eu. Donec non tortor non lectus ultrices condimentum. Etiam rhoncus nisi nec sodales accumsan. Maecenas id gravida ante. Etiam vulputate metus id mauris egestas ullamcorper. Cras aliquet urna ac hendrerit bibendum. Morbi eros quam, commodo in pretium ut, feugiat condimentum mauris. Donec at tincidunt orci.',
+                ),
+              ),
+              SizedBox(height: 12),
+              Container(
+                width: 320,
+                child: Text(
+                  '     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at fermentum tellus. Mauris feugiat fermentum posuere. Aenean posuere ac tortor id volutpat. Curabitur tincidunt ipsum sapien, nec sodales lorem sodales eu. Donec non tortor non lectus ultrices condimentum. Etiam rhoncus nisi nec sodales accumsan. Maecenas id gravida ante. Etiam vulputate metus id mauris egestas ullamcorper. Cras aliquet urna ac hendrerit bibendum. Morbi eros quam, commodo in pretium ut, feugiat condimentum mauris. Donec at tincidunt orci.',
+                ),
+              ),
             ],
           ),
         ),
@@ -40,12 +54,11 @@ class _dietViewState extends State<dietView> {
 }
 
 Widget iklanCard() {
-  return ClipRRect(
-    borderRadius: BorderRadius.circular(12),
+  return Container(
+    alignment: Alignment.topCenter,
     child: Container(
       padding: EdgeInsets.all(22),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image(
@@ -58,19 +71,13 @@ Widget iklanCard() {
 }
 
 Widget iklan2Card() {
-  return ClipRRect(
-    borderRadius: BorderRadius.circular(12),
-    child: Container(
-      padding: EdgeInsets.all(22),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image(
-              image: AssetImage("assets/images/buahsayur.png"),
-              fit: BoxFit.cover),
-        ],
-      ),
+  return Container(
+    width: 320,
+    margin: EdgeInsets.all(12),
+    child: Text(
+      "Beberapa makanan sehat yang bisa dicoba untuk membantu diet kamu",
+      textAlign: TextAlign.start,
+      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
     ),
   );
 }

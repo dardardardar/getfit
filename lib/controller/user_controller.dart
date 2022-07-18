@@ -17,11 +17,40 @@ class UserController{
       userModel.uid = uid;
       final json = userModel.toJson();
       userDoc.set(json);
+      if(userModel.roles == 1){
+        final _consultant = ConsultantModel(
+            uid: uid,
+            displayName: userModel.displayName,
+            avatarUrl: userModel.avatarUrl,
+            experience: 0,
+            price: 0,
+            rating: 0
+        );
+        final cnsDoc = FirebaseFirestore.instance.collection('consultants').doc(uid);
+        final _json = _consultant.toJson();
+        cnsDoc.set(_json);
+      }
     }
     on FirebaseAuthException catch (e){
       print(e);
       SnackBarWidgets.fire(e.message);
     }
+  }
+
+  Future signIn(String email, String password) async{
+    try{
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email, password: password);
+    }
+    on FirebaseAuthException catch (e){
+      print(e);
+      SnackBarWidgets.fire(e.message);
+    }
+
+  }
+
+  void signOut() async{
+       await FirebaseAuth.instance.signOut();
   }
 
   Future<UserModel> readUserDatabyId() async{
@@ -40,19 +69,6 @@ class UserController{
      print(e);
      return UserModel(email: "", displayName: "", goalCategories: 0, gender: 0, dob: DateTime.now(), height: 0, weight: 0,roles: 0,avatarUrl: "");
    }
-  }
-
-  Future<List<ConsultantModel>> getConsultants() async {
-    try{
-      var _doc = await FirebaseFirestore.instance.collection("consultants").get();
-      List<ConsultantModel> _result = _doc.docs.map((e) => ConsultantModel.fromJson(e.data())).toList();
-      print(_result.first.rating);
-      return _result;
-    }
-    on FirebaseException catch (e){
-    print(e);
-    return List<ConsultantModel>.empty();
-    }
   }
 
 }

@@ -20,20 +20,7 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Container(
-                margin: EdgeInsets.all(12),
-                child: TextField(
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                      hintText: "Search ",
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                            color: LibColors.primary_color, width: 1.0),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      hintStyle: TextStyle(color: LibColors.primary_color)),
-                ),
-              ),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -357,28 +344,6 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
     );
   }
 
-  // Widget iklanCard() {
-  //   return Container(
-  //     child: Card(
-  //       clipBehavior: Clip.antiAlias,
-  //       child: Column(
-  //         children: [
-  //           Image.asset('assets/images/buahsayur.png'),
-  //           ListTile(
-  //             title: const Text('Cara diet dengan buah dan sayur'),
-  //             subtitle: Text(
-  //               'cocok untuk kamu yang diet',
-  //               style: TextStyle(color: Colors.black.withOpacity(0.6)),
-  //             ),
-  //           ),
-  //           Padding(
-  //             padding: const EdgeInsets.all(16.0),
-  //             child: Text(
-  //               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit enim, scelerisque non lectus a, dapibus luctus dolor. Sed tempor ex semper odio posuere pulvinar. Fusce vehicula nibh a nisl posuere mollis. Cras eu justo at leo aliquam aliquet. Ut malesuada quis erat eget tempus. Vestibulum volutpat, nisl vitae faucibus sagittis, est tellus pellentesque odio, ut suscipit lectus lorem a lorem. Aenean lobortis vulputate tortor, ac ultricies odio condimentum vitae. Nulla viverra urna blandit, consectetur magna sed, dapibus arcu. Maecenas aliquam erat at vehicula viverra.',
-  //               style: TextStyle(color: Colors.black.withOpacity(0.6)),
-  //             ),
-  //           ),
-  // }
 
   Widget iklan3Card() {
     return Container(
@@ -408,76 +373,59 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
   }
 
   Widget iklan4Card() {
-    return Container(
-      decoration: BoxDecoration(
-        color: LibColors.color_white,
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: Offset(0, 5), // changes position of shadow
-          ),
-        ],
-      ),
-      margin: EdgeInsets.all(12),
-      child: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            child: ClipRRect(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
-              child: Image.network(
-                "https://firebasestorage.googleapis.com/v0/b/getfit-89b61.appspot.com/o/Article%2Fimage%205%20(1).png?alt=media&token=edf09915-285c-464a-aaf6-7eab323ae292",
-                fit: BoxFit.fitWidth,
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (BuildContext context) => dietView()));
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: LibColors.color_white,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, 5), // changes position of shadow
+            ),
+          ],
+        ),
+        margin: EdgeInsets.all(12),
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              child: ClipRRect(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
+                child: Image.network(
+                  "https://firebasestorage.googleapis.com/v0/b/getfit-89b61.appspot.com/o/Article%2Fimage%205%20(1).png?alt=media&token=edf09915-285c-464a-aaf6-7eab323ae292",
+                  fit: BoxFit.fitWidth,
+                ),
               ),
             ),
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            margin: EdgeInsets.all(12),
-            child: Text(
-              'Mengatur waktu tidur yang baik'.toUpperCase(),
-              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+            Container(
+              alignment: Alignment.centerLeft,
+              margin: EdgeInsets.all(12),
+              child: Text(
+                'Mengatur waktu tidur yang baik'.toUpperCase(),
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+              ),
             ),
-          ),
-          Container(
-            alignment: Alignment.centerLeft,
-            margin: EdgeInsets.fromLTRB(12, 0, 12, 12),
-            child: Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit enim, scelerisque non lectus a, dapibus luctus dolor. Sed tempor ex semper odio posuere pulvinar. Fusce vehicula nibh a nisl posuere mollis. Cras eu justo at leo aliquam aliquet. Ut malesuada quis erat eget tempus. Vestibulum volutpat, nisl vitae faucibus sagittis, est tellus pellentesque odio, ut suscipit lectus lorem a lorem. Aenean lobortis vulputate tortor, ac ultricies odio condimentum vitae. Nulla viverra urna blandit, consectetur magna sed, dapibus arcu. Maecenas aliquam erat at vehicula viverra.'
-                      .substring(0, 100) +
-                  "...",
-              style: TextStyle(fontSize: 14),
-            ),
-          )
-        ],
-      ),
-      // child: Card(
-      //   clipBehavior: Clip.antiAlias,
-      //   color: LibColors.primary_color,
-      //   child: Column(
-      //     children: [
-      //       Image.network("https://firebasestorage.googleapis.com/v0/b/getfit-89b61.appspot.com/o/image%206.png?alt=media&token=72c96a26-7c64-4262-9813-ed249e05eed5"),
-      //       ListTile(
-      //         title: const Text('Apakah olahraga online efektif?'),
-      //         subtitle: Text(
-      //           'Cocok untuk kamu yang suka olahraga online',
-      //           style: TextStyle(color: Colors.black.withOpacity(0.6)),
-      //         ),
-      //       ),
-      //       Padding(
-      //         padding: const EdgeInsets.all(16.0),
-      //         child: Text(
-      //           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit enim, scelerisque non lectus a, dapibus luctus dolor. Sed tempor ex semper odio posuere pulvinar. Fusce vehicula nibh a nisl posuere mollis. Cras eu justo at leo aliquam aliquet. Ut malesuada quis erat eget tempus. Vestibulum volutpat, nisl vitae faucibus sagittis, est tellus pellentesque odio, ut suscipit lectus lorem a lorem. Aenean lobortis vulputate tortor, ac ultricies odio condimentum vitae. Nulla viverra urna blandit, consectetur magna sed, dapibus arcu. Maecenas aliquam erat at vehicula viverra.',
-      //           style: TextStyle(color: Colors.black.withOpacity(0.6)),
-      //         ),
-      //       ),
-      //
-      //     ],
-      //   ),
-      // ),
+            Container(
+              alignment: Alignment.centerLeft,
+              margin: EdgeInsets.fromLTRB(12, 0, 12, 12),
+              child: Text(
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit enim, scelerisque non lectus a, dapibus luctus dolor. Sed tempor ex semper odio posuere pulvinar. Fusce vehicula nibh a nisl posuere mollis. Cras eu justo at leo aliquam aliquet. Ut malesuada quis erat eget tempus. Vestibulum volutpat, nisl vitae faucibus sagittis, est tellus pellentesque odio, ut suscipit lectus lorem a lorem. Aenean lobortis vulputate tortor, ac ultricies odio condimentum vitae. Nulla viverra urna blandit, consectetur magna sed, dapibus arcu. Maecenas aliquam erat at vehicula viverra.'
+                    .substring(0, 100) +
+                    "...",
+                style: TextStyle(fontSize: 14),
+              ),
+            )
+          ],
+        ),
+
+      )
     );
   }
 }

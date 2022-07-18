@@ -15,7 +15,7 @@ import 'package:getfit/views/profile.dart';
 import 'package:getfit/views/register_view.dart';
 import 'package:getfit/views/request.dart';
 import 'package:getfit/views/tipsandtrick.dart';
-import 'package:getfit/views/welcome_view.dart';
+import 'package:getfit/views/login_view.dart';
 import 'package:getfit/widgets/snackbar_widgets.dart';
 
 Future main() async {

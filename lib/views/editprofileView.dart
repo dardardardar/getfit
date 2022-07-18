@@ -23,6 +23,14 @@ class _editprofileViewState extends State<editprofileView> {
         title: Text('Edit Profile'),
         backgroundColor: LibColors.primary_color,
       ),
+      floatingActionButton:  FloatingActionButton.extended(
+        onPressed: () {  },
+        label: Text("Save", style: TextStyle(color: LibColors.color_white,fontWeight: FontWeight.bold),),
+        backgroundColor: LibColors.primary_color,
+        extendedPadding: EdgeInsets.symmetric(horizontal: 160),
+
+      ),
+      floatingActionButtonLocation:FloatingActionButtonLocation.centerFloat,
       body:FutureBuilder<UserModel?>(
         future: userdata,
         builder: (context, snapshot) {
@@ -100,8 +108,15 @@ class _editprofileViewState extends State<editprofileView> {
                             ),
                           ),
                         ),
+                       Container(
+                         constraints: BoxConstraints(
+                           minHeight: 380
+                         ),
+                       ),
+
                         // editprofileCard(),
                       ],
+                      
                     )));
           } else {
             return Center(

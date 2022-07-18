@@ -3,7 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import '../main.dart';
 import '../widgets/colors.dart';
-import 'package:getfit/views/welcome_view.dart';
+import 'package:getfit/views/login_view.dart';
 
 
 class SplashScreenView extends StatefulWidget {

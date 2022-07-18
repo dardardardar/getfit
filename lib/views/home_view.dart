@@ -1,12 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:getfit/controller/consultant_controller.dart';
+import 'package:getfit/controller/notification_controller.dart';
 import 'package:getfit/views/breakfastview.dart';
 import 'package:getfit/controller/user_controller.dart';
 import 'package:getfit/controller/user_controller.dart';
 import 'package:getfit/views/tipsandtrick.dart';
 import 'package:getfit/widgets/colors.dart';
 import '../models/user_model.dart';
-
+import 'package:intl/intl.dart';
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
 
@@ -14,7 +16,16 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _HomeViewState();
 }
 
+
+
 class _HomeViewState extends State<HomeView> {
+  var notification = NotificationController();
+  @override
+  void initState() {
+
+    super.initState();
+
+    }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -249,9 +260,7 @@ class _HomeViewState extends State<HomeView> {
               Expanded(
                 child: Column(
                   children: [
-                    Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                    ),
+
                   ],
                 ),
               ),
@@ -259,8 +268,8 @@ class _HomeViewState extends State<HomeView> {
                 child: Column(
                   children: [
                     Text(
-                      'Today, 10 March 2022',
-                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                      DateFormat.yMMMMEEEEd().format(DateTime.now()),
+                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0),fontSize: 16,fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -268,7 +277,7 @@ class _HomeViewState extends State<HomeView> {
               Expanded(
                 child: Column(
                   children: [
-                    Icon(Icons.arrow_forward_ios_rounded),
+
                   ],
                 ),
               ),
@@ -523,7 +532,7 @@ class _HomeViewState extends State<HomeView> {
             child: Column(
               children: [
                 Image(
-                    image: AssetImage("assets/images/reminder.png"),
+                    image: AssetImage("assets/images/notification-red.png"),
                     fit: BoxFit.cover),
               ],
             ),
@@ -596,63 +605,68 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget sleepCard() {
-    return Container(
-      padding: EdgeInsets.all(16),
-      margin: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: LibColors.color_white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: Offset(0, 5), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: Column(
-              children: [
-                Image(
-                    image: AssetImage("assets/images/sleep.png"),
-                    fit: BoxFit.cover),
-              ],
+    return GestureDetector(
+      onTap:  () async{
+
+      },
+      child: Container(
+        padding: EdgeInsets.all(16),
+        margin: EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: LibColors.color_white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, 5), // changes position of shadow
             ),
-          ),
-          Container(
-            child: Column(
-              children: [
-                Container(
-                  width: 170,
-                  child: Text(
-                    'Add Sleep',
-                    textAlign: TextAlign.start,
-                    style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+          ],
+        ),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                children: [
+                  Image(
+                      image: AssetImage("assets/images/sleep.png"),
+                      fit: BoxFit.cover),
+                ],
+              ),
+            ),
+            Container(
+              child: Column(
+                children: [
+                  Container(
+                    width: 170,
+                    child: Text(
+                      'Add Sleep',
+                      textAlign: TextAlign.start,
+                      style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                    ),
                   ),
-                ),
-                Text(
-                  '(22 pm - 5 am) Recommend to take a sleep',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 0, 0, 0),
-                    fontSize: 10,
+                  Text(
+                    '(22 pm - 5 am) Recommend to take a sleep',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontSize: 10,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: Column(
-              children: [
-                Image(
-                    image: AssetImage("assets/images/reminder.png"),
-                    fit: BoxFit.cover),
-              ],
+            Expanded(
+              child: Column(
+                children: [
+                  Image(
+                      image: AssetImage("assets/images/notification-red.png"),
+                      fit: BoxFit.cover),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

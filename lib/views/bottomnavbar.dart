@@ -23,7 +23,7 @@ class _BottomnavbarViewState extends State<BottomnavbarView> {
   List<Widget> pages = [
     HomeView(),
     TipsandtrickView(),
-    ConsultationView(),
+    ChatconsultantView(),
     ProfileView(),
   ];
 

@@ -60,6 +60,7 @@ class _RegisterViewState extends State<RegisterView> {
             physics: const NeverScrollableScrollPhysics(),
             controller: p,
             children: [
+
               _pageOne(),
               _pageTwo(),
               _pageThree(),
@@ -716,7 +717,7 @@ class _RegisterViewState extends State<RegisterView> {
                                   dob: date,
                                   height: int.parse(heightController.text.trim()),
                                   weight: int.parse(weightController.text.trim()),
-                                  roles: 0,
+                                  roles: 1,
                                   avatarUrl: ""
                                 );
                                 UserController().signUp(emailController.text.trim(), passwordController.text.trim(), user);
@@ -767,5 +768,119 @@ class _RegisterViewState extends State<RegisterView> {
     );
 
   }
+  Widget _pageSix(){
+    return Container(
+      padding: EdgeInsets.all(12),
+      color: LibColors.primary_color,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Align(
+              heightFactor: 12,
+              child:textTitleAlt("Who are you?")
+          ),
+          Container(
+            margin: EdgeInsets.all(16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Align(
+                    alignment: Alignment.center,
+                    child: Column(
 
+                      children: [
+                        SizedBox(height: 16,),
+                        MaterialButton(onPressed: (){
+                          setState(() {
+                            _goalCategory = 0;
+                          });
+                          p.nextPage(
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.easeIn
+                          );
+                        },
+                            minWidth: 360,
+                            height: 80,
+                            color: LibColors.color_white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+
+                            ),
+                            child: Text(
+                              "CONSULTANT" ,style: const TextStyle(
+                              fontSize: 16,
+                              color: LibColors.primary_color,
+                            ),
+                              textAlign: TextAlign.center,
+                            )
+                        ),
+                        SizedBox(height: 16,),
+                        MaterialButton(onPressed: (){
+                          setState(() {
+                            _goalCategory = 1;
+                          });
+                          p.nextPage(
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.easeIn
+                          );
+                        },
+                            minWidth: 360,
+                            height: 80,
+                            color: LibColors.color_white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+
+                            ),
+                            child: Text(
+                              "USER" ,style: const TextStyle(
+                              fontSize: 16,
+                              color: LibColors.primary_color,
+
+                            ),
+                              textAlign: TextAlign.center,
+                            )
+                        ),
+                        SizedBox(height: 16,),
+
+                        SizedBox(height: 200,),
+                      ],
+                    )
+                )
+              ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.all(16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      children: [
+                        MaterialButton(onPressed: (){
+                          p.previousPage(
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.easeIn
+                          );
+                        },
+                            child: Text(
+                              "Back" ,style: const TextStyle(
+                              fontSize: 16,
+                              color: LibColors.color_white,
+                            ),
+                              textAlign: TextAlign.center,
+                            )
+                        )
+                      ],
+                    )
+                )
+              ],
+            ),
+          )
+        ],
+
+      ),
+    );
+  }
 }

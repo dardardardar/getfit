@@ -16,6 +16,7 @@ class ConsultationView extends StatefulWidget {
   State<ConsultationView> createState() => _ConsultationViewState();
 }
 
+
 class _ConsultationViewState extends State<ConsultationView> {
 
   final _consultantData = ConsultantController().getConsultants();

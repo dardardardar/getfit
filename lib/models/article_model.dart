@@ -17,6 +17,7 @@ class ArticleModel {
   });
 
 
+
   static ArticleModel fromJson(Map<String, dynamic> json) => ArticleModel(
     title: json['title'],
     content: json['content'],

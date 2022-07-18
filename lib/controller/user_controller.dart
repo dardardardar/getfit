@@ -49,6 +49,7 @@ class UserController{
 
   }
 
+
   void signOut() async{
        await FirebaseAuth.instance.signOut();
   }

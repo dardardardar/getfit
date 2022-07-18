@@ -2,7 +2,6 @@ class FoodModel{
   final String name;
   final int calories;
   final int fat;
-
   final int protein;
   final int carbohydrates;
 
@@ -14,4 +13,11 @@ class FoodModel{
     required this.carbohydrates,
 });
 
+  static FoodModel fromJson(Map<String, dynamic> json) => FoodModel(
+    name: json['name'],
+    calories: json['calories'],
+    fat: json['fat'],
+    protein: json['protein'],
+    carbohydrates: json['carbs'],
+  );
 }

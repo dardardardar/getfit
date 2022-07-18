@@ -372,6 +372,7 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
     );
   }
 
+
   Widget iklan4Card() {
     return GestureDetector(
       onTap: (){

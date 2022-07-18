@@ -37,6 +37,7 @@ class _ChatuserViewState extends State<ChatuserView> {
   }
 }
 
+
 Widget chatCard(String name, String txt,) {
   return Container(
     padding: EdgeInsets.fromLTRB(16, 8, 16, 0),

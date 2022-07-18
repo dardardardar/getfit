@@ -18,14 +18,18 @@ class _BreakfastViewState extends State<BreakfastView> {
       appBar: AppBar(
         title: Text('Add Workout'),
         backgroundColor: LibColors.primary_color,
-        actions: [IconButton(onPressed: (){}, icon: Icon(Icons.add))],
+        actions: [IconButton(onPressed: (){
+          showSearch(
+            context: context,
+            delegate: CustomSearchDelegate()
+          );
+        }, icon: Icon(Icons.add))],
       ),
       floatingActionButton:  FloatingActionButton.extended(
         onPressed: () {  },
         label: Text("Save", style: TextStyle(color: LibColors.color_white,fontWeight: FontWeight.bold),),
         backgroundColor: LibColors.primary_color,
         extendedPadding: EdgeInsets.symmetric(horizontal: 160),
-
       ),
       floatingActionButtonLocation:FloatingActionButtonLocation.centerFloat,
 
@@ -41,12 +45,66 @@ class _BreakfastViewState extends State<BreakfastView> {
                 child: Text('Recently Workout'),
               ),
               foodCard(),
-
-
             ]),
           )),
     );
   }
+}
+
+class CustomSearchDelegate extends SearchDelegate{
+
+  List<String> list = [
+    "a","b","c","d","e","f",
+  ];
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(onPressed: (){
+        query = "";
+      }, icon: Icon(Icons.clear))
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+      return IconButton(onPressed: (){
+       close(context, null);
+      }, icon: Icon(Icons.arrow_back));
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchQuery = [];
+    for(var item in list){
+      if(item.toLowerCase().contains(query.toLowerCase())){
+        matchQuery.add(item);
+      }
+    }
+    return ListView.builder(itemBuilder: (context, index){
+      var result = matchQuery[index];
+      return ListTile(
+        title: Text(result),
+      );
+    },itemCount: matchQuery.length,);
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchQuery = [];
+    for(var item in list){
+      if(item.toLowerCase().contains(query.toLowerCase())){
+        matchQuery.add(item);
+      }
+    }
+    return ListView.builder(itemBuilder: (context, index){
+      var result = matchQuery[index];
+      return ListTile(
+        title: Text(result),
+      );
+    },itemCount: matchQuery.length,);
+  }
+
 }
 
 Widget infoCard() {

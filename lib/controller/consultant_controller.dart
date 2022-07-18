@@ -4,6 +4,7 @@ import 'package:getfit/models/chats_model.dart';
 import '../models/consultant_model.dart';
 import '../models/message_model.dart';
 
+
 class ConsultantController{
   Future<List<ConsultantModel>> getConsultants() async {
     try{

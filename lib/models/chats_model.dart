@@ -6,6 +6,7 @@ class ChatsModel{
   final bool is_open;
 
 
+
   ChatsModel({
     required this.uid_user,
     required this.uid_consultant,

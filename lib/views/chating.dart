@@ -27,7 +27,6 @@ class _ChatViewState extends State<ChatView> {
       messageController.dispose();
     }
 
-
     return Scaffold(
       appBar: AppBar(
 

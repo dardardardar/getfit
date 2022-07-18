@@ -519,6 +519,7 @@ class _RegisterViewState extends State<RegisterView> {
       ),
     );
   }
+
   Widget _pageFive(){
     return Container(
       padding: EdgeInsets.all(12),

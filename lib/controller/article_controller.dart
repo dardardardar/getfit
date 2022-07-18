@@ -4,6 +4,7 @@ import 'package:getfit/models/article_model.dart';
 class ArticleControlller{
 
 
+
   Future<List<ArticleModel>> getConsultants({int? category}) async {
     try{
       var _doc = await FirebaseFirestore.instance.collection("articles").orderBy('createdOn').get();

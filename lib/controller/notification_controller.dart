@@ -21,6 +21,7 @@ class NotificationController {
 
     );
 
+
     await _localNotificationService.initialize(
       settings,
       onSelectNotification: onSelectNotification,

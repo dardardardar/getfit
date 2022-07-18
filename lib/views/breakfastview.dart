@@ -16,40 +16,95 @@ class _BreakfastViewState extends State<BreakfastView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Breakfast'),
+        title: Text('Add Workout'),
         backgroundColor: LibColors.primary_color,
+        actions: [IconButton(onPressed: (){
+          showSearch(
+            context: context,
+            delegate: CustomSearchDelegate()
+          );
+        }, icon: Icon(Icons.add))],
       ),
+      floatingActionButton:  FloatingActionButton.extended(
+        onPressed: () {  },
+        label: Text("Save", style: TextStyle(color: LibColors.color_white,fontWeight: FontWeight.bold),),
+        backgroundColor: LibColors.primary_color,
+        extendedPadding: EdgeInsets.symmetric(horizontal: 160),
+      ),
+      floatingActionButtonLocation:FloatingActionButtonLocation.centerFloat,
+
       body: Container(
           margin: EdgeInsets.all(12),
           child: SingleChildScrollView(
             child: Column(children: <Widget>[
+
+              infoCard(),
               Container(
                 margin: EdgeInsets.all(12),
-                child: TextField(
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                      hintText: "Search ",
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                            color: LibColors.primary_color, width: 1.0),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      hintStyle: TextStyle(color: LibColors.primary_color)),
-                ),
+                alignment: Alignment.centerLeft,
+                child: Text('Recently Workout'),
               ),
-              infoCard(),
-              Row(
-
-                children: <Widget>[
-                  Text('Recently Food'),
-                ],
-              ),
-              foodCard(),
               foodCard(),
             ]),
           )),
     );
   }
+}
+
+class CustomSearchDelegate extends SearchDelegate{
+
+  List<String> list = [
+    "a","b","c","d","e","f",
+  ];
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(onPressed: (){
+        query = "";
+      }, icon: Icon(Icons.clear))
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+      return IconButton(onPressed: (){
+       close(context, null);
+      }, icon: Icon(Icons.arrow_back));
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchQuery = [];
+    for(var item in list){
+      if(item.toLowerCase().contains(query.toLowerCase())){
+        matchQuery.add(item);
+      }
+    }
+    return ListView.builder(itemBuilder: (context, index){
+      var result = matchQuery[index];
+      return ListTile(
+        title: Text(result),
+      );
+    },itemCount: matchQuery.length,);
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchQuery = [];
+    for(var item in list){
+      if(item.toLowerCase().contains(query.toLowerCase())){
+        matchQuery.add(item);
+      }
+    }
+    return ListView.builder(itemBuilder: (context, index){
+      var result = matchQuery[index];
+      return ListTile(
+        title: Text(result),
+      );
+    },itemCount: matchQuery.length,);
+  }
+
 }
 
 Widget infoCard() {
@@ -118,42 +173,48 @@ Widget infoCard() {
 }
 
 Widget foodCard() {
-  return ClipRRect(
+  return Container(
+    decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(12),
-      child: Container(
-        padding: EdgeInsets.all(16),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Column(
-                children: [
-                  Text(
-                    'Nasi Goreng',
-                    style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                  ),
-                ],
-              ),
+      color: LibColors.color_white,
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 2,
+          blurRadius: 5,
+          offset: Offset(0, 5), // changes position of shadow
+        ),
+      ],
+    ),
+    margin: EdgeInsets.all(12),
+    padding: EdgeInsets.all(16),
+    child: Column(
+      children: [
+        Row(
+          children: [
+            Container(
+              margin: EdgeInsets.all(12),
+              child: Text("Jogging", style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
             ),
-            Expanded(
-              child: Column(
-                children: [
-                  Text(
-                    '500Kcal',
-                    style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                  ),
-                ],
-              ),
+            SizedBox(width: 60,),
+            Container(
+              margin: EdgeInsets.all(12),
+              child: Text("60  kkal per 1km", style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),),
             ),
-            Expanded(
-              child: Column(
-                children: [
-                  Image(
-                      image: AssetImage("assets/images/addicon.png"),
-                      fit: BoxFit.cover),
-                ],
+            Expanded(child: Container(),),
+            GestureDetector(
+              onTap: (){
+                print("dddd");
+              },
+              child: Container(
+                padding: EdgeInsets.all(4),
+                child: Icon(Icons.clear),
               ),
             ),
           ],
         ),
-      ));
+
+      ],
+    )
+  );
 }

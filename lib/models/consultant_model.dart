@@ -1,5 +1,6 @@
 
 
+
 class ConsultantModel {
 
   String? uid;
@@ -20,8 +21,8 @@ class ConsultantModel {
 
   Map<String , dynamic> toJson() =>{
     'uid': uid,
-    'displayName': displayName,
-    'avatarUrl': avatarUrl,
+    'display_name': displayName,
+    'avatar_url': avatarUrl,
     'experience': experience,
     'price': price,
     'rating': rating,
@@ -29,8 +30,8 @@ class ConsultantModel {
 
   static ConsultantModel fromJson(Map<String, dynamic> json) => ConsultantModel(
     uid: json['uid'],
-    displayName: json['displayName'],
-    avatarUrl: json['avatarUrl'],
+    displayName: json['display_name'],
+    avatarUrl: json['avatar_url'],
     experience: json['experience'],
     price: json['price'],
     rating: json['rating'],

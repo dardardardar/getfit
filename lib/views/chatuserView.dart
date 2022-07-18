@@ -24,14 +24,11 @@ class _ChatuserViewState extends State<ChatuserView> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              chatCard(),
-              chatCard(),
-              chatCard(),
-              chatCard(),
-              chatCard(),
-              chatCard(),
-              chatCard(),
-              chatCard(),
+              SizedBox(height: 6,),
+              chatCard("Dr. Thomas S","terima kasih atas sarannya"),
+              SizedBox(height: 6,),
+              chatCard("Didi Michael","baik kak terima kasih sarannya"),
+
             ],
           ),
         ),
@@ -40,30 +37,20 @@ class _ChatuserViewState extends State<ChatuserView> {
   }
 }
 
-Widget chatCard() {
+
+Widget chatCard(String name, String txt,) {
   return Container(
     padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
     margin: EdgeInsets.fromLTRB(12, 0, 12, 0),
-    // decoration: BoxDecoration(
-    //   borderRadius: BorderRadius.circular(12),
-    //   color: LibColors.color_white,
-    //   boxShadow: [
-    //     BoxShadow(
-    //       color: Colors.grey.withOpacity(0.5),
-    //       spreadRadius: 2,
-    //       blurRadius: 5,
-    //       offset: Offset(0, 5), // changes position of shadow
-    //     ),
-    //   ],
-    // ),
     child: Row(
       children: <Widget>[
         Expanded(
           child: Column(
             children: [
-              Image(
-                  image: AssetImage("assets/images/Ellipse.png"),
-                  fit: BoxFit.cover),
+             CircleAvatar(
+               radius: 30.0,
+               backgroundImage:  AssetImage("assets/images/personaltrainer.png"),
+             )
             ],
           ),
         ),
@@ -73,20 +60,21 @@ Widget chatCard() {
               Container(
                 width: 170,
                 child: Text(
-                  'Bambang Edward',
+                  name,
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
                   ),
                 ),
               ),
+              SizedBox(height: 4,),
               Container(
                 width: 170,
                 child: Text(
-                  'Terima kasih saran nya',
+                  txt,
                   style: TextStyle(
                     color: Color.fromARGB(255, 0, 0, 0),
-                    fontSize: 8,
+                    fontSize: 12,
                   ),
                 ),
               )
@@ -97,7 +85,7 @@ Widget chatCard() {
           child: Column(
             children: [
               Text(
-                '8.30 PM',
+                '19.52',
                 style: TextStyle(fontSize: 10),
               )
             ],

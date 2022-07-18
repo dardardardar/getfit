@@ -19,6 +19,7 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: FutureBuilder<UserModel?>(
         future: userdata,
         builder: (context, snapshot) {
@@ -101,6 +102,7 @@ Widget profileCard(UserModel _data) {
       );
 }
 
+
 Widget editprofileCard(context) {
   return MaterialButton(
     onPressed: () {
@@ -139,7 +141,7 @@ Widget signOutButton(){
   return MaterialButton(
     minWidth: double.infinity,
     color: LibColors.danger_red,
-    onPressed: () => FirebaseAuth.instance.signOut(),
+    onPressed: UserController().signOut,
     child: Text('Sign Out',style: TextStyle(color: LibColors.color_white),),
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8)),

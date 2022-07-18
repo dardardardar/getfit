@@ -9,6 +9,7 @@ class requestView extends StatefulWidget {
   State<requestView> createState() => _requestViewState();
 }
 
+
 class _requestViewState extends State<requestView> {
   @override
   Widget build(BuildContext context) {
@@ -16,18 +17,7 @@ class _requestViewState extends State<requestView> {
       appBar: AppBar(
         title: Container(
           margin: EdgeInsets.only(left: 8),
-          child: Row(
-            children: [
-              Image(
-                image: AssetImage("assets/images/back.png"),
-              ),
-              Column(
-                children: [
-                  Text('My Goal'),
-                ],
-              ),
-            ],
-          ),
+          child: Text("Request")
         ),
         backgroundColor: LibColors.primary_color,
       ),
@@ -35,14 +25,9 @@ class _requestViewState extends State<requestView> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
+              SizedBox(height: 8,),
               reqCard(),
-              reqCard(),
-              reqCard(),
-              reqCard(),
-              reqCard(),
-              reqCard(),
-              reqCard(),
-              reqCard(),
+
             ],
           ),
         ),
@@ -84,6 +69,7 @@ Widget reqCard() {
         ),
         Container(
           width: 70,
+          padding: EdgeInsets.all(12),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: LibColors.primary_color,
@@ -100,7 +86,7 @@ Widget reqCard() {
             children: [
               Text(
                 'Accept',
-                style: TextStyle(fontSize: 10, color: Colors.white),
+                style: TextStyle(fontSize: 12, color: Colors.white),
               )
             ],
           ),

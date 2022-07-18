@@ -23,7 +23,7 @@ class _BottomnavbarViewState extends State<BottomnavbarView> {
   List<Widget> pages = [
     HomeView(),
     TipsandtrickView(),
-    ConsultationView(),
+    ChatconsultantView(),
     ProfileView(),
   ];
 
@@ -40,6 +40,7 @@ class _BottomnavbarViewState extends State<BottomnavbarView> {
       currentIndex = index;
     });
   }
+
 
   final userdata = UserController().readUserDatabyId();
   @override

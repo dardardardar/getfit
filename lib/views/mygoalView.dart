@@ -1,6 +1,9 @@
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:getfit/controller/user_controller.dart';
 import 'package:getfit/widgets/colors.dart';
+import '../models/user_model.dart';
 import '../widgets/text_widgets.dart';
 import 'bottomnavbar.dart';
 
@@ -47,8 +50,9 @@ class _MygoalViewState extends State<MygoalView> {
                             height: 16,
                           ),
                           MaterialButton(
-                              onPressed: () {
-
+                              onPressed: (){
+                                UserController().updateGoal(0);
+                                Navigator.pop(context);
                               },
                               minWidth: 360,
                               height: 80,
@@ -66,7 +70,8 @@ class _MygoalViewState extends State<MygoalView> {
                           ),
                           MaterialButton(
                               onPressed: () {
-
+                                UserController().updateGoal(1);
+                                Navigator.pop(context);
                               },
                               minWidth: 360,
                               height: 80,
@@ -84,7 +89,8 @@ class _MygoalViewState extends State<MygoalView> {
                           ),
                           MaterialButton(
                               onPressed: () {
-
+                                UserController().updateGoal(2);
+                                Navigator.pop(context);
                               },
                               minWidth: 360,
                               height: 80,
@@ -138,4 +144,6 @@ class _MygoalViewState extends State<MygoalView> {
       ),
     );
   }
+
+
 }

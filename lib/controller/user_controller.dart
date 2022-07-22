@@ -48,12 +48,35 @@ class UserController{
     }
 
   }
-
+  Future updateUserData(UserModel model)async {
+    try{
+      var user = FirebaseAuth.instance.currentUser!;
+      String? uid = user.uid;
+      var _doc =  FirebaseFirestore.instance.collection("users").doc(uid);
+      final _json = model.toJson();
+      _doc.set(_json);
+      return SnackBarWidgets.success("Success");
+    }
+    on FirebaseAuthException catch (e){
+      print(e);
+      return SnackBarWidgets.fire(e.message);
+    }
+  }
 
   void signOut() async{
        await FirebaseAuth.instance.signOut();
   }
-
+  Future updateGoal(int id) async {
+    try{
+      var uid = FirebaseAuth.instance.currentUser!.uid;
+      await FirebaseFirestore.instance.collection('users').doc(uid).update({'goal_categories': id});
+      return SnackBarWidgets.success("Success");
+    }
+    on FirebaseAuthException catch (e){
+      print(e);
+      return SnackBarWidgets.fire(e.message);
+    }
+  }
   Future<UserModel> readUserDatabyId() async{
    try{
      var user = FirebaseAuth.instance.currentUser!;

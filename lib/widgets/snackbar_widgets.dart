@@ -6,9 +6,14 @@ class SnackBarWidgets{
 
   static final snackKey = GlobalKey<ScaffoldMessengerState>();
   static fire(String? text){
-
     if(text == null) return;
     final snack = SnackBar(content: Text(text), backgroundColor: LibColors.danger_red,);
+    snackKey.currentState!..removeCurrentSnackBar()..showSnackBar(snack);
+  }
+
+  static success(String? text) {
+    if(text == null) return;
+    final snack = SnackBar(content: Text(text), backgroundColor: Colors.green,);
     snackKey.currentState!..removeCurrentSnackBar()..showSnackBar(snack);
   }
 }

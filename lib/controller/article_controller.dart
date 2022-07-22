@@ -5,17 +5,22 @@ class ArticleControlller{
 
 
 
-  Future<List<ArticleModel>> getConsultants({int? category}) async {
+  Future<List<ArticleModel>> getArticles({int? category}) async {
     try{
-      var _doc = await FirebaseFirestore.instance.collection("articles").orderBy('createdOn').get();
-      List<ArticleModel> _result = _doc.docs.map((e) => ArticleModel.fromJson(e.data())).toList();
-      if(category != null){
 
+      if(category != null){
+        var _doc = await FirebaseFirestore.instance.collection("articles").orderBy('category').orderBy('created_on',).get();
+        List<ArticleModel> _result = _doc.docs.map((e) => ArticleModel.fromJson(e.data())).toList();
+        return _result;
       }
+      var _doc = await FirebaseFirestore.instance.collection("articles").orderBy('created_on',).get();
+
+      List<ArticleModel> _result = _doc.docs.map((e) => ArticleModel.fromJson(e.data())).toList();
+      print("dd");print("dd");
       return _result;
     }
     on FirebaseException catch (e){
-      print(e);
+
       return List<ArticleModel>.empty();
     }
   }

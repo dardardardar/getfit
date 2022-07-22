@@ -1,6 +1,8 @@
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:getfit/controller/article_controller.dart';
+import 'package:getfit/models/article_model.dart';
 import 'package:getfit/views/dietpage.dart';
 import 'package:getfit/widgets/colors.dart';
 
@@ -12,56 +14,72 @@ class TipsandtrickView extends StatefulWidget {
 }
 
 class _TipsandtrickViewState extends State<TipsandtrickView> {
+  var future = ArticleControlller().getArticles();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        margin: EdgeInsets.all(12),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
+      body: FutureBuilder<List<ArticleModel>?>(
+        future: future,
+        builder: (context,snapshot){
+          if(snapshot.hasData){
+            final _data = snapshot.data!;
+            return Container(
+              margin: EdgeInsets.all(12),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(child: dietCard()),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                  Expanded(child: workoutCard()),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(child: dietCard()),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        Expanded(child: workoutCard()),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(child: foodCard()),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        Expanded(child: sleepCard()),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                      ],
+                    ),
+                    ListView.builder(
+                      itemCount: _data.length,
+                      itemBuilder: (context, int index) {
+                        return iklan4Card(_data[index]);
+                      },
+                      physics : NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      // children: _data.map(profileCard).toList(),
+                    )
+                  ],
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(child: foodCard()),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                  Expanded(child: sleepCard()),
-                  const SizedBox(
-                    width: 4,
-                  ),
-                ],
-              ),
-              ListView(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                children: [
-                  iklan4Card(),
-                  iklan4Card(),
-                  iklan4Card(),
-                ],
-              )
-            ],
-          ),
-        ),
-      ),
+            );
+          }
+          if(snapshot.hasError){
+            return Center(child: Text(snapshot.error.toString()),);
+          }
+          else{
+            return Center(child: CircularProgressIndicator(),);
+          }
+        },
+      )
     );
   }
 
@@ -373,7 +391,7 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
   }
 
 
-  Widget iklan4Card() {
+  Widget iklan4Card(ArticleModel _model) {
     return GestureDetector(
       onTap: (){
         Navigator.of(context).push(MaterialPageRoute(
@@ -400,7 +418,7 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
               child: ClipRRect(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
                 child: Image.network(
-                  "https://firebasestorage.googleapis.com/v0/b/getfit-89b61.appspot.com/o/Article%2Fimage%205%20(1).png?alt=media&token=edf09915-285c-464a-aaf6-7eab323ae292",
+                  _model.imageUrl,
                   fit: BoxFit.fitWidth,
                 ),
               ),
@@ -409,7 +427,7 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
               alignment: Alignment.centerLeft,
               margin: EdgeInsets.all(12),
               child: Text(
-                'Mengatur waktu tidur yang baik'.toUpperCase(),
+                _model.title.toUpperCase(),
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
               ),
             ),
@@ -417,8 +435,7 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
               alignment: Alignment.centerLeft,
               margin: EdgeInsets.fromLTRB(12, 0, 12, 12),
               child: Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In elit enim, scelerisque non lectus a, dapibus luctus dolor. Sed tempor ex semper odio posuere pulvinar. Fusce vehicula nibh a nisl posuere mollis. Cras eu justo at leo aliquam aliquet. Ut malesuada quis erat eget tempus. Vestibulum volutpat, nisl vitae faucibus sagittis, est tellus pellentesque odio, ut suscipit lectus lorem a lorem. Aenean lobortis vulputate tortor, ac ultricies odio condimentum vitae. Nulla viverra urna blandit, consectetur magna sed, dapibus arcu. Maecenas aliquam erat at vehicula viverra.'
-                    .substring(0, 100) +
+                    _model.content.substring(0, 100) +
                     "...",
                 style: TextStyle(fontSize: 14),
               ),

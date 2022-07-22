@@ -21,9 +21,9 @@ class ArticleModel {
   static ArticleModel fromJson(Map<String, dynamic> json) => ArticleModel(
     title: json['title'],
     content: json['content'],
-    imageUrl: json['imageUrl'],
+    imageUrl: json['image_url'],
     category: json['category'],
-    createdOn: (json['createdOn'] as Timestamp).toDate(),
+    createdOn: (json['created_on'] as Timestamp).toDate(),
   );
 
 

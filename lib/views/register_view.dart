@@ -633,7 +633,12 @@ class _RegisterViewState extends State<RegisterView> {
                             ).toList(),
                             onChanged: (item) => setState(() {
                               _selectedGender = item;
-                              _gender == "Male" ? 0 : 1;
+                              if(item == "Male"){
+                                _gender = 0;
+                              }
+                              else{
+                                _gender = 1;
+                              }
                             }),
 
                           ),
@@ -711,6 +716,7 @@ class _RegisterViewState extends State<RegisterView> {
                               final isValidated = formKey.currentState!.validate();
                               if(isValidated){
                                 final user = UserModel(
+                                  uid: FirebaseAuth.instance.currentUser!.uid,
                                   email: emailController.text.trim(),
                                   displayName: displayNameController.text.trim(),
                                   goalCategories: _goalCategory,

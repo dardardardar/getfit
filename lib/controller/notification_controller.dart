@@ -27,7 +27,21 @@ class NotificationController {
       onSelectNotification: onSelectNotification,
     );
   }
-
+  tz.TZDateTime _convertTime(int hour, int minutes) {
+    final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+    tz.TZDateTime scheduleDate = tz.TZDateTime(
+      tz.local,
+      now.year,
+      now.month,
+      now.day,
+      hour,
+      minutes,
+    );
+    if (scheduleDate.isBefore(now)) {
+      scheduleDate = scheduleDate.add(const Duration(days: 1));
+    }
+    return scheduleDate;
+  }
   Future<NotificationDetails> _notificationDetails() async {
     const AndroidNotificationDetails androidNotificationDetails =
     AndroidNotificationDetails('channel_id', 'channel_name',
@@ -53,23 +67,34 @@ class NotificationController {
     final details = await _notificationDetails();
     await _localNotificationService.show(id, title, body, details,payload: payload);
   }
-
+  tz.TZDateTime _nextInstanceOfTenAM(int hour,int min) {
+    final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+    tz.TZDateTime scheduledDate =
+    tz.TZDateTime(tz.local, now.year, now.month, now.day, hour,min);
+    if (scheduledDate.isBefore(now)) {
+      scheduledDate = scheduledDate.add(const Duration(days: 1));
+    }
+    return scheduledDate;
+  }
   Future<void> sendScheduledNotification(
       {required int id,
         required String title,
         required String body,
-        required int seconds}) async {
+        required int hour,
+        required int min
+      }) async {
+    tz.initializeTimeZones();
     final details = await _notificationDetails();
+
+
     await _localNotificationService.zonedSchedule(
       id,
       title,
       body,
-      tz.TZDateTime.from(
-        DateTime.now().add(Duration(seconds: seconds)),
-        tz.local,
-      ),
+      _nextInstanceOfTenAM(hour,min),
       details,
       androidAllowWhileIdle: true,
+      matchDateTimeComponents: DateTimeComponents.time,
       uiLocalNotificationDateInterpretation:
       UILocalNotificationDateInterpretation.absoluteTime,
     );

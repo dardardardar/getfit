@@ -24,6 +24,7 @@ class _RegisterViewState extends State<RegisterView> {
   List<String> _genders = ['Male','Female'];
   String? _selectedGender;
   int _goalCategory = 0;
+  int roles = 0;
   int _gender = 0;
 
   final emailController = TextEditingController();
@@ -62,6 +63,7 @@ class _RegisterViewState extends State<RegisterView> {
             children: [
 
               _pageOne(),
+              _pageSix(),
               _pageTwo(),
               _pageThree(),
               _pageFour(),
@@ -716,7 +718,7 @@ class _RegisterViewState extends State<RegisterView> {
                               final isValidated = formKey.currentState!.validate();
                               if(isValidated){
                                 final user = UserModel(
-                                  uid: FirebaseAuth.instance.currentUser!.uid,
+                                  uid: "",
                                   email: emailController.text.trim(),
                                   displayName: displayNameController.text.trim(),
                                   goalCategories: _goalCategory,
@@ -724,7 +726,7 @@ class _RegisterViewState extends State<RegisterView> {
                                   dob: date,
                                   height: int.parse(heightController.text.trim()),
                                   weight: int.parse(weightController.text.trim()),
-                                  roles: 1,
+                                  roles: roles,
                                   avatarUrl: ""
                                 );
                                 UserController().signUp(emailController.text.trim(), passwordController.text.trim(), user);
@@ -799,7 +801,7 @@ class _RegisterViewState extends State<RegisterView> {
                         SizedBox(height: 16,),
                         MaterialButton(onPressed: (){
                           setState(() {
-                            _goalCategory = 0;
+                            roles = 1;
                           });
                           p.nextPage(
                               duration: Duration(milliseconds: 500),
@@ -824,7 +826,7 @@ class _RegisterViewState extends State<RegisterView> {
                         SizedBox(height: 16,),
                         MaterialButton(onPressed: (){
                           setState(() {
-                            _goalCategory = 1;
+                            roles = 0;
                           });
                           p.nextPage(
                               duration: Duration(milliseconds: 500),

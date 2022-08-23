@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:getfit/views/chatconsultantView.dart';
-import 'package:getfit/views/consultation.dart';
+import 'package:getfit/views/consult_view.dart';
 import 'package:getfit/views/home_view.dart';
 import 'package:getfit/views/profile.dart';
 import 'package:getfit/views/tipsandtrick.dart';
@@ -23,7 +22,7 @@ class _BottomnavbarViewState extends State<BottomnavbarView> {
   List<Widget> pages = [
     HomeView(),
     TipsandtrickView(),
-    ChatconsultantView(),
+    ConsultationMainView(),
     ProfileView(),
   ];
 

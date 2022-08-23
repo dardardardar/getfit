@@ -35,51 +35,148 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        body: FutureBuilder<UserInfoModel>(
+          future: HomeController().getUserInfo(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              var data2 = snapshot.data!;
+              return StreamBuilder<List<UserFoodModel>>(
+                stream: HomeController().getFoods(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    var data = snapshot.data!;
+                    var eaten = 0;
+                    for (var item in data) {
+                      eaten += item.calories;
+                    }
+                    var kcal = data2.targetCalories - eaten;
+                    var color = kcal < 0 ? LibColors.danger_red : LibColors.second_color;
+                    return StreamBuilder<List<UserWorkoutModel>>(
+                      stream: HomeController().getExercises(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          var burned = 0;
+                          for (var item in snapshot.data!) {
+                            burned += item.calories;
+                          }
+                          return Container(
+                              margin: EdgeInsets.symmetric(horizontal: 12),
+                              child: SingleChildScrollView(
+                                  child: Column(
+                                    children: <Widget>[
+                                      Container(
+                                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                                          margin: EdgeInsets.all(12),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(12),
+                                            color: color,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey.withOpacity(0.5),
+                                                spreadRadius: 2,
+                                                blurRadius: 5,
+                                                offset: Offset(0, 5), // changes position of shadow
+                                              ),
+                                            ],
+                                          ),
+                                          child: Row(
+                                            children: <Widget>[
+                                              Expanded(
+                                                child: Column(
+                                                  children: [
+                                                    Text(
+                                                      'EATEN',
+                                                      style: TextStyle(color: Colors.white),
+                                                    ),
+                                                    Text(
+                                                      eaten.toString() + ' / gr',
+                                                      style: TextStyle(color: Colors.white),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  children: [
+                                                    Text(
+                                                      'KCAL LEFT',
+                                                      style: TextStyle(color: Colors.white),
+                                                    ),
+                                                    Text(
+                                                      (data2.targetCalories - eaten).toString()  + ' / gr',
+                                                      style: TextStyle(color: Colors.white),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Column(
+                                                  children: [
+                                                    Text(
+                                                      'BURNED',
+                                                      style: TextStyle(color: Colors.white),
+                                                    ),
+                                                    Text(
+                                                      burned.toString() + ' / gr',
+                                                      style: TextStyle(color: Colors.white),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.all(12),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: <Widget>[
+                                            Expanded(
+                                              child: fatCard(data2.targetFat),
+                                            ),
+                                            const SizedBox(
+                                              width: 12,
+                                            ),
+                                            Expanded(
+                                              child: carbsCard(data2.targetCarbs),
+                                            ),
+                                            const SizedBox(
+                                              width: 12,
+                                            ),
+                                            Expanded(
+                                              child: proteinCard(data2.targetProtein),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      dateCard(),
+                                      breakfastCard(),
+                                      brunchCard(),
+                                      lunchCard(),
+                                      snackCard(),
+                                      dinnerCard(),
+                                      sleepCard(),
+                                      exerciseCard(),
+                                    ],
+                                  )));
+                        }
+                        return Container();
+                      },
+                    );
+                  }
+                  return Center(child: CircularProgressIndicator(),);
+                },
+              );
+            }
+            return Container();
+          },
+        ),
 
-      body: Container(
-          margin: EdgeInsets.symmetric(horizontal: 12),
-          child: SingleChildScrollView(
-              child: Column(
-            children: <Widget>[
-              infoCard(),
-              Container(
-                margin: EdgeInsets.all(12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(
-                      child: fatCard(),
-                    ),
-                    const SizedBox(
-                      width: 12,
-                    ),
-                    Expanded(
-                      child: carbsCard(),
-                    ),
-                    const SizedBox(
-                      width: 12,
-                    ),
-                    Expanded(
-                      child: proteinCard(),
-                    )
-                  ],
-                ),
-              ),
-              dateCard(),
-              breakfastCard(),
-              brunchCard(),
-              lunchCard(),
-              snackCard(),
-              dinnerCard(),
-              sleepCard(),
-              exerciseCard(),
-            ],
-          ))),
     );
   }
 
-  Widget fatCard() {
+  Widget fatCard(int data) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
@@ -107,7 +204,7 @@ class _HomeViewState extends State<HomeView> {
             ),
           ),
           Text(
-            '500 / gr',
+            '$data / gr',
             style: TextStyle(color: LibColors.primary_color),
           ),
         ],
@@ -115,7 +212,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget carbsCard() {
+  Widget carbsCard(int data) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
@@ -145,7 +242,7 @@ class _HomeViewState extends State<HomeView> {
             ),
           ),
           Text(
-            '500 / gr',
+            '$data / gr',
             style: TextStyle(color: LibColors.primary_color),
           ),
         ],
@@ -153,7 +250,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget proteinCard() {
+  Widget proteinCard(int data) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
@@ -183,7 +280,7 @@ class _HomeViewState extends State<HomeView> {
             ),
           ),
           Text(
-            '500 / gr',
+            '$data / gr',
             style: TextStyle(color: LibColors.primary_color),
           ),
         ],
@@ -191,105 +288,7 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  Widget infoCard() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-      margin: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: LibColors.second_color,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: Offset(0, 5), // changes position of shadow
-          ),
-        ],
-      ),
-      child: StreamBuilder<List<UserFoodModel>>(
-        stream: HomeController().getFoods(),
-        builder: (context,snapshot){
-          if(snapshot.hasData){
-            var data = snapshot.data!;
-            var eaten = 0;
-            for (var item in data){
-              eaten += item.calories;
-            }
-            return Row(
-              children: <Widget>[
-                Expanded(
-                  child: Column(
-                    children: [
-                      Text(
-                        'EATEN',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      Text(
-                        eaten.toString() + ' / gr',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-                FutureBuilder<UserInfoModel>(
-                  future: HomeController().getUserInfo(),
-                  builder: (context,snapshot){
-                    if(snapshot.hasData){
-                      var data2 = snapshot.data!;
-                      return Expanded(
-                        child: Column(
-                          children: [
-                            Text(
-                              'KCAL LEFT',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            Text(
-                              (data2.targetCalories - eaten).toString()  + ' / gr',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-                    return Container();
-                  },
-                ),
-                StreamBuilder<List<UserWorkoutModel>>(
-                  stream: HomeController().getExercises(),
-                  builder: (context, snapshot) {
-                    if(snapshot.hasData){
-                      var burned = 0;
-                      for (var item in snapshot.data!){
-                        burned += item.calories;
-                      }
 
-                      return Expanded(
-                        child: Column(
-                          children: [
-                            Text(
-                              'BURNED',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            Text(
-                              burned.toString() + ' / gr',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-                    return Container();
-                  },
-                ),
-              ],
-            );
-          }return Container();
-        },
-
-      )
-    );
-  }
 
   Widget dateCard() {
     return ClipRRect(
@@ -329,6 +328,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Widget breakfastCard() {
+    var image = AssetImage("assets/images/reminder.png");
     return GestureDetector(
       onTap: () {
         addfood(tag:'breakfast');
@@ -387,16 +387,13 @@ class _HomeViewState extends State<HomeView> {
                 children: [
                   GestureDetector(
                     onTap: (){
-                        SnackBarWidgets.fire("pon");
+                      setState(() {
+                        image = AssetImage("assets/images/notification-red.png");
+                      });
                     },
-                    child:  GestureDetector(
-                      onTap: (){
-
-                      },
-                      child: Image(
-                          image: AssetImage("assets/images/reminder.png"),
-                          fit: BoxFit.cover),
-                    )
+                    child: Image(
+                        image: image,
+                        fit: BoxFit.cover),
                   )
                 ],
               ),

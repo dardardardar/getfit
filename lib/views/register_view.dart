@@ -799,30 +799,7 @@ class _RegisterViewState extends State<RegisterView> {
 
                       children: [
                         SizedBox(height: 16,),
-                        MaterialButton(onPressed: (){
-                          setState(() {
-                            roles = 1;
-                          });
-                          p.nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeIn
-                          );
-                        },
-                            minWidth: 360,
-                            height: 80,
-                            color: LibColors.color_white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
 
-                            ),
-                            child: Text(
-                              "CONSULTANT" ,style: const TextStyle(
-                              fontSize: 16,
-                              color: LibColors.primary_color,
-                            ),
-                              textAlign: TextAlign.center,
-                            )
-                        ),
                         SizedBox(height: 16,),
                         MaterialButton(onPressed: (){
                           setState(() {
@@ -841,7 +818,7 @@ class _RegisterViewState extends State<RegisterView> {
 
                             ),
                             child: Text(
-                              "USER" ,style: const TextStyle(
+                              "USER PENGGUNA" ,style: const TextStyle(
                               fontSize: 16,
                               color: LibColors.primary_color,
 
@@ -850,7 +827,30 @@ class _RegisterViewState extends State<RegisterView> {
                             )
                         ),
                         SizedBox(height: 16,),
+                        MaterialButton(onPressed: (){
+                          setState(() {
+                            roles = 1;
+                          });
+                          p.nextPage(
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.easeIn
+                          );
+                        },
+                            minWidth: 360,
+                            height: 80,
+                            color: LibColors.color_white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
 
+                            ),
+                            child: Text(
+                              "HEALTHY CONSULTANT" ,style: const TextStyle(
+                              fontSize: 16,
+                              color: LibColors.primary_color,
+                            ),
+                              textAlign: TextAlign.center,
+                            )
+                        ),
                         SizedBox(height: 200,),
                       ],
                     )

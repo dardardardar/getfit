@@ -333,12 +333,13 @@ Widget infoCard() {
                 eaten += item.calories;
               }
               var kcal = data2.targetCalories - eaten;
+              var color = kcal < 0 ? LibColors.danger_red : LibColors.second_color;
               return Container(
                   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                   margin: EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color: LibColors.second_color,
+                    color: color,
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.5),

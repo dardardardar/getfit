@@ -9,6 +9,8 @@ import 'package:getfit/views/home_view.dart';
 import 'package:getfit/widgets/colors.dart';
 import 'package:getfit/widgets/snackbar_widgets.dart';
 
+import '../models/user_food_model.dart';
+import '../models/user_info_model.dart';
 import '../models/user_workout_model.dart';
 
 class ExerciseView extends StatefulWidget {
@@ -219,67 +221,104 @@ class CustomSearchDelegate extends SearchDelegate{
 }
 
 Widget infoCard() {
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-    margin: EdgeInsets.all(12),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(12),
-      color: LibColors.second_color,
-      boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.5),
-          spreadRadius: 2,
-          blurRadius: 5,
-          offset: Offset(0, 5), // changes position of shadow
-        ),
-      ],
-    ),
-    child: Row(
-      children: <Widget>[
-        Expanded(
-          child: Column(
-            children: [
-              Text(
-                'EATEN',
-                style: TextStyle(color: Colors.white),
-              ),
-              Text(
-                '500 / gr',
-                style: TextStyle(color: Colors.white),
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: Column(
-            children: [
-              Text(
-                'KCAL LEFT',
-                style: TextStyle(color: Colors.white),
-              ),
-              Text(
-                '1500 / gr',
-                style: TextStyle(color: Colors.white),
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: Column(
-            children: [
-              Text(
-                'BURNED',
-                style: TextStyle(color: Colors.white),
-              ),
-              Text(
-                '300 / gr',
-                style: TextStyle(color: Colors.white),
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
+  return FutureBuilder<UserInfoModel>(
+    future: HomeController().getUserInfo(),
+    builder: (context, snapshot) {
+      if (snapshot.hasData) {
+        var data2 = snapshot.data!;
+        return StreamBuilder<List<UserFoodModel>>(
+          stream: HomeController().getFoods(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              var data = snapshot.data!;
+              var eaten = 0;
+              for (var item in data) {
+                eaten += item.calories;
+              }
+              var kcal = data2.targetCalories - eaten;
+              var color = kcal < 0 ? LibColors.danger_red : LibColors.second_color;
+              return Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                  margin: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: color,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: Offset(0, 5), // changes position of shadow
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(
+                              'EATEN',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Text(
+                              eaten.toString() + ' / gr',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(
+                              'KCAL LEFT',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Text(
+                              kcal.toString() +
+                                  ' / gr',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                      StreamBuilder<List<UserWorkoutModel>>(
+                        stream: HomeController().getExercises(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            var burned = 0;
+                            for (var item in snapshot.data!) {
+                              burned += item.calories;
+                            }
+
+                            return Expanded(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'BURNED',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  Text(
+                                    burned.toString() + ' / gr',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
+                          return Container();
+                        },
+                      ),
+                    ],
+                  ));
+            }
+            return Container();
+          },
+        );
+      }
+      return Container();
+    },
   );
 }
 

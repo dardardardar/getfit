@@ -22,13 +22,17 @@ class UserController{
       int targetCalories = userModel.gender == 0 ?
         ((10 * userModel.weight) + (6.25 * userModel.height) - (5 * (DateTime.now().year - userModel.dob.year) + 5)).round() :
         ((10 * userModel.weight) + (6.25 * userModel.height) - (5 * (DateTime.now().year - userModel.dob.year) - 161)).round();
+      var diet = targetCalories + 250;
+      var maintain = targetCalories;
+      var lose = targetCalories - 250;
+      var targetCaloriesbyGoal = userModel.goalCategories == 0 ? diet : userModel.goalCategories == 1 ? maintain : lose;
       var userinfomodel = UserInfoModel(
           uid: uid,
-          targetCalories: userModel.goalCategories == 0 ? targetCalories -100 : userModel.goalCategories == 1 ? targetCalories : targetCalories-250,
-          targetCarbs: 500,
-          targetFat: 500,
-          targetProtein: 500,
-          userCalories: userModel.goalCategories == 0 ? targetCalories -100 : userModel.goalCategories == 1 ? targetCalories : targetCalories-250,
+          targetCalories: targetCaloriesbyGoal,
+          targetCarbs:(( targetCaloriesbyGoal / 3) / 4).round(),
+          targetFat: (( targetCaloriesbyGoal / 3) / 9).round(),
+          targetProtein: (( targetCaloriesbyGoal / 3) / 4).round(),
+          userCalories: targetCaloriesbyGoal,
           userCarbs: 0,
           userFat: 0,
           userProtein: 0);

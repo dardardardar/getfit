@@ -14,7 +14,7 @@ class TipsandtrickView extends StatefulWidget {
 }
 
 class _TipsandtrickViewState extends State<TipsandtrickView> {
-  var future = ArticleControlller().getArticles();
+  Future<List<ArticleModel>> future = ArticleControlller().getArticles();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
           if(snapshot.hasData){
             final _data = snapshot.data!;
             return Container(
-              margin: EdgeInsets.all(12),
+              margin: EdgeInsets.symmetric(horizontal: 12),
               child: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
@@ -86,8 +86,9 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
   Widget dietCard() {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (BuildContext context) => dietView()));
+          setState(() {
+            future = ArticleControlller().getArticles(category: 0);
+          });
       },
       child: Container(
         margin: EdgeInsets.all(12),
@@ -182,135 +183,156 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
   }
 
   Widget foodCard() {
-    return Container(
-      margin: EdgeInsets.all(12),
-      width: double.infinity,
-      height: 150,
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          future = ArticleControlller().getArticles(category: 2);
+        });
+      },
       child: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: Color(0xffFFC30B),
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 5,
-              offset: Offset(0, 5), // changes position of shadow
-            ),
-          ],
-        ),
-        padding: EdgeInsets.all(22),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image(
-                image: AssetImage("assets/images/food.png"),
-                width: 50,
-                height: 50,
-                fit: BoxFit.cover),
-            SizedBox(
-              height: 8,
-            ),
-            Text(
-              'Food'.toUpperCase(),
-              style: TextStyle(
-                color: Color.fromARGB(255, 255, 255, 255),
-                fontWeight: FontWeight.bold,
+        margin: EdgeInsets.all(12),
+        width: double.infinity,
+        height: 150,
+        child: Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Color(0xffFFC30B),
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 2,
+                blurRadius: 5,
+                offset: Offset(0, 5), // changes position of shadow
               ),
-            ),
-          ],
+            ],
+          ),
+          padding: EdgeInsets.all(22),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image(
+                  image: AssetImage("assets/images/food.png"),
+                  width: 50,
+                  height: 50,
+                  fit: BoxFit.cover),
+              SizedBox(
+                height: 8,
+              ),
+              Text(
+                'Food'.toUpperCase(),
+                style: TextStyle(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget workoutCard() {
-    return Container(
-      margin: EdgeInsets.all(12),
-      width: double.infinity,
-      height: 150,
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          future = ArticleControlller().getArticles(category: 1);
+        });
+      },
       child: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: Color(0xffD70000),
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 5,
-              offset: Offset(0, 5), // changes position of shadow
-            ),
-          ],
-        ),
-        padding: EdgeInsets.all(22),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image(
-                image: AssetImage("assets/images/workout.png"),
-                width: 50,
-                height: 50,
-                fit: BoxFit.cover),
-            SizedBox(
-              height: 8,
-            ),
-            Text(
-              'Workout'.toUpperCase(),
-              style: TextStyle(
-                color: Color.fromARGB(255, 255, 255, 255),
-                fontWeight: FontWeight.bold,
+        margin: EdgeInsets.all(12),
+        width: double.infinity,
+        height: 150,
+        child: Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Color(0xffD70000),
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 2,
+                blurRadius: 5,
+                offset: Offset(0, 5), // changes position of shadow
               ),
-            ),
-          ],
+            ],
+          ),
+          padding: EdgeInsets.all(22),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image(
+                  image: AssetImage("assets/images/workout.png"),
+                  width: 50,
+                  height: 50,
+                  fit: BoxFit.cover),
+              SizedBox(
+                height: 8,
+              ),
+              Text(
+                'Workout'.toUpperCase(),
+                style: TextStyle(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget sleepCard() {
-    return Container(
-      margin: EdgeInsets.all(12),
-      width: double.infinity,
-      height: 150,
+    return GestureDetector(
+      onTap: (){
+        setState(() {
+          future = ArticleControlller().getArticles(category: 3);
+        });
+      },
       child: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: Color(0xff00516A),
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 5,
-              offset: Offset(0, 5), // changes position of shadow
-            ),
-          ],
-        ),
-        padding: EdgeInsets.all(22),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image(
-                image: AssetImage("assets/images/sleeping.png"),
-                width: 50,
-                height: 50,
-                fit: BoxFit.cover),
-            SizedBox(
-              height: 8,
-            ),
-            Text(
-              'Sleep'.toUpperCase(),
-              style: TextStyle(
-                color: Color.fromARGB(255, 255, 255, 255),
-                fontWeight: FontWeight.bold,
+        margin: EdgeInsets.all(12),
+        width: double.infinity,
+        height: 150,
+        child: Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Color(0xff00516A),
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 2,
+                blurRadius: 5,
+                offset: Offset(0, 5), // changes position of shadow
               ),
-            ),
-          ],
+            ],
+          ),
+          padding: EdgeInsets.all(22),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image(
+                  image: AssetImage("assets/images/sleeping.png"),
+                  width: 50,
+                  height: 50,
+                  fit: BoxFit.cover),
+              SizedBox(
+                height: 8,
+              ),
+              Text(
+                'Sleep'.toUpperCase(),
+                style: TextStyle(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -395,7 +417,7 @@ class _TipsandtrickViewState extends State<TipsandtrickView> {
     return GestureDetector(
       onTap: (){
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (BuildContext context) => dietView()));
+            builder: (BuildContext context) => dietView(title: _model.title,content: _model.content,imageUrl: _model.imageUrl, category: _model.category,)));
       },
       child: Container(
         decoration: BoxDecoration(

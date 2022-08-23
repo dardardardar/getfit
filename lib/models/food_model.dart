@@ -5,6 +5,7 @@ class FoodModel{
   final int protein;
   final int carbohydrates;
 
+
   FoodModel({
     required this.name,
     required this.calories,
@@ -20,4 +21,12 @@ class FoodModel{
     protein: json['protein'],
     carbohydrates: json['carbs'],
   );
+  Map<String, dynamic> toJson() =>{
+
+    'name': name,
+    'calories': calories,
+    'fat': fat,
+    'protein': protein,
+    'carbs': carbohydrates,
+  };
 }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:getfit/models/consultant_model.dart';
+import 'package:getfit/models/user_info_model.dart';
 
 import '../models/user_model.dart';
 import '../widgets/snackbar_widgets.dart';
@@ -17,6 +18,23 @@ class UserController{
       userModel.uid = uid;
       final json = userModel.toJson();
       userDoc.set(json);
+      var userinfo = userDoc.collection('user_infos').doc(uid);
+      int targetCalories = userModel.gender == 0 ?
+        ((10 * userModel.weight) + (6.25 * userModel.height) - (5 * (DateTime.now().year - userModel.dob.year) + 5)).round() :
+        ((10 * userModel.weight) + (6.25 * userModel.height) - (5 * (DateTime.now().year - userModel.dob.year) - 161)).round();
+      var userinfomodel = UserInfoModel(
+          uid: uid,
+          targetCalories: userModel.goalCategories == 0 ? targetCalories -100 : userModel.goalCategories == 1 ? targetCalories : targetCalories-250,
+          targetCarbs: 500,
+          targetFat: 500,
+          targetProtein: 500,
+          userCalories: userModel.goalCategories == 0 ? targetCalories -100 : userModel.goalCategories == 1 ? targetCalories : targetCalories-250,
+          userCarbs: 0,
+          userFat: 0,
+          userProtein: 0);
+      final json2 = userinfomodel.toJson();
+      userinfo.set(json2);
+
       if(userModel.roles == 1){
         final _consultant = ConsultantModel(
             uid: uid,
@@ -77,11 +95,13 @@ class UserController{
       return SnackBarWidgets.fire(e.message);
     }
   }
-  Future<UserModel> readUserDatabyId() async{
+  Future<UserModel> readUserDatabyId({String? id}) async{
    try{
      var user = FirebaseAuth.instance.currentUser!;
-     String? uid = user.uid;
-     var _doc =  FirebaseFirestore.instance.collection("users").doc(uid);
+     var _doc =  FirebaseFirestore.instance.collection("users").doc(user.uid);
+     if(id != null){
+       _doc =  FirebaseFirestore.instance.collection("users").doc(id);
+     }
      var _res = await _doc.get();
      if(_res.exists){
        var _data = UserModel.fromJson(_res.data()!);

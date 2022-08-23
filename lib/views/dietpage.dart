@@ -5,7 +5,17 @@ import 'package:getfit/views/bottomnavbar.dart';
 import 'package:getfit/widgets/colors.dart';
 
 class dietView extends StatefulWidget {
-  const dietView({Key? key}) : super(key: key);
+  final String title;
+  final String content;
+  final String imageUrl;
+  final int category;
+  const dietView(
+      {Key? key,
+      required this.title,
+        required this.content,
+        required this.imageUrl,
+        required this.category,
+      }) : super(key: key);
 
   @override
   State<dietView> createState() => _dietViewState();
@@ -25,26 +35,26 @@ class _dietViewState extends State<dietView> {
           child: Column(
 
             children: <Widget>[
-              iklanCard(),
-              iklan2Card(),
+              iklanCard(widget.imageUrl),
+              iklan2Card(widget.title),
               Container(
                 width: 320,
                 child: Text(
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at fermentum tellus. Mauris feugiat fermentum posuere. Aenean posuere ac tortor id volutpat. Curabitur tincidunt ipsum sapien, nec sodales lorem sodales eu. Donec non tortor non lectus ultrices condimentum. Etiam rhoncus nisi nec sodales accumsan. Maecenas id gravida ante. Etiam vulputate metus id mauris egestas ullamcorper. Cras aliquet urna ac hendrerit bibendum. Morbi eros quam, commodo in pretium ut, feugiat condimentum mauris. Donec at tincidunt orci.',
+                    widget.content
                 ),
               ),
               SizedBox(height: 12),
               Container(
                 width: 320,
                 child: Text(
-                  '     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at fermentum tellus. Mauris feugiat fermentum posuere. Aenean posuere ac tortor id volutpat. Curabitur tincidunt ipsum sapien, nec sodales lorem sodales eu. Donec non tortor non lectus ultrices condimentum. Etiam rhoncus nisi nec sodales accumsan. Maecenas id gravida ante. Etiam vulputate metus id mauris egestas ullamcorper. Cras aliquet urna ac hendrerit bibendum. Morbi eros quam, commodo in pretium ut, feugiat condimentum mauris. Donec at tincidunt orci.',
+                  widget.content
                 ),
               ),
               SizedBox(height: 12),
               Container(
                 width: 320,
                 child: Text(
-                  '     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at fermentum tellus. Mauris feugiat fermentum posuere. Aenean posuere ac tortor id volutpat. Curabitur tincidunt ipsum sapien, nec sodales lorem sodales eu. Donec non tortor non lectus ultrices condimentum. Etiam rhoncus nisi nec sodales accumsan. Maecenas id gravida ante. Etiam vulputate metus id mauris egestas ullamcorper. Cras aliquet urna ac hendrerit bibendum. Morbi eros quam, commodo in pretium ut, feugiat condimentum mauris. Donec at tincidunt orci.',
+                  widget.content
                 ),
               ),
             ],
@@ -55,7 +65,7 @@ class _dietViewState extends State<dietView> {
   }
 }
 
-Widget iklanCard() {
+Widget iklanCard(String url) {
   return Container(
     alignment: Alignment.topCenter,
     child: Container(
@@ -65,7 +75,7 @@ Widget iklanCard() {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image(
-              image: AssetImage("assets/images/dietgirl.png"),
+              image: NetworkImage(url),
               fit: BoxFit.cover),
         ],
       ),
@@ -74,11 +84,11 @@ Widget iklanCard() {
 }
 
 
-Widget iklan2Card() {
+Widget iklan2Card(String title) {
   return Container(
     width: 320,
     margin: EdgeInsets.all(12),
-    child: Text("Beberapa makanan sehat yang bisa dicoba untuk membantu diet kamu",textAlign: TextAlign.start, style: TextStyle(
+    child: Text(title,textAlign: TextAlign.start, style: TextStyle(
       fontWeight: FontWeight.bold,fontSize: 20
     ),),
   );

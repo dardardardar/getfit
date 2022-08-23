@@ -18,11 +18,19 @@ class ConsultationView extends StatefulWidget {
 
 
 class _ConsultationViewState extends State<ConsultationView> {
+  List<ConsultantModel> _data = [];
+  Future<List<ConsultantModel>> _consultantData = ConsultantController().getConsultants(name: '');
 
-  final _consultantData = ConsultantController().getConsultants();
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.chat),
@@ -34,56 +42,68 @@ class _ConsultationViewState extends State<ConsultationView> {
         },
       ),
 
-      body: Container(
-        margin: EdgeInsets.all(12),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.all(12),
-                child: TextField(
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                      hintText: "Search Your Personal Consultant",
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                            color: LibColors.primary_color, width: 1.0),
-                        borderRadius: BorderRadius.circular(8),
+      body:FutureBuilder<List<ConsultantModel>>(
+        future: _consultantData,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+           _data = snapshot.data!;
+            return Container(
+              margin: EdgeInsets.symmetric(horizontal: 12),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.all(12),
+                      child: TextField(
+                        textInputAction: TextInputAction.go,
+                        onSubmitted: (query){
+                          setState(() {
+                            print("ddd");
+                            _consultantData = ConsultantController().getConsultants(name: query);
+                            //_consultantData = ConsultantController().getConsultants(name: query);
+                          });
+                        },
+                        textAlign: TextAlign.center,
+                        decoration: InputDecoration(
+                            hintText: "Search Your Personal Consultant",
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: LibColors.primary_color, width: 1.0),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            hintStyle: TextStyle(color: LibColors.primary_color)),
                       ),
-                      hintStyle: TextStyle(color: LibColors.primary_color)),
-                ),
-              ),
-              Container(
-                alignment: Alignment.topLeft,
-                margin: EdgeInsets.all(12),
-                child: Text('Recommended Personal Trainer or Doctor'),
-              ),
-              FutureBuilder<List<ConsultantModel>>(
-                future: _consultantData,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    final _data = snapshot.data!;
-                    return ListView.builder(
+                    ),
+                    Container(
+                      alignment: Alignment.topLeft,
+                      margin: EdgeInsets.all(12),
+                      child: Text('Recommended Personal Trainer or Doctor'),
+                    ),
+                    ListView.builder(
                       itemCount: _data.length,
                       itemBuilder: (context, int index) {
-                          return profileCard(_data[index],context);
+                        return profileCard(_data[index],context);
                       },
                       physics : NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       // children: _data.map(profileCard).toList(),
-                    );
-                  } else {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                },
+                    ),
+                  ],
+                ),
               ),
-            ],
-          ),
-        ),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
     );
+  }
+
+  searchConsultant(String query,List<ConsultantModel> list) {
+
   }
 }
 
@@ -175,9 +195,7 @@ Widget profileCard(ConsultantModel model,context) {
                   child: MaterialButton(
                     color: LibColors.primary_color,
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => ChatView()));
-
+                      ConsultantController().requestChat(model.uid!);
                     },
                     child: Text(
                       'Request',

@@ -3,13 +3,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:getfit/controller/consultant_controller.dart';
+import 'package:getfit/controller/user_controller.dart';
+import 'package:getfit/models/chats_model.dart';
 import 'package:getfit/models/message_model.dart';
 import 'package:getfit/widgets/colors.dart';
 import 'package:intl/intl.dart';
 import 'package:grouped_list/grouped_list.dart';
 
+import '../models/user_model.dart';
+
 class ChatView extends StatefulWidget {
-  const ChatView({Key? key}) : super(key: key);
+  final ChatsModel model;
+  final bool isUser;
+  const ChatView({Key? key, required this.model,required this.isUser}) : super(key: key);
 
   @override
   State<ChatView> createState() => _ChatViewState();
@@ -27,24 +33,35 @@ class _ChatViewState extends State<ChatView> {
       messageController.dispose();
     }
 
+
+
     return Scaffold(
       appBar: AppBar(
 
-        title: Container(
-          padding: EdgeInsets.all(12),
-          child: Row(
-            children: [
-              CircleAvatar(
-                radius: 18.0,
-                backgroundImage:  AssetImage("assets/images/personaltrainer.png"),
-              ),
-              Container(
-                alignment: Alignment.centerLeft,
-                margin: EdgeInsets.all(12),
-                child: Container(child: Text('Dr. Thomas S'),),
-              )
-            ],
-          ),
+        title: FutureBuilder<UserModel>(
+          future: UserController().readUserDatabyId(id: (widget.isUser ? widget.model.uid_consultant : widget.model.uid_user)),
+          builder: (context, snapshot){
+            if(snapshot.hasData){
+              var data = snapshot.data!;
+              return Container(
+                padding: EdgeInsets.all(12),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 18.0,
+                      backgroundImage:  AssetImage("assets/images/personaltrainer.png"),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      margin: EdgeInsets.all(12),
+                      child: Container(child: Text(data.displayName),),
+                    )
+                  ],
+                ),
+              );
+            }
+            return Container();
+          },
         ),
 
         backgroundColor: LibColors.primary_color,
@@ -52,7 +69,7 @@ class _ChatViewState extends State<ChatView> {
       body: Column(
         children: [
           StreamBuilder<List<MessagesModel>>(
-            stream: ConsultantController().getMessages(),
+            stream: ConsultantController().getMessages(chatRoomId: widget.model.id!),
             builder: (context,snapshot){
               final models = snapshot.data;
 
@@ -175,7 +192,7 @@ class _ChatViewState extends State<ChatView> {
                 MaterialButton(onPressed: (){
                   final message = MessagesModel(uid:FirebaseAuth.instance.currentUser!.uid,messages: messageController.text, createdOn: DateTime.now());
 
-                  ConsultantController().sendMessage(message);
+                  ConsultantController().sendMessage(chatRoomId: widget.model.id!,model: message);
                   messageController.clear();
                 },
                 child: Container(
